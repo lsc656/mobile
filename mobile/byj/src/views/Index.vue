@@ -51,7 +51,7 @@
             </select>
             <span>点</span>
             <br>
-            <mt-button size="large">开始算命</mt-button>
+            <mt-button size="large" @click.prevent="">开始算命</mt-button>
           </form>
 				</div>
 			</div>
