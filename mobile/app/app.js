@@ -41,4 +41,4 @@ app.use(bodyParser.urlencoded({
 
 //挂在路由
 app.use("/user",user);
-app.use("/user",product);
+app.use("/product",product);

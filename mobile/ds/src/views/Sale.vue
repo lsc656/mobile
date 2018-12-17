@@ -7,7 +7,7 @@
     </header>
     <section class="section">
       <div>
-        <div class="picture"><img src="http://127.0.0.1:3000/images/Sale/Special/special001.jpg" alt=""></div>
+        <div class="picture"><img src="http://127.0.0.1:3000/images/Sale/product001.jpg" alt=""></div>
         <div class="info">
           <p class="title">{{title}}</p>
           <p class="author">{{fAuthor}} {{sAuthor}}</p>
@@ -35,6 +35,17 @@
         oldPrice:40,
       }
     },
+    methods:{
+      getList(){
+        var tagId=this.$route.params.tagId;
+        this.axios.get("http://127.0.0.1:3000/product/list?tagId="+tagId).then((res)=>{
+          console.log(res)
+        })
+      }
+    },
+    created(){
+      this.getList();
+    }
   }
 </script>
 <style>

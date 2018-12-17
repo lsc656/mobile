@@ -3,15 +3,15 @@
     <table class="nav">
       <tr>
         <td>
-          <div @click="jumpTo($event)" data-tagId="1">Sale</div>
+          <div @click="jumpTo($event)" data-tagid="1">Sale</div>
           <p>特价</p>
         </td>
         <td>
-          <div @click="jumpTo($event)" data-tagId="2">Free</div>
+          <div @click="jumpTo($event)" data-tagid="2">Free</div>
           <p>免费</p>
         </td>
         <td>
-          <div @click="jumpTo($event)" data-tagId="3"></div>
+          <div @click="jumpTo($event)" data-tagid="3"></div>
           <p>畅销</p>
         </td>
         <td>
@@ -175,7 +175,7 @@ export default {
   },
   methods:{
     jumpTo(e){
-      this.$router.push("/Sale/"+e.target.dataset.tagId)
+      this.$router.push("/Sale/"+e.target.dataset.tagid)
     }
   },
   created(){

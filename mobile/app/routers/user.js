@@ -1,5 +1,5 @@
 const express=require("express");
-const pool=express("../pool.js")
+const pool=require("../pool.js")
 var router=express.Router();
 
 router.get("/",(req,res)=>{
