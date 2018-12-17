@@ -3,15 +3,15 @@
     <table class="nav">
       <tr>
         <td>
-          <div>Sale</div>
+          <div @click="jumpTo($event)" data-sid="1">Sale</div>
           <p>特价</p>
         </td>
         <td>
-          <div>Free</div>
+          <div @click="jumpTo($event)" data-sid="2">Free</div>
           <p>免费</p>
         </td>
         <td>
-          <div></div>
+          <div @click="jumpTo($event)" data-sid="3"></div>
           <p>畅销</p>
         </td>
         <td>
@@ -174,7 +174,9 @@ export default {
     }
   },
   methods:{
-    
+    jumpTo(e){
+      this.$router.push("/Sale/"+e.target.dataset.sid)
+    }
   },
   created(){
     
