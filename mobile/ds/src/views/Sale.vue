@@ -3,19 +3,19 @@
     <header class="header">
       <div class="mui-icon mui-icon-back"></div>
       <div>|</div>
-      <div>{{tag}}</div>
+      <div v-cloak>{{tag}}</div>
     </header>
     <section class="section">
-      <div>
-        <div class="picture"><img src="http://127.0.0.1:3000/images/Sale/product001.jpg" alt=""></div>
+       <div v-for="item of list" :key="item.sid">
+        <div class="picture"><img :src="item.imgSrc" alt=""></div>
         <div class="info">
-          <p class="title">{{title}}</p>
-          <p class="author">{{fAuthor}} {{sAuthor}}</p>
-          <p class="summary">{{summary}}</p>
+          <p class="title" v-cloak>{{item.title}}</p>
+          <p class="author" v-cloak>{{item.fAuthor}} {{item.sAuthor}}</p>
+          <p class="summary" v-cloak>{{item.summary}}</p>
         </div>
         <div class="price">
-          <div class="newPrice">￥{{newPrice.toFixed(2)}}</div>
-          <div class="oldPrice">￥{{oldPrice.toFixed(2)}}</div>
+          <div class="newPrice" v-cloak>￥{{item.newPrice.toFixed(2)}}</div>
+          <div class="oldPrice" v-cloak>￥{{item.oldPrice.toFixed(2)}}</div>
         </div>
       </div>
     </section>
@@ -25,26 +25,30 @@
   export default {
     data(){
       return {
-        sid:1,
-        tag:"最新特价",
-        title:"算法之美",
-        fAuthor:"【美】布莱恩·克里斯汀",
-        sAuthor:"【美】汤姆·格里菲思",
-        summary:"你以为这本书讲的是算法吗？其实它说的是人生！我去二分无法erect我二二额外热情qwcdedeewfrew无",
-        newPrice:9.9,
-        oldPrice:40,
+        pno:1,
+        pageCount:0,
+        tag:"",
+        list:[],
       }
     },
     methods:{
       getList(){
-        var tagId=this.$route.params.tagId;
-        this.axios.get("http://127.0.0.1:3000/product/list?tagId="+tagId).then((res)=>{
-          console.log(res)
+        this.axios.get("http://127.0.0.1:3000/product/list?tagId="+this.$route.params.tagId+"&pno="+this.pno).then((res)=>{
+          this.pageCount=res.data.c;
+          this.list=res.data.data;
+        })
+      },
+      getTag(){
+        this.axios.get("http://127.0.0.1:3000/product/tags?tagId="+this.$route.params.tagId).then((res)=>{
+          if(res.data.code==1){
+            this.tag=res.data.data[0].dname;
+          }
         })
       }
     },
     created(){
       this.getList();
+      this.getTag();
     }
   }
 </script>

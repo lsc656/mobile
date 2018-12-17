@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header id="header" class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-pull-left">多看阅读</a>
+			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看阅读</router-link>
       <a class="mui-pull-right h-icon-bg"></a>
       <a class="mui-pull-right">|</a>
       <a class="mui-pull-right h-icon-bg"></a>
