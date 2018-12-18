@@ -16,8 +16,8 @@ router.get("/list",(req,res)=>{
   pool.query(sql,[tagId,start],(err,result)=>{
     if(err) throw err;
     output.data=result;
-    var sql="SELECT COUNT(sid) AS c FROM ds_list";
-    pool.query(sql,[],(err,result)=>{
+    var sql="SELECT COUNT(sid) AS c FROM ds_list WHERE tagId=?";
+    pool.query(sql,[tagId],(err,result)=>{
       if(err) throw err;
       output.c=Math.ceil(result[0].c/10);
       res.send(output)
