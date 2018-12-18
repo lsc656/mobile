@@ -7,16 +7,16 @@
     </header>
     <section class="section">
       <div>
-        <div><img src="http://127.0.0.1:3000/images/Sale/product008.jpg" alt=""></div>
+        <div><img :src="info.imgSrc" alt=""></div>
         <div>
-          <h4>周浩晖推理悬疑经典集（共10册）</h4>
-          <div><div></div><p>评分</p></div>
-          <p>作者：XXXX</p>
-          <p>版权：XXXXXXXX</p>
+          <h4>{{info.title}}</h4>
+          <div><div></div><p>{{info.evaluate}}</p></div>
+          <p>作者：{{info.fAuthor}}&nbsp;{{info.sAuthor}}</p>
+          <p>版权：{{info.copyright}}</p>
           <p>
-            <del>￥380.00</del>
-            <span>￥359.00</span>
-            <span>7.0折</span>
+            <del v-if="info.oldPrice">￥{{info.oldPrice.toFixed(2)}}</del>
+            <span v-if="info.newPrice">￥{{info.newPrice.toFixed(2)}}</span>
+            <span v-if="info.newPrice && info.oldPrice">{{parseInt(10*info.newPrice/info.oldPrice).toFixed(1)}}折</span>
           </p>
         </div>
       </div>
@@ -26,23 +26,27 @@
       </div>
     </section>
     <footer class="footer">
-      <div @click="getmoreInfo">图书简介</div>
-      <div @click="getComment">评论</div>
-      <div @click="getOthers">更多信息</div>
-      <p class="moveP"></p>  <!--left 17%,50%,81% -->    
+      <div @click="moveP('17%')">图书简介</div>
+      <div @click="moveP('50%')">评论</div>
+      <div @click="moveP('81%')">更多信息</div>
+      <p class="moveP"></p>
     </footer>
     <moreInfo-box :sid="this.$route.params.sid"></moreInfo-box>
     <comment-box :sid="this.$route.params.sid"></comment-box>
-    <others :sid="this.$route.params.sid"></others>
+    <others-box :sid="this.$route.params.sid"></others-box>
   </div>  
 </template>
 <script>
-import comment from "../components/Detail/comment.vue";
 import moreInfo from "../components/Detail/moreInfo.vue";
+import comment from "../components/Detail/comment.vue";
 import others from "../components/Detail/others.vue";
+import {Toast} from "mint-ui"
+// star 1,-20,-42,-64,-86
   export default {
     data(){
-      return {}
+      return {
+        info:[],
+      }
     },
     methods:{
       goPrev(){
@@ -50,32 +54,53 @@ import others from "../components/Detail/others.vue";
       },
       getInfo(){
         var sid=this.$route.params.sid;
-        //this.axios.get()
+        this.axios.get("http://127.0.0.1:3000/product/getInfo?sid="+sid).then((res)=>{
+          if(res.data.code==1){
+            this.info=res.data.data[0];
+          }else if(res.data.code==0){
+            Toast(res.data.msg)
+          }else{
+            Toast("未知错误");
+          }
+        })
       },
       moveP(percent){
+        // 移动小箭头
         if(!percent){
           percent="17%";
         }
-        var p=document.getElementsByClassName("moveP");
-        p.setAttribute("left",percent);
+        var p=document.getElementsByClassName("moveP")[0];
+        p.style.left=percent;
+        this.changeBox(percent);
       },
-      getmoreInfo(){
-
-        this.moveP();
-      },
-      getComment(){
-
-        this.moveP("50%");
-      },
-      getOthers(){
-        this.moveP("81%");
+      changeBox(percent){
+        // 更换下方内容区域显示（目录介绍，评论，更多信息）
+        if(!percent){
+          percent="17%";
+        }
+        var mib=document.getElementsByClassName("moreInfo")[0];
+        var cb=document.getElementsByClassName("comment")[0];
+        var ob=document.getElementsByClassName("others")[0];
+        if(percent=="17%"){
+          mib.style.display="block";
+          cb.style.display="none";
+          ob.style.display="none";
+        }else if(percent=="50%"){
+          mib.style.display="none";
+          cb.style.display="block";
+          ob.style.display="none";
+        }else if(percent=="81%"){
+          mib.style.display="none";
+          cb.style.display="none";
+          ob.style.display="block";
+        }  
       },
     },
-    components:{"comment-box":comment,"moreInfo-box":moreInfo,"others":others},
-    created(){
+    components:{"comment-box":comment,"moreInfo-box":moreInfo,"others-box":others},
+    mounted(){
       this.getInfo();
       this.moveP();
-    }
+    },
   }
 </script>
 <style>
@@ -172,11 +197,13 @@ import others from "../components/Detail/others.vue";
     padding:8px 0;
     flex-grow: 1;
     text-align:center;
+    font-size:0.8rem;
+    color:#333;
   }
   div.detail>footer.footer>div:not(:nth-child(3)){
     border-right:1px solid #C9C9C9;
   }
-  div.detail>footer.footer>p{
+  div.detail>footer.footer>p.moveP{
     border-top:1px solid #C9C9C9;
     border-right:1px solid #C9C9C9;
     width:6px;

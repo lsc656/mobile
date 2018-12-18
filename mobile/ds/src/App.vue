@@ -57,7 +57,7 @@
 }
 #footer{
   background: #F7F7F7;
-  padding-bottom:20px;
+  padding:20px 0;
   text-align:center;
 }
 #footer>p{
