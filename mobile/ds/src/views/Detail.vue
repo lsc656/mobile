@@ -57,6 +57,7 @@ import {Toast} from "mint-ui"
         this.axios.get("http://127.0.0.1:3000/product/getInfo?sid="+sid).then((res)=>{
           if(res.data.code==1){
             this.info=res.data.data[0];
+            this.getPic();
           }else if(res.data.code==0){
             Toast(res.data.msg)
           }else{
@@ -94,6 +95,12 @@ import {Toast} from "mint-ui"
           cb.style.display="none";
           ob.style.display="block";
         }  
+      },
+      getPic(){
+        // 切换评分图片
+        var picDiv=document.querySelector("section.section>div:first-child>div:nth-child(2)>div:nth-child(2)>div:first-child");
+        var num=parseInt(this.info.evaluate);
+        picDiv.style.backgroundPosition="0 "+(-num*22+1)+"px"
       },
     },
     components:{"comment-box":comment,"moreInfo-box":moreInfo,"others-box":others},
