@@ -1,5 +1,8 @@
 <template>
-  <div class="comment">comment</div>
+  <div class="comment">
+    <div></div>
+    <div></div>
+  </div>
 </template>
 <script>
   export default {
@@ -10,6 +13,7 @@
     },
     methods:{},
     created(){},
+    props:["sid"],
   }  
 </script>
 <style>

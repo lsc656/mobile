@@ -26,18 +26,19 @@
       </div>
     </section>
     <footer class="footer">
-      <div>图书简介</div>
-      <div>评论</div>
-      <div>更多信息</div>
+      <div @click="getmoreInfo">图书简介</div>
+      <div @click="getComment">评论</div>
+      <div @click="getOthers">更多信息</div>
+      <p class="moveP"></p>  <!--left 17%,50%,81% -->    
     </footer>
-    <comment-box></comment-box>
-    <info-box></info-box>
-    <others></others>
+    <moreInfo-box :sid="this.$route.params.sid"></moreInfo-box>
+    <comment-box :sid="this.$route.params.sid"></comment-box>
+    <others :sid="this.$route.params.sid"></others>
   </div>  
 </template>
 <script>
 import comment from "../components/Detail/comment.vue";
-import info from "../components/Detail/info.vue";
+import moreInfo from "../components/Detail/moreInfo.vue";
 import others from "../components/Detail/others.vue";
   export default {
     data(){
@@ -50,16 +51,38 @@ import others from "../components/Detail/others.vue";
       getInfo(){
         var sid=this.$route.params.sid;
         //this.axios.get()
-      }
+      },
+      moveP(percent){
+        if(!percent){
+          percent="17%";
+        }
+        var p=document.getElementsByClassName("moveP");
+        p.setAttribute("left",percent);
+      },
+      getmoreInfo(){
+
+        this.moveP();
+      },
+      getComment(){
+
+        this.moveP("50%");
+      },
+      getOthers(){
+        this.moveP("81%");
+      },
     },
-    components:{"comment-box":comment,"info-box":info,"others":others},
+    components:{"comment-box":comment,"moreInfo-box":moreInfo,"others":others},
     created(){
       this.getInfo();
+      this.moveP();
     }
   }
 </script>
 <style>
- div.detail>header.header{
+  div.detail{
+    background: #F7F7F7;
+  }
+  div.detail>header.header{
     display:flex;
     background: #58C3D6;
     padding:8px 0;
@@ -140,13 +163,29 @@ import others from "../components/Detail/others.vue";
   }
   div.detail>footer.footer{
     display:flex;
-    justify-content: space-around;
     border-top:1px solid #C9C9C9;
     border-bottom:1px solid #C9C9C9;
     padding:5px 0;
+    position:relative;
   }
   div.detail>footer.footer>div{
-    padding:8px;
+    padding:8px 0;
+    flex-grow: 1;
+    text-align:center;
+  }
+  div.detail>footer.footer>div:not(:nth-child(3)){
+    border-right:1px solid #C9C9C9;
+  }
+  div.detail>footer.footer>p{
+    border-top:1px solid #C9C9C9;
+    border-right:1px solid #C9C9C9;
+    width:6px;
+    height:6px;
+    background: #fafafa;
+    transform:rotate(-45deg);
+    position:absolute;
+    top:44px;
+    left:17%;
   }
 </style>
 

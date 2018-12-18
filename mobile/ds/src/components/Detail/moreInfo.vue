@@ -10,6 +10,7 @@
     },
     methods:{},
     created(){},
+    props:["sid"],
   }  
 </script>
 <style>
