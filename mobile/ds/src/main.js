@@ -35,8 +35,7 @@ Vue.filter("sTime",function(val){
   var d=now.getDate();
   var h=now.getHours();
   var mi=now.getMinutes();
-  var s=now.getSeconds();
-  return `${y}年${m}月${d}日 ${h}时${mi}分${s}秒`  
+  return `-${y}-${m}-${d} ${h}:${mi}`  
 })
 
 new Vue({

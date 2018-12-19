@@ -43,23 +43,41 @@ div.comment>div>div.comment-item{
   padding:10px;
   border-bottom:1px solid #C9C9C9;
 }
+div.comment>div>div.comment-item>p:first-child{
+  color:#666666;
+}
 div.comment>div>div.comment-item>div:nth-child(2){
   display:flex;
   justify-content: space-between;
-}
-div.comment>div>div.comment-item>div:nth-child(2)>div:first-child{
-  width:75%;
-  text-align:right;
-}
-div.comment>div>div.comment-item>div:nth-child(2)>div:nth-child(2){
-  width:25%;
+  height:22px;
 }
 div.comment>div>div.comment-item>div:nth-child(2)>div.star{
+  width:300px;
+  padding-left:130px;
   background:url("http://127.0.0.1:3000/images/Detail/star.png") no-repeat;
-  background-size:100px;
+  background-size:35%;
+  font-size:0.9rem;
+
+  color:#B2B2B2;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div:nth-child(2){
+  width:15%;
 }
 div.comment>div>div.comment-item>div:nth-child(2)>div.score{
   display:flex;
+  justify-content:flex-end;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.score>div{
+  width:35%;
+  text-align:right;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.score>div>img{
+  height:100%;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.score>span{
+  padding-top:2px;
+  margin-left:5px;
+  color:#B2B2B2;
 }
 </style>
 
