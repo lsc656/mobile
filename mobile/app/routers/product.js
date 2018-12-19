@@ -60,5 +60,17 @@ router.get("/getMoreInfo",(req,res)=>{
     })
   })
 })
+router.get("/getComment",(req,res)=>{
+  var sid=req.query.sid;
+  var sql="SELECT sid,content,evaluate,time,zan FROM ds_comment WHERE sid=?";
+  pool.query(sql,[sid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,data:result});
+    }else{
+      res.send({code:0,msg:"暂无评论数据"})
+    }
+  })
+})
 
 module.exports=router;

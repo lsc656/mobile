@@ -28,7 +28,16 @@ Vue.component(Button.name,Button);
 
 
 
-Vue.config.productionTip = false
+Vue.filter("sTime",function(val){
+  var now=new Date(val);
+  var y=now.getFullYear();
+  var m=now.getMonth();
+  var d=now.getDate();
+  var h=now.getHours();
+  var mi=now.getMinutes();
+  var s=now.getSeconds();
+  return `${y}年${m}月${d}日 ${h}时${mi}分${s}秒`  
+})
 
 new Vue({
   router,
