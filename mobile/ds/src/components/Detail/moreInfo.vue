@@ -1,11 +1,21 @@
 <template>
   <div class="moreInfo">
     <div>
-      <div>{{info}}</div>
+      <div>
+        <div>
+          {{info}}
+        </div>
+      </div>
       <div @click="getMoreInfo()">完整简介<img src="http://127.0.0.1:3000/images/Detail/arr.png" alt=""></div>
     </div>
     <div>
-      目录
+      <div>目录</div>
+      <div>
+        <div class="cata_item" v-for="item of catalog" :key="item.did">
+          <p>{{item.catalog_number}}.&nbsp;-&nbsp;{{item.catalog_title}}</p>
+          <p>{{item.catalog_content}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -21,8 +31,16 @@
     methods:{
       getMoreInfo(e){
         var cImg=document.querySelector("div.moreInfo>div:first-child>div:nth-child(2)>img");
-        this.deg+=180;
-        cImg.style.transform="rotate("+this.deg+"deg)"
+        this.deg+=1;
+        var deg=this.deg%2*180;
+        cImg.style.transform="rotate("+deg+"deg)";
+        var cDiv=document.querySelector("div.moreInfo>div:first-child>div:first-child");
+        var pDiv=document.querySelector("div.moreInfo>div:first-child>div:first-child>div");
+        if(this.deg%2==0){
+          cDiv.style.height="8rem";
+        }else{
+          cDiv.style.height=getComputedStyle(pDiv).height;
+        }
       },
     },
     created(){
@@ -43,8 +61,13 @@ div.moreInfo{
   padding:20px 15px;
 }
 div.moreInfo>div:first-child>div:first-child{
-  font-size:0.9rem;
+  height:8rem;
+  overflow:hidden;
+  transition-duration: .5s;
+}
+div.moreInfo>div:first-child>div:first-child>div{
   color:#666;
+  font-size:0.9rem;
 }
 div.moreInfo>div:first-child>div:nth-child(2){
   text-align:right;
@@ -54,6 +77,22 @@ div.moreInfo>div:first-child>div:nth-child(2){
 }
 div.moreInfo>div:first-child>div:nth-child(2)>img{
   width:20px;
+}
+div.moreInfo>div:nth-child(2)>div:first-child,div.moreInfo>div:nth-child(2)>div:nth-child(2)>div{
+  border-bottom:1px solid #C9C9C9;
+  padding:10px 0;
+}
+div.moreInfo>div:nth-child(2)>div:first-child{
+  color:#999;
+  font-size:0.9rem;
+  font-weight:bold;
+}
+div.moreInfo>div:nth-child(2)>div:nth-child(2)>div>p{
+  color:#999;
+}
+div.moreInfo>div:nth-child(2)>div:nth-child(2)>div>p:first-child{
+  font-weight:bold;
+  color:#666;
 }
 </style>
 

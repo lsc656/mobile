@@ -10,13 +10,13 @@
         <div><img :src="info.imgSrc" alt=""></div>
         <div>
           <h4>{{info.title}}</h4>
-          <div><div></div><p>{{info.evaluate}}</p></div>
+          <div><div></div><p v-if="info.evaluate">{{info.evaluate.toFixed(1)}}</p></div>
           <p>作者：{{info.fAuthor}}&nbsp;{{info.sAuthor}}</p>
           <p>版权：{{info.copyright}}</p>
           <p>
             <del v-if="info.oldPrice">￥{{info.oldPrice.toFixed(2)}}</del>
             <span v-if="info.newPrice">￥{{info.newPrice.toFixed(2)}}</span>
-            <span v-if="info.newPrice && info.oldPrice">{{parseInt(10*info.newPrice/info.oldPrice).toFixed(1)}}折</span>
+            <span v-if="info.newPrice && info.oldPrice">{{(10*info.newPrice/info.oldPrice).toFixed(1)}}折</span>
           </p>
         </div>
       </div>
@@ -99,7 +99,7 @@ import {Toast} from "mint-ui"
       getPic(){
         // 切换评分图片
         var picDiv=document.querySelector("section.section>div:first-child>div:nth-child(2)>div:nth-child(2)>div:first-child");
-        var num=parseInt(this.info.evaluate);
+        var num=Math.round(this.info.evaluate);
         picDiv.style.backgroundPosition="0 "+(-num*22+1)+"px"
       },
     },
