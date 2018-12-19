@@ -4,7 +4,15 @@
       <div class="comment-item" v-for="(item,i) of list" :key="i">
         <p>{{item.content}}</p>
         <div>
-          <div class="star">{{item.time|sTime}}</div>
+          <div class="star">
+            <div>
+              <p class="star-before">★★★★★</p>
+              <p class="star-after">★★★★★</p>
+            </div>
+            <div>
+              {{item.time|sTime}}
+            </div>          
+          </div>
           <div class="score">
             <div><img src="http://127.0.0.1:3000/images/comment/icon-small-1.png" alt=""></div>
             <span>{{item.zan}}</span>
@@ -27,13 +35,32 @@
         this.axios.get("http://127.0.0.1:3000/product/getComment?sid="+this.sid).then((res)=>{
          res=res.data;
          if(res.code==1){
-           this.list=res.data;
+           this.list=res.data;          
          }
         })
-      }
+      },
+      getStarWidth(){
+        var con=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child");
+        var prevStar=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-before");
+        var nextStar=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-after");
+        console.log(prevStar)
+        for(var i=0;i<con.length;i++){
+          var a=window.getComputedStyle(prevStar[i]).width;
+          console.log(a)
+          con[i].style.width=window.getComputedStyle(prevStar[i]).width
+        }
+      },
     },
     created(){
       this.getComment();
+    },
+    mounted(){
+    },
+    watch:{
+    },
+    updated(){
+      this.$nextTick(this.getStarWidth);
+      
     },
     props:["sid"],
   }  
@@ -52,13 +79,29 @@ div.comment>div>div.comment-item>div:nth-child(2){
   height:22px;
 }
 div.comment>div>div.comment-item>div:nth-child(2)>div.star{
-  width:300px;
-  padding-left:130px;
-  background:url("http://127.0.0.1:3000/images/Detail/star.png") no-repeat;
-  background-size:35%;
-  font-size:0.9rem;
-
+  display:flex;
+  flex-grow:1;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child{
+  position:relative;
+  letter-spacing: 3px;
+}
+/*星星*/
+div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p{
+  position: absolute;
+  margin:0px;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-before{
   color:#B2B2B2;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-after{
+  color:#FC662A;
+  overflow:hidden;
+}
+div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:nth-child(2){
+  font-size:14px;
+  color:#666;
+  width:70%;
 }
 div.comment>div>div.comment-item>div:nth-child(2)>div:nth-child(2){
   width:15%;
