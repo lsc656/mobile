@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <header id="header" class="mui-bar mui-bar-nav">
-			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看阅读</router-link>
+			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看看书</router-link>
       <a class="mui-pull-right h-icon-bg"></a>
       <a class="mui-pull-right">|</a>
       <a class="mui-pull-right h-icon-bg"></a>
 		</header>
     <router-view/>
     <div id="footer">
-      <p><span>多看客户端</span>|<span>电脑版</span></p>
+      <p><span>多看看书客户端</span>|<span>电脑版</span></p>
       <p>Copyright&copy;duokan.com</p>
     </div>
   </div>

@@ -215,4 +215,3 @@ import {Toast} from "mint-ui"
     left:17%;
   }
 </style>
-
