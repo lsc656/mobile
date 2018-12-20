@@ -2,7 +2,7 @@
   <div id="app">
     <header id="header" class="mui-bar mui-bar-nav">
 			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看看书</router-link>
-      <a class="mui-pull-right h-icon-bg"></a>
+      <a class="mui-pull-right h-icon-bg" @click="goSearch"></a>
       <a class="mui-pull-right">|</a>
       <a class="mui-pull-right h-icon-bg"></a>
 		</header>
@@ -19,12 +19,21 @@
       return {
         
       }
+    },
+    methods:{
+      goSearch(){
+        this.$router.push("/Search")
+      },
     }
   }
 </script>
 <style>
 #app{
   padding-top:44px;
+  background: #f7f7f7;
+}
+[v-cloak]{
+  display:none;
 }
 #app>#header{
   background: #1DABC5;
@@ -59,11 +68,29 @@
   background: #F7F7F7;
   padding:20px 0;
   text-align:center;
+  margin-bottom:0;
 }
 #footer>p{
   letter-spacing: 1px;
 }
 #footer>p>span{
   margin:0 5px;
+}
+.mark {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 3rem;
+  line-height: 3rem;
+  width: 80%;
+  text-align: center;
+  font-size: 1rem;
+  color: #fff;
+  background:rgba(88,195,214,0.7);
+  border-radius: 0.1rem;
 }
 </style>

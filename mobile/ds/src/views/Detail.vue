@@ -10,13 +10,13 @@
         <div><img :src="info.imgSrc" alt=""></div>
         <div>
           <h4>{{info.title}}</h4>
-          <div><div></div><p v-if="info.evaluate">{{info.evaluate.toFixed(1)}}</p></div>
+          <div><div></div><p>{{info.evaluate.toFixed(1)}}</p></div>
           <p>作者：{{info.fAuthor}}&nbsp;{{info.sAuthor}}</p>
           <p>版权：{{info.copyright}}</p>
           <p>
-            <del v-if="info.oldPrice">￥{{info.oldPrice.toFixed(2)}}</del>
-            <span v-if="info.newPrice">￥{{info.newPrice.toFixed(2)}}</span>
-            <span v-if="info.newPrice && info.oldPrice">{{(10*info.newPrice/info.oldPrice).toFixed(1)}}折</span>
+            <del>￥{{info.oldPrice.toFixed(2)}}</del>
+            <span>￥{{info.newPrice.toFixed(2)}}</span>
+            <span>{{(10*info.newPrice/info.oldPrice).toFixed(1)}}折</span>
           </p>
         </div>
       </div>
@@ -45,7 +45,11 @@ import {Toast} from "mint-ui"
   export default {
     data(){
       return {
-        info:[],
+        info:{
+          evaluate:0,
+          oldPrice:0,
+          newPrice:0
+        },
       }
     },
     methods:{
@@ -104,8 +108,10 @@ import {Toast} from "mint-ui"
       },
     },
     components:{"comment-box":comment,"moreInfo-box":moreInfo,"others-box":others},
-    mounted(){
+    created(){
       this.getInfo();
+    },
+    mounted(){
       this.moveP();
     },
   }

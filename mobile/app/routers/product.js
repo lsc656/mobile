@@ -62,7 +62,7 @@ router.get("/getMoreInfo",(req,res)=>{
 })
 router.get("/getComment",(req,res)=>{
   var sid=req.query.sid;
-  var sql="SELECT sid,content,evaluate,time,zan FROM ds_comment WHERE sid=?";
+  var sql="SELECT cid,sid,content,evaluate,time,zan FROM ds_comment WHERE sid=?";
   pool.query(sql,[sid],(err,result)=>{
     if(err) throw err;
     if(result.length>0){
@@ -72,5 +72,30 @@ router.get("/getComment",(req,res)=>{
     }
   })
 })
-
+router.get("/setZan",(req,res)=>{
+  var cid=req.query.cid;
+  var zan=parseInt(req.query.zan);
+  zan+=1;
+  var sql="UPDATE ds_comment SET zan=? WHERE cid=?"
+  pool.query(sql,[zan,cid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"更新成功"});
+    }else{
+      res.send({code:0,msg:"更新失败"})
+    }
+  })
+})
+router.get("/getOthers",(req,res)=>{
+  var sid=req.query.sid;
+  var sql="SELECT fAuthor,sAuthor,wcount,size,bnumber,publish_time,update_time FROM ds_list WHERE sid=?"
+  pool.query(sql,[sid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,data:result[0]});
+    }else{
+      res.send({code:0,msg:"没有信息"})
+    }
+  })
+})
 module.exports=router;

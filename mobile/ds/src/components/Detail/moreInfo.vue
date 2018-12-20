@@ -44,14 +44,12 @@
       },
     },
     created(){
-
-    },
-    mounted(){
       this.axios.get("http://127.0.0.1:3000/product/getMoreInfo?sid="+this.sid).then((res)=>{
         res=res.data;
         this.info=res.info.intro;
         this.catalog=res.catalog;
       })
+
     },
     props:["sid"],
   }  

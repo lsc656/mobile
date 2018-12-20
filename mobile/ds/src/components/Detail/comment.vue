@@ -1,5 +1,6 @@
 <template>
   <div class="comment">
+    <p id="pWidth" style="float:left">★★★★★</p>
     <div>
       <div class="comment-item" v-for="(item,i) of list" :key="i">
         <p>{{item.content}}</p>
@@ -9,45 +10,60 @@
               <p class="star-before">★★★★★</p>
               <p class="star-after">★★★★★</p>
             </div>
-            <div>
+            <div class="time">
               {{item.time|sTime}}
             </div>          
           </div>
           <div class="score">
-            <div><img src="http://127.0.0.1:3000/images/comment/icon-small-1.png" alt=""></div>
+            <div><img src="http://127.0.0.1:3000/images/comment/icon-small-1.png" alt="" :data-zan="item.zan" :data-cid="item.cid" @click="zan($event)"></div>
             <span>{{item.zan}}</span>
           </div>
         </div>
       </div>
     </div>
-    <div>第X页</div>
   </div>
 </template>
 <script>
+
   export default {
     data(){
       return {
         list:[],
+        pWidth:"",
       }
     },
     methods:{
+      zan(e){       
+        var cid=e.target.dataset.cid;
+        var zan=e.target.dataset.zan;
+        this.axios.get("http://127.0.0.1:3000/product/setZan?cid="+cid+"&zan="+zan).then((res)=>{
+          this.getComment();
+        })
+      },
+      getpWidth(){
+        var p=document.getElementById("pWidth");
+        this.pWidth=window.getComputedStyle(p).width
+        document.getElementsByClassName("comment")[0].removeChild(p);
+      },
       getComment(){
         this.axios.get("http://127.0.0.1:3000/product/getComment?sid="+this.sid).then((res)=>{
          res=res.data;
          if(res.code==1){
-           this.list=res.data;          
+           this.list=res.data;
          }
         })
       },
-      getStarWidth(){
+      setStarWidth(){
         var con=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child");
         var prevStar=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-before");
         var nextStar=document.querySelectorAll("div.comment>div>div.comment-item>div:nth-child(2)>div.star>div:first-child>p.star-after");
-        console.log(prevStar)
+        var time=document.getElementsByClassName("time");
         for(var i=0;i<con.length;i++){
           var a=window.getComputedStyle(prevStar[i]).width;
-          console.log(a)
-          con[i].style.width=window.getComputedStyle(prevStar[i]).width
+          con[i].style.width=this.pWidth;
+          prevStar[i].style.width=this.pWidth;
+          time[i].style.marginLeft=this.pWidth;
+          nextStar[i].style.width=(this.list[i].evaluate/5)*parseInt(this.pWidth)+"px";
         }
       },
     },
@@ -55,17 +71,18 @@
       this.getComment();
     },
     mounted(){
-    },
-    watch:{
+      this.getpWidth();
     },
     updated(){
-      this.$nextTick(this.getStarWidth);
-      
+      this.setStarWidth()
     },
     props:["sid"],
   }  
 </script>
 <style>
+#pWidth{
+  letter-spacing: 3px;
+}
 div.comment>div>div.comment-item{
   padding:10px;
   border-bottom:1px solid #C9C9C9;
@@ -110,10 +127,6 @@ div.comment>div>div.comment-item>div:nth-child(2)>div.score{
   display:flex;
   justify-content:flex-end;
 }
-div.comment>div>div.comment-item>div:nth-child(2)>div.score>div{
-  width:35%;
-  text-align:right;
-}
 div.comment>div>div.comment-item>div:nth-child(2)>div.score>div>img{
   height:100%;
 }
@@ -122,5 +135,7 @@ div.comment>div>div.comment-item>div:nth-child(2)>div.score>span{
   margin-left:5px;
   color:#B2B2B2;
 }
+
+
 </style>
 

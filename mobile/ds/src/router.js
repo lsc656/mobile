@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index.vue'
 import Sale from './views/Sale.vue'
 import Detail from './views/Detail.vue'
+import Search from "./views/Search.vue"
 
 Vue.use(Router)
 
@@ -11,6 +12,7 @@ export default new Router({
     {path: '/',name: 'Index',component: Index},
     {path:"/Index",redirect:"/"},
     {path: '/Sale/:tagId',name: 'Sale',component: Sale},
-    {path: '/Detail/:sid',name:"Detail",component: Detail,},
+    {path: '/Detail/:sid',name:"Detail",component: Detail},
+    {path:"/Search",name:"Search",component:Search}
   ]
 })

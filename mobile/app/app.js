@@ -1,9 +1,9 @@
 //1:加载模块 express pool
 const express = require("express");
-const pool = require("./pool");
 //1.2加载路由
 const user=require("./routers/user.js");
 const product=require("./routers/product.js");
+const search=require("./routers/search.js")
 
 //2:创建express对象
 var app = express();
@@ -42,3 +42,4 @@ app.use(bodyParser.urlencoded({
 //挂在路由
 app.use("/user",user);
 app.use("/product",product);
+app.use("/search",search)

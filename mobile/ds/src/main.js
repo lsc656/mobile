@@ -37,6 +37,25 @@ Vue.filter("sTime",function(val){
   var mi=now.getMinutes();
   return `-${y}-${m}-${d} ${h}:${mi}`  
 })
+Vue.filter("oTime",function(val){
+  var now=new Date(val);
+  var y=now.getFullYear();
+  var m=now.getMonth();
+  var d=now.getDate();
+  return `${y}-${m}-${d}`  
+})
+Vue.prototype.alert=function(str){
+  var div=document.createElement("div");
+  div.classList.add("mark")
+  document.body.appendChild(div);
+  var mark=document.getElementsByClassName("mark");
+  mark[0].innerHTML=str;
+  mark[0].style.display="block";
+  setTimeout(function() {
+    mark[0].style.display="none";
+    document.body.removeChild(mark[0])
+  }, 2000)
+}
 
 new Vue({
   router,
