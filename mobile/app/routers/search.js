@@ -12,7 +12,7 @@ router.get("/mySearch",(req,res)=>{
   var keys=req.query.keys.split(" ");
   var arr=[];
   for(var i in keys){
-    keys[i]="%"+keys[i]+"%";
+    keys[i]=`%${keys[i]}%`;
     arr.push(keys[i])
   }
   function getSql(keys,col){
@@ -25,12 +25,10 @@ router.get("/mySearch",(req,res)=>{
   var output={};
   output.t;
   output.a;
-  console.log(keys)
   //title
   var params=getSql(keys,"title");
-  var sql="SELECT sid,title,imgSrc,fAuthor,summary FROM ds_list WHERE"+params;
-  console.log(sql)
-  pool.query(sql,[arr],(err,result)=>{
+  var sql="SELECT sid,title,imgSrc,fAuthor,summary FROM ds_list WHERE"+params+"GROUP BY sid";
+  pool.query(sql,arr,(err,result)=>{
     if(err) throw err;
     output.t=result;
     if(output.t && output.a){
@@ -39,8 +37,8 @@ router.get("/mySearch",(req,res)=>{
   })
   //author
   var params=getSql(keys,"fAuthor");
-  var sql="SELECT sid,title,imgSrc,fAuthor,summary FROM ds_list WHERE"+params;
-  pool.query(sql,[keys],(err,result)=>{
+  var sql="SELECT sid,title,imgSrc,fAuthor,summary FROM ds_list WHERE"+params+"GROUP BY sid";
+  pool.query(sql,arr,(err,result)=>{
     if(err) throw err;
     output.a=result;
     if(output.t && output.a){
