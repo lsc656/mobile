@@ -37,4 +37,12 @@ router.post("/reg",(req,res)=>{
 		}
 	})
 })
+router.post("/isLogin",(req,res)=>{
+	var uid=req.body.uid;
+	if(uid==req.session.uid){
+		res.send({code:1,msg:"已登录"})
+	}else{
+		res.send({code:0,msg:"未登录"})
+	}
+})
 module.exports=router;
