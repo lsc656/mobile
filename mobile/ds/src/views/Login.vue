@@ -27,8 +27,23 @@
         }else{
           var reg=/^[\d\w]{6,20}$/;
           if(reg.test(this.uname) && reg.test(this.upwd)){
-            this.axios.post("http://127.0.0.1/user/login",{uname:this.uname,upwd:this.upwd}).then((res)=>{
-              console.log(res)
+            this.axios.post("http://127.0.0.1:3000/user/login",`uname=${this.uname}&upwd=${this.upwd}`).then((res)=>{
+              res=res.data;
+              if(res.code==1){
+                var t=2;
+                this.alert("登录成功，3秒后跳转首页")
+                var s=setInterval(()=>{
+                  if(t>0){
+                    this.alert("登录成功，"+t+"秒后跳转首页")
+                    t--
+                  }else{
+                    clearInterval(s)
+                    this.$router.push("/Index")
+                  }
+                },1000)
+              }else{
+                this.alert(res.msg)
+              }
             })
           }else{
             return this.alert("用户名或密码格式不正确")

@@ -60,7 +60,7 @@ CREATE TABLE ds_user_search(
 CREATE TABLE ds_userlist(
   uid INT PRIMARY KEY AUTO_INCREMENT,
   uname VARCHAR(16) UNIQUE  COMMENT "用户名",
-  upwd VARCHAR(16) COMMENT "密码"
+  upwd VARCHAR(128) COMMENT "密码"
 );
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
@@ -231,3 +231,7 @@ INSERT INTO ds_user_search (bid,title) VALUES
 (3,"凛冬之棺"),
 (4,"一本书读懂财报"),
 (5,"电幻国度");
+/***********************************用户列表****************************************************/
+INSERT INTO ds_userlist (uname,upwd) VALUES
+("dingding",md5(123456)),
+("userlist",md5(123456));

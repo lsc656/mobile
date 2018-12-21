@@ -54,7 +54,7 @@ Vue.prototype.alert=function(str){
   setTimeout(function() {
     mark[0].style.display="none";
     document.body.removeChild(mark[0])
-  }, 2000)
+  },2000)
 }
 
 new Vue({
