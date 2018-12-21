@@ -53,8 +53,6 @@
         this.axios.get("http://127.0.0.1:3000/search/mySearch?keys="+keys).then((res)=>{
           res=res.data.data;
           this.searchList=[].concat(res.a,res.t)
-          console.log(res.a)
-          console.log(res.t)
         })
       },
       toSearch(){

@@ -2,9 +2,9 @@
   <div id="app">
     <header id="header" class="mui-bar mui-bar-nav">
 			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看看书</router-link>
-      <a class="mui-pull-right h-icon-bg" @click="goSearch"></a>
+      <a class="mui-pull-right h-icon-bg" @click="jumpTo($event)" data-url="/Search"></a>
       <a class="mui-pull-right">|</a>
-      <a class="mui-pull-right h-icon-bg"></a>
+      <a class="mui-pull-right h-icon-bg" @click="jumpTo($event)" data-url="/User"></a>
 		</header>
     <router-view/>
     <div id="footer">
@@ -21,8 +21,9 @@
       }
     },
     methods:{
-      goSearch(){
-        this.$router.push("/Search")
+      jumpTo(e){
+        var url=e.target.dataset.url
+        this.$router.push(url)
       },
     }
   }
@@ -31,6 +32,9 @@
 #app{
   padding-top:44px;
   background: #f7f7f7;
+  position:absolute;
+  width:100%;
+  height:100%;
 }
 [v-cloak]{
   display:none;
@@ -68,7 +72,6 @@
   background: #F7F7F7;
   padding:20px 0;
   text-align:center;
-  margin-bottom:0;
 }
 #footer>p{
   letter-spacing: 1px;

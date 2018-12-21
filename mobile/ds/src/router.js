@@ -4,6 +4,8 @@ import Index from './views/Index.vue'
 import Sale from './views/Sale.vue'
 import Detail from './views/Detail.vue'
 import Search from "./views/Search.vue"
+import Login from "./views/Login.vue"
+import User from "./views/User.vue"
 
 Vue.use(Router)
 
@@ -13,6 +15,8 @@ export default new Router({
     {path:"/Index",redirect:"/"},
     {path: '/Sale/:tagId',name: 'Sale',component: Sale},
     {path: '/Detail/:sid',name:"Detail",component: Detail},
-    {path:"/Search",name:"Search",component:Search}
+    {path:"/Search",name:"Search",component:Search},
+    {path:"/Login",name:"Login",component:Login},
+    {path:"/User",name:"User",component:User}
   ]
 })
