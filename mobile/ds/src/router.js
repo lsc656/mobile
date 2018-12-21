@@ -7,6 +7,7 @@ import Search from "./views/Search.vue"
 import Login from "./views/Login.vue"
 import Reg from "./views/Reg.vue"
 import User from "./views/User.vue"
+import Read from "./views/Read.vue"
 
 Vue.use(Router)
 
@@ -20,5 +21,6 @@ export default new Router({
     {path:"/Login",name:"Login",component:Login},
     {path:"/Reg",name:"Reg",component:Reg},
     {path:"/User",name:"User",component:User},
+    {path:"/Read/:sid",name:"Read",component:Read},
   ]
 })

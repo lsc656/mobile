@@ -25,7 +25,6 @@
         var cpwd=this.cpwd;
         var reg=/^[\d\w]{6,20}$/;
         var condition=upwd==cpwd && reg.test(uname) && reg.test(upwd)
-        console.log(condition)
         if(!condition){
           this.alert("用户名或密码不符合要求")
         }else{          

@@ -59,21 +59,28 @@
   div.user>div.bookImg{
     height:170px;
     background:linear-gradient(to top,rgb(37, 131, 150) 0% , #1DABC5 10%);
+    overflow:auto;
+    position:relative;
   }
   div.user>div.bookImg>ul{
-    height:100%;
     list-style: none;
-    display:flex;
-    flex-wrap:nowrap;
-    justify-content: space-around;
-    align-items:flex-end;
     margin:0;
     padding:0;
     overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    justify-content: center;
+    position:absolute;
+    bottom:0;
   }
   div.user>div.bookImg>ul>li{
+    box-shadow:4px 5px 3px 4px rgba(37, 131, 150,0.3);
+  }
+  div.user>div.bookImg>ul>li:first-child{
     width:25%;
-    box-shadow:4px 5px 3px 4px rgb(37, 131, 150);
+  }
+  div.user>div.bookImg>ul>li:nth-child(2){
+    width:20%;
   }
   div.user>div.bookImg>ul>li>img{
     width:100%;

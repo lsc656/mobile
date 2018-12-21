@@ -62,6 +62,13 @@ CREATE TABLE ds_userlist(
   uname VARCHAR(16) UNIQUE  COMMENT "用户名",
   upwd VARCHAR(128) COMMENT "密码"
 );
+#用户已读列表
+CREATE TABLE ds_user_markRead(
+  mid INT PRIMARY KEY AUTO_INCREMENT,
+  uid INT COMMENT "用户ID",
+  bid INT COMMENT "书籍id",
+  isDel boolean DEFAULT 0
+);
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
 (null,"最新特价"),

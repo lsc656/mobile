@@ -22,7 +22,7 @@
       </div>
       <div>
         <button>立即购买</button>
-        <button>免费试读</button>
+        <button @click="markRead($event)" :data-sid="this.$route.params.sid">免费试读</button>
       </div>
     </section>
     <footer class="footer">
@@ -53,6 +53,26 @@ import {Toast} from "mint-ui"
       }
     },
     methods:{
+      markRead(e){
+        var sid=e.target.dataset.sid;
+        var uid=this.$store.getters.uid
+        if(!sid || !uid){
+          this.alert("请登录")
+          return 
+        }
+        //将所选书籍添加用户书架已读数据库
+        this.axios.get("http://127.0.0.1:3000/user/markRead?sid="+sid).then((res)=>{
+          res=res.data
+          if(res.code>-1){
+            //返回1/0时，图书已添加成功或之前添加过，跳转到阅读界面
+            this.$router.push("/Read/"+sid)
+          }else{
+            //图书添加失败，不能阅读
+
+          }
+        })
+
+      },
       goPrev(){
         history.go(-1)
       },
