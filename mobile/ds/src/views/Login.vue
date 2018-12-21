@@ -32,6 +32,9 @@
               if(res.code==1){
                 var t=2;
                 this.alert("登录成功，3秒后跳转首页")
+                sessionStorage.setItem("uid",res.data.uid);
+                sessionStorage.setItem("uname",res.data.uname);
+                sessionStorage.setItem("isLogin",true);
                 var s=setInterval(()=>{
                   if(t>0){
                     this.alert("登录成功，"+t+"秒后跳转首页")
