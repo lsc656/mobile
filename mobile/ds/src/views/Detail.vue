@@ -55,7 +55,7 @@ import {Toast} from "mint-ui"
     methods:{
       markRead(e){
         var sid=e.target.dataset.sid;
-        var uid=this.$store.getters.uid
+        var uid=this.$store.state.uid
         if(!sid || !uid){
           this.alert("请登录")
           return 

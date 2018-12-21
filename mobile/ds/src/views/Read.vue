@@ -11,7 +11,8 @@
     methods:{
       getBook(){
         var sid=this.$route.params.sid;
-        var uid=sessionStorage.getItem("uid");
+        var uid=this.$store.state.uid;
+        console.log(uid)
         
       }
     },

@@ -26,8 +26,8 @@
     },
     methods:{
       getLogin(){
-        var con=sessionStorage.getItem("isLogin");
-        var uid=sessionStorage.getItem("uid");
+        var con=this.$store.state.isLogin;
+        var uid=this.$store.state.uid;
         if(con){
           this.axios.post("http://127.0.0.1:3000/user/isLogin","uid="+uid).then((res)=>{
             res=res.data

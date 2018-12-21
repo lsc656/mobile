@@ -4,23 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    users:[
-      {isLogin:false},
-      {uid:""},
-      {uname:""},
-      {ubid:[]}
-    ]
+  state: {    
+    isLogin:false,
+    uid:"",
+    uname:"",
+    ubid:[]    
   },
-  mutations: {
-    getters:{
-      isLogin(state){
-        return state.isLogin
-      }
+  mutations: {    
+    setStoreUsers(state,pars){   //[对象名,新值]
+      var [uData,newVal]=pars;
+      state[uData]=newVal;
     },
-    setters:{
-
-    }
   },
   actions: {
 
