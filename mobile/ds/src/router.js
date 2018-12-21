@@ -5,6 +5,7 @@ import Sale from './views/Sale.vue'
 import Detail from './views/Detail.vue'
 import Search from "./views/Search.vue"
 import Login from "./views/Login.vue"
+import Reg from "./views/Reg.vue"
 import User from "./views/User.vue"
 
 Vue.use(Router)
@@ -17,6 +18,7 @@ export default new Router({
     {path: '/Detail/:sid',name:"Detail",component: Detail},
     {path:"/Search",name:"Search",component:Search},
     {path:"/Login",name:"Login",component:Login},
-    {path:"/User",name:"User",component:User}
+    {path:"/Reg",name:"Reg",component:Reg},
+    {path:"/User",name:"User",component:User},
   ]
 })

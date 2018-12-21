@@ -1,13 +1,13 @@
 <template>
   <div class="login">
     <p>多看看书 账号登录</p>
-    <input type="text" placeholder="请输入用户名" v-model="uname">
+    <input type="text" placeholder="请输入用户名" v-model="uname" autofocus>
     <input type="password" placeholder="密码" v-model="upwd">
-    <button>登录</button>
+    <button @click="login">登录</button>
     <div>
-      <div>立即注册</div>
+      <div @click="reg">立即注册</div>
       <div>|</div>
-      <div>忘记密码</div>
+      <div @click="forget">忘记密码</div>
     </div>
   </div>
 </template>
@@ -21,7 +21,26 @@
       }
     },
     methods:{
-      
+      login(){
+        if(!this.uname || !this.upwd){
+          return this.alert("用户名或密码不能为空")
+        }else{
+          var reg=/^[\d\w]{6,20}$/;
+          if(reg.test(this.uname) && reg.test(this.upwd)){
+            this.axios.post("http://127.0.0.1/user/login",{uname:this.uname,upwd:this.upwd}).then((res)=>{
+              console.log(res)
+            })
+          }else{
+            return this.alert("用户名或密码格式不正确")
+          }
+        }
+      },
+      reg(){
+        console.log("reg")
+      },
+      forget(){
+        console.log("forget")
+      },
     },
     created(){
 
@@ -37,7 +56,7 @@
     font-size:25px;
     color:#333;
     text-align:center;
-    text-shadow:1px 1px 5px rgb(17, 68, 77);
+    text-shadow:2px 3px 5px rgb(17, 68, 77);
     margin:40px 0;
   }
   div.login>input{
@@ -52,15 +71,18 @@
     border-radius:10px;
     background: #1DABC5;
     color:#fff;
+    margin-top:10px;
   }
   div.login>div:nth-child(5){
     display:flex;
     justify-content: center;
+    margin-top:20px;
   }
   div.login>div:nth-child(5)>div{
     padding:10px 20px;
   }
   div.login>div:nth-child(5)>div:nth-child(2){
-    font-size:20px;
+    font-size:25px;
+    padding-top:7px;
   }
 </style>

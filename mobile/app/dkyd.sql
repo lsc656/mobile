@@ -56,6 +56,12 @@ CREATE TABLE ds_user_search(
   title VARCHAR(32) COMMENT "书名",
   FOREIGN KEY (bid) REFERENCES ds_list (sid)
 );
+#用户列表
+CREATE TABLE ds_userlist(
+  uid INT PRIMARY KEY AUTO_INCREMENT,
+  uname VARCHAR(16) UNIQUE  COMMENT "用户名",
+  upwd VARCHAR(16) COMMENT "密码"
+);
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
 (null,"最新特价"),
