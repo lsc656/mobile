@@ -1,21 +1,21 @@
 <template>
   <div class="Index">
     <table class="nav">
-      <tr>
+      <tr @click="jumpTo($event)">
         <td>
-          <div @click="jumpTo($event)" data-tagid="1">Sale</div>
+          <div data-tagid="1">Sale</div>
           <p>特价</p>
         </td>
         <td>
-          <div @click="jumpTo($event)" data-tagid="2">Free</div>
+          <div data-tagid="2">Free</div>
           <p>免费</p>
         </td>
         <td>
-          <div @click="jumpTo($event)" data-tagid="3"></div>
+          <div data-tagid="3"></div>
           <p>畅销</p>
         </td>
         <td>
-          <div></div>
+          <div data-url="/User"></div>
           <p>书架</p>
         </td>
       </tr>
@@ -175,7 +175,11 @@ export default {
   },
   methods:{
     jumpTo(e){
-      this.$router.push("/Sale/"+e.target.dataset.tagid)
+      if(e.target.dataset.tagid){
+        this.$router.push("/Sale/"+e.target.dataset.tagid)
+      }else if(e.target.dataset.url){
+        this.$router.push(e.target.dataset.url)
+      }
     }
   },
   created(){

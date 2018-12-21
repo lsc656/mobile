@@ -10,9 +10,9 @@
     <div class="book-list">
       <div>书架为空</div>
       <ul>
-        <li>书1</li>
-        <li>书2</li>
-        <li>书3</li>
+        <li>1：<span>书名</span><span>作者</span></li>
+        <li>1：<span>书名</span><span>作者</span></li>
+        <li>1：<span>书名</span><span>作者</span></li>
       </ul>
     </div>
   </div>
@@ -86,7 +86,35 @@
     color:#4C4C4C;
   }
   div.user>div.book-list{
-    
+    margin-top:30px;
+  }
+  div.user>div.book-list>div{
+    text-align:center;
+    font-size:14px;
+    color:#999;
+    display:none;
+  }
+  div.user>div.book-list>ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+  }
+  div.user>div.book-list>ul>li{
+    padding:20px 10px;
+    border-bottom:1px solid #CACACA;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  div.user>div.book-list>ul>li>span:first-child{
+    font-size:18px;
+    color:#333;
+    font-weight:bold;
+    margin-right:10px;
+  }
+  div.user>div.book-list>ul>li>span:nth-child(2){
+    font-size:12px;
+    color:#999;
   }
 </style>
 
