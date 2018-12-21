@@ -51,7 +51,7 @@
         }
       },
       reg(){
-        console.log("reg")
+        this.$router.push("/Reg")
       },
       forget(){
         console.log("forget")
