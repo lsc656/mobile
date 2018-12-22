@@ -57,7 +57,7 @@
         this.$router.push("/Reg")
       },
       forget(){
-        console.log("forget")
+        this.alert("功能尚未完成...")
       },
     },
     created(){

@@ -1,9 +1,8 @@
 <template>
   <div class="user">
     <div class="bookImg">
-      <ul>
-        <li><img src="http://127.0.0.1:3000/images/Index/index-2m-1.jpg" alt=""></li>
-        <li><img src="http://127.0.0.1:3000/images/Index/index-2m-1.jpg" alt=""></li>
+      <ul @click="goRead($event)">
+        <li v-for="(item,i) of img_list" :key="i"><img :src="item.imgSrc" alt="" :data-sid="item.sid"></li>
       </ul>
     </div>
     <div>X本已购</div>
@@ -21,7 +20,7 @@
   export default {
     data(){
       return {
-
+        img_list:[],
       }
     },
     methods:{
@@ -36,19 +35,31 @@
               this.alert("未登录，即将跳转登录页面")
               setTimeout(()=>{
                 this.$router.push("/Login")
-              },2000)
+              },1000)
             }
           })
         }else{
           this.alert("未登录，即将跳转登录页面")
           setTimeout(()=>{
             this.$router.push("/Login")
-          },2000)
+          },1000)
         }
       },
+      getMarkRead(){
+        var uid=this.$store.state.uid;
+        this.axios.get("http://127.0.0.1:3000/user/getMarkRead?uid="+uid).then((res)=>{
+          res=res.data
+          this.img_list=res
+        })
+      },
+      goRead(e){
+        var sid=e.target.dataset.sid;
+        this.$router.push("/Detail/"+sid)
+      }
     },
     created(){
       this.getLogin();
+      this.getMarkRead();
     },
   }
 </script>

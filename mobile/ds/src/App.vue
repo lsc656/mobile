@@ -3,7 +3,7 @@
     <header id="header" class="mui-bar mui-bar-nav">
 			<router-link to="/Index" class="mui-action-back mui-icon mui-pull-left">多看看书</router-link>
       <a class="mui-pull-right h-icon-bg" @click="jumpTo($event)" data-url="/Search"></a>
-      <a class="mui-pull-right">|</a>
+      <a class="mui-pull-right" @click="logout($event)">{{this.$store.state.isLogin==true ? "退出":"|"}}</a>
       <a class="mui-pull-right h-icon-bg" @click="jumpTo($event)" data-url="/User"></a>
 		</header>
     <router-view/>
@@ -17,7 +17,7 @@
   export default {
     data(){
       return {
-        
+
       }
     },
     methods:{
@@ -25,6 +25,20 @@
         var url=e.target.dataset.url
         this.$router.push(url)
       },
+      logout(e){
+        if(e.target.innerHTML=="退出"){
+          this.axios.post("http://127.0.0.1:3000/user/logout").then((res)=>{
+            res=res.data
+            this.$store.commit("setStoreUsers",["isLogin",false]);
+            this.$store.commit("setStoreUsers",["uid",""]);
+            this.$store.commit("setStoreUsers",["uname",""]);
+            this.alert(res.msg)
+          })
+        }
+      },
+    },
+    created(){
+
     }
   }
 </script>
@@ -64,6 +78,9 @@
 }
 #app>#header>a.h-icon-bg:nth-child(2){  
   background-position:0 -22px;
+}
+#app>#header>a:nth-child(3){
+  font-size:16px;  
 }
 #app>#header>a.h-icon-bg:nth-child(4){
   background-position:0 0;

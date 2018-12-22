@@ -21,7 +21,7 @@
         </div>
       </div>
       <div>
-        <button>立即购买</button>
+        <button @click="buyNow">立即购买</button>
         <button @click="markRead($event)" :data-sid="this.$route.params.sid">免费试读</button>
       </div>
     </section>
@@ -60,7 +60,9 @@ import {Toast} from "mint-ui"
           this.alert("请登录")
           return 
         }
-        //将所选书籍添加用户书架已读数据库
+        //将所选书籍添加用户书架已读数据库和localStorage
+        localStorage.setItem("sid",sid)
+        this.$store.commit("setStoreUsers",["ubid",sid])
         this.axios.get("http://127.0.0.1:3000/user/markRead?sid="+sid).then((res)=>{
           res=res.data
           if(res.code>-1){
@@ -68,10 +70,9 @@ import {Toast} from "mint-ui"
             this.$router.push("/Read/"+sid)
           }else{
             //图书添加失败，不能阅读
-
+            this.alert("位置错误。请重新登录")
           }
         })
-
       },
       goPrev(){
         history.go(-1)
@@ -125,6 +126,22 @@ import {Toast} from "mint-ui"
         var picDiv=document.querySelector("section.section>div:first-child>div:nth-child(2)>div:nth-child(2)>div:first-child");
         var num=Math.round(this.info.evaluate);
         picDiv.style.backgroundPosition="0 "+(-num*22+1)+"px"
+      },
+      buyNow(){
+        var uid=this.$store.state.uid;
+        var bid=this.$route.params.sid;
+        if(!uid){
+          this.alert("请先登录")
+          return 
+        }
+        if(!bid){
+          this.alert("没有选中图书")
+          return 
+        }
+        this.axios.post("http://127.0.0.1:3000/user/buyNow","bid="+bid).then((res)=>{
+          res=res.data;
+          this.alert(res.msg)
+        })
       },
     },
     components:{"comment-box":comment,"moreInfo-box":moreInfo,"others-box":others},

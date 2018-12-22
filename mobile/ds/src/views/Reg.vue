@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="reg">
     <p>多看看书 账号注册</p>
     <input type="text" placeholder="请输入6-12位用户名" v-model="uname" autofocus>
     <input type="password" placeholder="请输入密码" v-model="upwd">
@@ -57,35 +57,35 @@
   }  
 </script>
 <style>
-  div.login{
+  div.reg{
     margin:20% 0;
     padding:0 20px;
   }
-  div.login>p{
+  div.reg>p{
     font-size:25px;
     color:#333;
     text-align:center;
     text-shadow:2px 3px 5px rgb(17, 68, 77);
     margin:40px 0;
   }
-  div.login>input{
+  div.reg>input{
     border-top:none;
     border-left:none;
     border-right:none;
     background: transparent;
   }
-  div.login>button{
+  div.reg>button{
     width:100%;
     height:40px;
     border-radius:10px;
     margin-top:30px;
     font-size:20px;
   }
-  div.login>button:first-child{
+  div.reg>button:nth-child(5){
     background: #1DABC5;
     color:#fff;
   }
-  div.login>button:nth-child(6){
+  div.reg>button:nth-child(6){
     background: #fff;
     color:#333;
   }

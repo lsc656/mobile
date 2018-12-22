@@ -1,6 +1,7 @@
 const express=require("express");
 const pool=require("../pool.js");
 const router=express.Router();
+//1.获取图书总表
 router.get("/list",(req,res)=>{
   var tagId=req.query.tagId;
   var pno=parseInt(req.query.pno);
@@ -24,6 +25,7 @@ router.get("/list",(req,res)=>{
     })
   })
 })
+//2.获取标签
 router.get("/tags",(req,res)=>{
   var tagId=req.query.tagId;
   var sql="SELECT dname FROM ds_tag WHERE did=?"
@@ -32,6 +34,7 @@ router.get("/tags",(req,res)=>{
     res.send({code:1,data:result})
   })
 })
+//3.获取detail页主详情
 router.get("/getInfo",(req,res)=>{
   var sid=req.query.sid;
   var sql="SELECT sid,imgSrc,title,evaluate,fAuthor,sAuthor,copyright,oldPrice,newPrice FROM ds_list WHERE sid=?"
@@ -44,6 +47,7 @@ router.get("/getInfo",(req,res)=>{
     }
   })
 })
+//4.获取detail页下方详情1
 router.get("/getMoreInfo",(req,res)=>{
   var sid=req.query.sid;
   var output={};
@@ -60,6 +64,7 @@ router.get("/getMoreInfo",(req,res)=>{
     })
   })
 })
+//5.获取detail页评论
 router.get("/getComment",(req,res)=>{
   var sid=req.query.sid;
   var sql="SELECT cid,sid,content,evaluate,time,zan FROM ds_comment WHERE sid=?";
@@ -72,6 +77,7 @@ router.get("/getComment",(req,res)=>{
     }
   })
 })
+//6.detail页点赞功能
 router.get("/setZan",(req,res)=>{
   var cid=req.query.cid;
   var zan=parseInt(req.query.zan);
@@ -86,6 +92,7 @@ router.get("/setZan",(req,res)=>{
     }
   })
 })
+//7.获取detail页下方详情2
 router.get("/getOthers",(req,res)=>{
   var sid=req.query.sid;
   var sql="SELECT fAuthor,sAuthor,wcount,size,bnumber,publish_time,update_time FROM ds_list WHERE sid=?"
@@ -96,6 +103,20 @@ router.get("/getOthers",(req,res)=>{
     }else{
       res.send({code:0,msg:"没有信息"})
     }
+  })
+})
+//8.图书阅读：获取图书内容
+router.get("/readBook",(req,res)=>{
+  var sid=req.query.sid;
+  if(!sid){
+    res.send({code:-1,msg:"没有这本书"})
+    return 
+  }
+  sid=1      //无更多数据。暂写死sid         
+  var sql="SELECT catalog_title,catalog_number,content FROM ds_detail WHERE sid=?"
+  pool.query(sql,[sid],(err,result)=>{
+    if(err) console.log(err);
+    res.send({code:1,data:result})
   })
 })
 module.exports=router;

@@ -69,6 +69,12 @@ CREATE TABLE ds_user_markRead(
   bid INT COMMENT "书籍id",
   isDel boolean DEFAULT 0
 );
+#用户购买列表
+CREATE TABLE ds_user_bought(
+  gid INT PRIMARY KEY AUTO_INCREMENT,
+  bid INT COMMENT "对应书id",
+  uid INT COMMENT "对应用户id"
+);
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
 (null,"最新特价"),
