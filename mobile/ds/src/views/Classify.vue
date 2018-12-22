@@ -1,8 +1,10 @@
 <template>
   <div class="classify">
     <div class="classify-item">
-      <img src="" alt="">
-      <div></div>
+      <img src="http://127.0.0.1:3000/images/Classify/classify001.png" alt="">
+      <div>
+        
+      </div>
     </div>
   </div>
 </template>
