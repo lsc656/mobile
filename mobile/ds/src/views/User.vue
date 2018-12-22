@@ -5,13 +5,11 @@
         <li v-for="(item,i) of img_list" :key="i"><img :src="item.imgSrc" alt="" :data-sid="item.sid"></li>
       </ul>
     </div>
-    <div>X本已购</div>
+    <div>{{bought_list.length}}本已购</div>
     <div class="book-list">
       <div>书架为空</div>
-      <ul>
-        <li>1：<span>书名</span><span>作者</span></li>
-        <li>1：<span>书名</span><span>作者</span></li>
-        <li>1：<span>书名</span><span>作者</span></li>
+      <ul @click="goRead($event)">
+        <li v-for="(item,i) of bought_list" :key="i" :data-sid="item.sid" >{{i+1}}：<span :data-sid="item.sid">{{item.title}}</span><span :data-sid="item.sid">{{item.fAuthor}} {{item.sAuthor}}</span></li>
       </ul>
     </div>
   </div>
@@ -21,6 +19,7 @@
     data(){
       return {
         img_list:[],
+        bought_list:[]
       }
     },
     methods:{
@@ -49,7 +48,18 @@
         var uid=this.$store.state.uid;
         this.axios.get("http://127.0.0.1:3000/user/getMarkRead?uid="+uid).then((res)=>{
           res=res.data
-          this.img_list=res
+          if(res.code<=0){
+            return
+          }else{              
+              this.img_list=res
+          }
+        })
+      },
+      getUserBought(){
+        var uid=this.$store.state.uid;
+        this.axios.get("http://127.0.0.1:3000/user/getUserBought?uid="+uid).then((res)=>{
+          res=res.data;
+          this.bought_list=res;
         })
       },
       goRead(e){
@@ -60,6 +70,7 @@
     created(){
       this.getLogin();
       this.getMarkRead();
+      this.getUserBought();
     },
   }
 </script>

@@ -40,7 +40,7 @@
     </table>
     <div class="index-item">
       <div>
-        <div>精品推荐</div>
+        <div @click="jumpTo($event)" data-tagid="1">精品推荐</div>
         <div>全部</div>
       </div>
       <div>
@@ -102,7 +102,7 @@
     </div>
     <div class="index-item">
       <div>
-        <div>新书上架</div>
+        <div @click="jumpTo($event)" data-tagid="1">新书上架</div>
         <div>全部</div>
       </div>
       <div>

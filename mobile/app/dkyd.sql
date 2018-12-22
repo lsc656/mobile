@@ -75,6 +75,18 @@ CREATE TABLE ds_user_bought(
   bid INT COMMENT "对应书id",
   uid INT COMMENT "对应用户id"
 );
+#首页第一部分显示书籍
+CREATE TABLE ds_product_index_1(
+  iid INT PRIMARY KEY AUTO_INCREMENT,
+  bid INT COMMENT "对应书籍ID",
+  ord INT COMMENT "排列顺序"
+);
+#首页第二部分显示书籍
+CREATE TABLE ds_product_index_2(
+  iid INT PRIMARY KEY AUTO_INCREMENT,
+  bid INT COMMENT "对应书籍ID",
+  ord INT COMMENT "排列顺序" 
+);
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
 (null,"最新特价"),

@@ -114,17 +114,21 @@ router.get("/getMarkRead",(req,res)=>{
 		var sql="SELECT bid FROM ds_user_markRead WHERE uid=? ORDER BY mid DESC LIMIT 0,2"
 		pool.query(sql,[uid],(err,result1)=>{
 			if(err) console.log(err)
-			var output=[];
-			var sql="SELECT imgSrc,sid FROM ds_list WHERE sid=? "
-			for(var item of result1){
-				pool.query(sql,item.bid,(err,result)=>{
-					if(err) console.log(err)
-					output.push(result[0])
-					if(output.length==result1.length){
-						res.send(output);
-					}		
-				})				
-			}
+			if(result1.length>0){
+				var output=[];
+				var sql="SELECT imgSrc,sid FROM ds_list WHERE sid=? "
+				for(var item of result1){
+					pool.query(sql,item.bid,(err,result)=>{
+						if(err) console.log(err)
+						output.push(result[0])
+						if(output.length==result1.length){
+							res.send(output);
+						}		
+					})				
+				}
+			}else{
+				res.send({code:0,msg:"没有已读书籍"})
+			}			
 		})
 	}else{
 		res.send({code:-1,msg:"登录状态不正确"})
@@ -138,7 +142,7 @@ router.get("/getUserBought",(req,res)=>{
 		pool.query(sql,[uid],(err,result1)=>{
 			if(err) console.log(err)
 			if(result1.length>0){
-				var output=[],
+				var output=[];
 				var sql="SELECT sid,title,fAuthor,sAuthor FROM ds_list WHERE sid=?"
 				for(var item of result1){
 					pool.query(sql,[item.bid],(err,result)=>{
