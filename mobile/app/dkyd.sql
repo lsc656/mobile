@@ -79,13 +79,13 @@ CREATE TABLE ds_user_bought(
 CREATE TABLE ds_product_index_1(
   iid INT PRIMARY KEY AUTO_INCREMENT,
   bid INT COMMENT "对应书籍ID",
-  ord INT COMMENT "排列顺序"
+  ord INT UNIQUE COMMENT "排列顺序"
 );
 #首页第二部分显示书籍
 CREATE TABLE ds_product_index_2(
   iid INT PRIMARY KEY AUTO_INCREMENT,
   bid INT COMMENT "对应书籍ID",
-  ord INT COMMENT "排列顺序" 
+  ord INT UNIQUE COMMENT "排列顺序" 
 );
 /***************************************标签***************************************************/
 INSERT INTO ds_tag VALUES 
@@ -260,3 +260,17 @@ INSERT INTO ds_user_search (bid,title) VALUES
 INSERT INTO ds_userlist (uname,upwd) VALUES
 ("dingding",md5(123456)),
 ("userlist",md5(123456));
+INSERT INTO ds_product_index_1 (bid,ord) VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5),
+(6,6);
+INSERT INTO ds_product_index_2 (bid,ord) VALUES
+(7,1),
+(8,2),
+(9,3),
+(10,4),
+(11,5),
+(12,6);

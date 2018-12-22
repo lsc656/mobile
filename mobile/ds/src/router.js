@@ -8,6 +8,7 @@ import Login from "./views/Login.vue"
 import Reg from "./views/Reg.vue"
 import User from "./views/User.vue"
 import Read from "./views/Read.vue"
+import Classify from "./views/Classify.vue"
 
 Vue.use(Router)
 
@@ -22,5 +23,6 @@ export default new Router({
     {path:"/Reg",name:"Reg",component:Reg},
     {path:"/User",name:"User",component:User},
     {path:"/Read/:sid",name:"Read",component:Read},
+    {path:"/Classify",name:"Classify",component:Classify},
   ]
 })

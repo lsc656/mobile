@@ -119,4 +119,43 @@ router.get("/readBook",(req,res)=>{
     res.send({code:1,data:result})
   })
 })
+//9.获取首页图书显示信息
+router.get("/indexInfo",(req,res)=>{
+  var output={f:[],s:[]}
+  var sql1="SELECT bid FROM ds_product_index_1"
+  var progress=0;
+  pool.query(sql1,(err,result1)=>{
+    if(err) console.log(err)
+    var sql="SELECT sid,imgSrc,title,fAuthor FROM ds_list WHERE sid=?"
+    for(var item of result1){      
+      pool.query(sql,[item.bid],(err,result)=>{
+        if(err) console.log(err)
+        output.f.push(result[0]);
+        if(output.f.length==6){
+          progress+=50;
+          if(progress==100){
+            res.send(output);
+          }
+        }
+      })
+    }
+  })
+  var sql2="SELECT bid FROM ds_product_index_2"
+  pool.query(sql2,(err,result2)=>{
+    if(err) console.log(err);
+    var sql="SELECT sid,imgSrc,title,fAuthor FROM ds_list WHERE sid=?"
+    for(var item of result2){
+      pool.query(sql,[item.bid],(err,result)=>{
+        if(err) console.log(err);
+        output.s.push(result[0]);
+        if(output.s.length==6){
+          progress+=50;
+          if(progress==100){
+            res.send(output);
+          }
+        }
+      })
+    }
+  })
+})
 module.exports=router;

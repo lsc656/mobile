@@ -2,14 +2,14 @@
   <div class="user">
     <div class="bookImg">
       <ul @click="goRead($event)">
-        <li v-for="(item,i) of img_list" :key="i"><img :src="item.imgSrc" alt="" :data-sid="item.sid"></li>
+        <li v-for="(item,i) of img_list" :key="i"><img :src="item.imgSrc" alt="" :data-sid="item.sid" v-cloak></li>
       </ul>
     </div>
-    <div>{{bought_list.length}}本已购</div>
+    <div v-cloak>{{bought_list.length}}本已购</div>
     <div class="book-list">
       <div>书架为空</div>
       <ul @click="goRead($event)">
-        <li v-for="(item,i) of bought_list" :key="i" :data-sid="item.sid" >{{i+1}}：<span :data-sid="item.sid">{{item.title}}</span><span :data-sid="item.sid">{{item.fAuthor}} {{item.sAuthor}}</span></li>
+        <li v-for="(item,i) of bought_list" :key="i" :data-sid="item.sid" v-cloak>{{i+1}}：<span :data-sid="item.sid">{{item.title}}</span><span :data-sid="item.sid">{{item.fAuthor}} {{item.sAuthor}}</span></li>
       </ul>
     </div>
   </div>
@@ -98,11 +98,11 @@
   div.user>div.bookImg>ul>li{
     box-shadow:4px 5px 3px 4px rgba(37, 131, 150,0.3);
   }
-  div.user>div.bookImg>ul>li:first-child{
-    width:25%;
-  }
   div.user>div.bookImg>ul>li:nth-child(2){
     width:20%;
+  }
+  div.user>div.bookImg>ul>li:first-child{
+    width:25%;
   }
   div.user>div.bookImg>ul>li>img{
     width:100%;
