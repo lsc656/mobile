@@ -1,17 +1,11 @@
 <template>
   <div class="classify">
-    <div class="classify-item">
-      <div>8093</div>
+    <div class="classify-item" v-for="(item,i) of tag" :key="i" @click="jumpTo($event)">
+      <div :style='{backgroundImage:"url("+item.imgSrc+")"}'>8093</div>
       <div>
-        <div>小说</div>
+        <div :data-tagId="item.cid">{{item.tagName}}</div>
         <p>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
-          <span>新闻传播与出版</span>
+          <span v-for="(item,j) of mItem[i]" :key="j" :data-lid="item.lid">{{item.lname}}</span>
         </p>
       </div>
     </div>
@@ -21,39 +15,42 @@
   export default {
     data(){
       return {
-        list:[],
-        myNumber:[],
+        tag:[],
+        mItem:[],
       }
     },
     methods:{
-      getMyNumber(max,min){
-        var rn=function(max,min){
-          var n=Math.floor(Math.random()*(max-min)+min);
-          return n
+      jumpTo(e){
+        if(e.target.dataset.lid){
+          console.log(1)
         }
       },
       getList(){
         this.axios.get("http://127.0.0.1:3000/product/classify").then((res)=>{
           res=res.data
-          console.log(res);
+          this.tag=res.tag;
+          this.mItem=res.item;
         })
       }
     },
     created(){
-
+      this.getList();
     },
   }  
 </script>
 <style>
+  div.classify{
+    background:#F7F7F7;
+  }
   div.classify>div.classify-item{
     padding:10px;
     border-bottom:1px solid #CACACA;
-    display:flex;    
+    display:flex;
   }
   div.classify>div.classify-item>div:first-child{
-    width:300px;
     height:70px;
-    background: url("http://127.0.0.1:3000/images/Classify/classify001.png") no-repeat;
+    padding:10px 0;
+    background-repeat:no-repeat;
     background-position:center center;
     border-radius:10px;
     display: flex;
@@ -63,7 +60,20 @@
     font-size:28px;
   }
   div.classify>div.classify-item>div:nth-child(2){
-    padding:5px 10px;
+    padding:0px 20px 0px 10px;
+    position:relative;
+    width:100%;
+  }
+  div.classify>div.classify-item>div:nth-child(2)::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-top:1px solid #CACACA;
+    border-right:1px solid #CACACA;
+    transform:rotate(45deg);    
+    position:absolute;
+    top:50%;
+    right:0;
   }
   div.classify>div.classify-item>div:nth-child(2)>div{
     padding-bottom:5px;
@@ -72,7 +82,7 @@
     overflow:hidden;
     margin:0;
     height:46px;
-    color:#333;
+    color:#666;
   }
   div.classify>div.classify-item>div:nth-child(2)>p>span:not(:last-child)::after{
     content:"/";

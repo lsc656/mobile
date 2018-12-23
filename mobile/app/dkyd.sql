@@ -90,7 +90,7 @@ CREATE TABLE ds_product_index_2(
 #图书分类页面列表tag表
 CREATE TABLE ds_product_classify(
   cid INT PRIMARY KEY AUTO_INCREMENT,
-  imgSrc VARCHAR(50) COMMENT "tag对应背景图片",
+  imgSrc VARCHAR(128) COMMENT "tag对应背景图片",
   tagName VARCHAR(10) COMMENT "tag内容"
 );
 #图书分类页面list对应tag表

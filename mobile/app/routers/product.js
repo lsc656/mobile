@@ -160,16 +160,19 @@ router.get("/indexInfo",(req,res)=>{
 })
 //10.获取分类显示列表
 router.get("/classify",(req,res)=>{
-  var output={tag,item}
+  var output={tag:[],item:[]}
   var sql="SELECT cid,tagName,imgSrc FROM ds_product_classify";
   pool.query(sql,(err,result)=>{
     if(err) console.log(err)
     output.tag=result;
-    var sql="SELECT lname FROM ds_product_classify_list WHERE tagId=?"
+    var sql="SELECT lid,lname FROM ds_product_classify_list WHERE tagId=?"
     for(var item of result){
-      pool.query(sql,[result.cid],(err,result1)=>{
+      pool.query(sql,[item.cid],(err,result1)=>{
         if(err) console.log(err)
-        
+        output.item.push(result1)
+        if(result.length==output.item.length){
+          res.send(output)
+        }
       })
     }
   })
