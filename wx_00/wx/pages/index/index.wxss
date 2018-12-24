@@ -51,4 +51,8 @@ input{
   line-height:80rpx;
   height:80rpx;
   width:80%;
+  background-image: url("http://127.0.0.1:3000/img/index/icon-search.jpg");
+  background-repeat:no-repeat;
+  background-size:80rpx 80rpx;
+  background-position:95% 0; 
 }
