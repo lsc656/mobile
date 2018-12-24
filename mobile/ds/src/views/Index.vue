@@ -1,5 +1,5 @@
 <template>
-  <div class="Index">
+  <div class="Index" @click="clearEWM($event)">
     <table class="nav">
       <tr @click="jumpTo($event)">
         <td>
@@ -33,7 +33,7 @@
           <p>购书券</p>
         </td>
         <td>
-          <div></div>
+          <div @click.stop="showEWM()"></div>
           <p>客户端</p>
         </td>
       </tr>
@@ -105,7 +105,9 @@ export default {
       if(e.target.dataset.tagid){
         this.$router.push("/Sale/"+e.target.dataset.tagid)
       }else if(e.target.dataset.url){
-        this.$router.push(e.target.dataset.url)
+        this.$router.push(e.target.dataset.url);
+      }else{
+        this.alert("功能尚未开放")
       }
     },
     getIndexInfo(){
@@ -118,9 +120,19 @@ export default {
     jumptoBooks(e){
       var sid=e.target.dataset.sid;
       if(sid){
-        this.$router.push("/Detail/"+sid)
+        this.$router.push("/Detail/"+sid);
       }
     },
+    showEWM(){
+      var index=document.getElementsByClassName("Index")[0];
+      index.classList.add("myEWM");
+    },
+    clearEWM(e){
+      if(e.target.classList[1]=="myEWM"){
+        var index=document.getElementsByClassName("Index")[0];
+        index.classList.remove("myEWM");
+      }
+    }
   },
   created(){
     this.getIndexInfo()
@@ -131,6 +143,20 @@ export default {
   .Index{
     padding-top:20px;
     background: #F7F7F7;
+  }
+  .Index.myEWM::after{
+    color:#FFF;
+    content: url("http://127.0.0.1:3000/images/Index/EWM.png");
+    display:block;
+    position:fixed;
+    background:rgba(35,35,35,0.5);
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
   }
   .Index>table.nav{
     width:100%;

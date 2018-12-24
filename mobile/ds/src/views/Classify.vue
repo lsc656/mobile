@@ -1,7 +1,7 @@
 <template>
   <div class="classify">
     <div class="classify-item" v-for="(item,i) of tag" :key="i" @click="jumpTo($event)">
-      <div :style='{backgroundImage:"url("+item.imgSrc+")"}'>8093</div>
+      <div :style='{backgroundImage:"url("+item.imgSrc+")"}'>{{item.cid}}</div>
       <div>
         <div :data-tagId="item.cid">{{item.tagName}}</div>
         <p>
@@ -22,7 +22,7 @@
     methods:{
       jumpTo(e){
         if(e.target.dataset.lid){
-          console.log(1)
+          this.$router.push("/Detail/1")
         }
       },
       getList(){
@@ -48,6 +48,7 @@
     display:flex;
   }
   div.classify>div.classify-item>div:first-child{
+    width:30%;
     height:70px;
     padding:10px 0;
     background-repeat:no-repeat;
