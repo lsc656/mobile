@@ -3,12 +3,29 @@
 const app = getApp()
 
 Page({
-
+  changePage(e){
+    console.log(this)
+    var t=setInterval(()=>{
+      var h=parseInt(this.data.heightfirst)-0.1;
+      this.setData({
+        heightfirst: h + "%"
+      })
+      if(h<1){
+        this.setData({
+          displayfirst:"none",
+          displaysecond:"block"
+        })
+        clearInterval(t)
+      }
+    },1)
+  },
   /**
    * 页面的初始数据
    */
   data: {
-    
+    heightfirst:"101%",
+    displayfirst: "", 
+    displaysecond:""
   },
 
   /**
@@ -57,7 +74,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+    this.changePage()
   },
 
   /**

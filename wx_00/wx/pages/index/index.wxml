@@ -1,13 +1,33 @@
 <!--index.wxml-->
 <view class="index">
-  <view class="logo">
-    <view class="logo-parent">
-      <view class="logo-item"></view>
-      <view class="logo-item"></view>
-      <view class="logo-item"></view>
+  <view class="second-page" style="display:{{displaysecond}}">
+    <view class="sp-c">
+      <text>大家正在关注</text>
+      <view class="sp-fl1">
+        <view class="sp-fl1-item" style="background-image:url('{{fl1bg}}')">
+          兔砸
+        </view>
+      </view>
     </view>
-    <view>花瓣</view>
+    <view class="sp-c">
+      <text>为您推荐</text>
+      <view class="sp-fl2">
+
+      </view>
+    </view>
+    <button>加载更多</button>
   </view>
-  <view>花瓣，陪你做生活的设计师</view>
-  <input type="search" placeholder='搜索你喜欢的'></input>
+  <view class="first-page" style="height:{{heightfirst}};display:{{displayfirst}}">
+    <view class="logo">
+      <view class="logo-parent">
+        <view class="logo-item"></view>
+        <view class="logo-item"></view>
+        <view class="logo-item"></view>
+      </view>
+      <view>花瓣</view>
+    </view>
+    <view>花瓣，陪你做生活的设计师</view>
+    <input type="search" placeholder='搜索你喜欢的'></input>
+    <view class="slide-up">向上滑动页面</view>
+  </view>
 </view>
