@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="index">
-  <view class="second-page" style="display:{{displaysecond}}">
+  <view class="second-page" style="display:{{heightfirst<10?'block':'none'}}">
     <view class="sp-c">
       <text>大家正在关注</text>
       <view class="sp-fl1">
@@ -17,7 +17,7 @@
     </view>
     <button>加载更多</button>
   </view>
-  <view class="first-page" style="height:{{heightfirst}};display:{{displayfirst}}">
+  <view class="first-page" style="height:{{heightfirst}}%;display:{{heightfirst<10? 'none' : '' }}">
     <view class="logo">
       <view class="logo-parent">
         <view class="logo-item"></view>

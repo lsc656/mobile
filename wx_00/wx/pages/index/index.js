@@ -4,17 +4,12 @@ const app = getApp()
 
 Page({
   changePage(e){
-    console.log(this)
     var t=setInterval(()=>{
-      var h=parseInt(this.data.heightfirst)-0.1;
+      var h=this.data.heightfirst-1;
       this.setData({
-        heightfirst: h + "%"
+        heightfirst: h
       })
-      if(h<1){
-        this.setData({
-          displayfirst:"none",
-          displaysecond:"block"
-        })
+      if(h<10){
         clearInterval(t)
       }
     },1)
@@ -23,9 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    heightfirst:"101%",
-    displayfirst: "", 
-    displaysecond:""
+    heightfirst:100.5
   },
 
   /**

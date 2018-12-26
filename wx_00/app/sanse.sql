@@ -3,6 +3,7 @@ DROP DATABASE IF EXISTS sanse;
 CREATE DATABASE sanse CHARSET=UTF8;
 USE sanse;
 
+#首页一楼
 CREATE TABLE sanse_index_fl1(
   fid INT PRIMARY KEY AUTO_INCREMENT,
   img_url VARCHAR(255) COMMENT "图片路径",
@@ -16,6 +17,7 @@ INSERT INTO sanse_index_fl1 (img_url,tag) VALUES
 ("http://127.0.0.1:3000/img/index/f1-5.jpg","圣诞手机壁纸"),
 ("http://127.0.0.1:3000/img/index/f1-6.jpg","兔");
 
+#图片展示页主要信息
 CREATE TABLE sanse_pins(
   pid INT PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(20) COMMENT "标题",
@@ -25,7 +27,7 @@ CREATE TABLE sanse_pins(
 );
 
 
-
+#图片展示页。对应关键字
 CREATE TABLE sanse_pins_keyw(
   kid INT PRIMARY KEY AUTO_INCREMENT,
   keyword VARCHAR(10) COMMENT "关键字",
