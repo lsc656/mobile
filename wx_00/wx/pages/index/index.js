@@ -34,6 +34,7 @@ Page({
     heightfirst:100.5,
     fl1:[],
     fl2:[]
+    // class：index和4取余，1，2 small，0,3 big
   },
 
   /**

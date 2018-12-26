@@ -8,9 +8,8 @@ page{
 }
 .first-page{
   overflow:hidden;
-  background-size:100% 100%;
   background: url("http://127.0.0.1:3000/img/index/background.jpg") no-repeat;
-  background-size: cover;
+  background-size:100% 100%;
   width:100%;
   box-sizing: border-box;
   padding-top:30%;
@@ -125,4 +124,80 @@ input{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.sp-fl2{
+  display:flex;
+  justify-content: space-between;
+  width:100%;
+}
+.sp-fl2>view>image{
+  width:100%;
+}
+.sp-fl2>.sp-fl2-big,.sp-fl2>.sp-fl2-small{
+  position:relative;
+}
+.sp-fl2>.sp-fl2-big{
+  width:480rpx;
+  height:480rpx;
+}
+.sp-fl2>.sp-fl2-big>image{
+  height:100%;
+}
+.sp-fl2>.sp-fl2-big>view{
+  padding:10rpx;
+  position:absolute;
+  bottom:0;
+  left:0;
+  display:flex;
+}
+.sp-fl2>.sp-fl2-big>view>image{
+  top:0;
+  width:57rpx;
+  height:75rpx;
+}
+.sp-fl2>.sp-fl2-big>view>view{
+  margin-left:10rpx;
+  margin-top:-10rpx;
+  color:#fff;
+}
+.sp-fl2>.sp-fl2-big>view>view>view{
+  font-size:40rpx;
+  font-weight:bold;
+}
+.sp-fl2>.sp-fl2-big>view>view>text{
+  margin-right:10rpx;
+}
+.sp-fl2>.sp-fl2-small{
+  width:240rpx;
+  height:480rpx;
+  background-image:linear-gradient(to top,#F5F5F5 0%,#F5F5F5 49%,#fff 50%,#fff); 
+}
+.sp-fl2>.sp-fl2-small>image{
+  height:50%;
+}
+.sp-fl2>.sp-fl2-small>view>image{
+  width:75rpx;
+  height:57rpx;
+  position:absolute;
+  bottom:10rpx;
+  left:5rpx;
+}
+.sp-fl2>.sp-fl2-small>view>view{
+  color:#999;
+}
+.sp-fl2>.sp-fl2-small>view>view>view{
+  font-size:44rpx;
+}
+.sp-fl2>.sp-fl2-small>view>view>text{
+  margin-right:10rpx;
+}
+.sp-fl2>.sp-fl2-small::after{
+  content:"";
+  width:20rpx;
+  height:20rpx;
+  background: #F5F5F5;
+  transform: rotate(45deg);
+  position:absolute;
+  top:48%;
+  left:48%;
 }
