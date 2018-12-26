@@ -10,6 +10,7 @@ page{
   overflow:hidden;
   background-size:100% 100%;
   background: url("http://127.0.0.1:3000/img/index/background.jpg") no-repeat;
+  background-size: cover;
   width:100%;
   box-sizing: border-box;
   padding-top:30%;
@@ -108,12 +109,19 @@ input{
   justify-content: space-between;
   align-items: center;
 }
+.sp-fl1{
+  display: flex;
+  flex-wrap: wrap;
+}
 .sp-fl1>.sp-fl1-item{
   box-sizing: border-box;
-  width:33.3333%;
+  background-size:cover;
+  background-repeat:no-repeat;  
+  margin:2rpx 0;
+  width:33%;
   height:110rpx;
-  color:#000;
-  font-size:16px;
+  color:#fff;
+  font-size:32rpx;
   display: flex;
   justify-content: center;
   align-items: center;

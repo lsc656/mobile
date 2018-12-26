@@ -14,18 +14,33 @@ Page({
       }
     },1)
   },
+  getIndexInfo(){
+    wx.request({
+      url: 'http://127.0.0.1:3000/index',
+      data:{pno:1,pageSize:5},
+      success:(res)=>{
+        res=res.data;
+        this.setData({
+          fl1:res.data.fl1,
+          fl2:res.data.fl2
+        })
+      }
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
-    heightfirst:100.5
+    heightfirst:100.5,
+    fl1:[],
+    fl2:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getIndexInfo();
   },
 
   /**

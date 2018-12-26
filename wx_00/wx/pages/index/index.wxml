@@ -4,15 +4,15 @@
     <view class="sp-c">
       <text>大家正在关注</text>
       <view class="sp-fl1">
-        <view class="sp-fl1-item" style="background-image:url('{{fl1bg}}')">
-          兔砸
+        <view class="sp-fl1-item" style="background-image:url('{{item.img_url}}')" data-fid="{{item.fid}}" wx:for="{{fl1}}" wx:key="index">
+          {{item.tag}}
         </view>
       </view>
     </view>
     <view class="sp-c">
       <text>为您推荐</text>
       <view class="sp-fl2">
-
+        
       </view>
     </view>
     <button>加载更多</button>

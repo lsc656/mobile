@@ -1,5 +1,6 @@
 //1:加载模块 express pool
 const express = require("express");
+const index = require("./routes/index.js")
 //1.2加载路由
 
 //2:创建express对象
@@ -37,3 +38,4 @@ app.use(bodyParser.urlencoded({
 }));
 
 //挂载路由
+app.use("/index",index)

@@ -1,10 +1,10 @@
 const express=require("express");
-const pool=require("./pool.js");
+const pool=require("../pool.js");
 var router=express.Router();
 router.get("/",(req,res)=>{
   var output={fl1:[],fl2:[]};
   var progress=0;
-  var sql="SELECT img_url,tag,tagData FROM sanse_index_f1";
+  var sql="SELECT img_url,tag,fid FROM sanse_index_fl1";
   pool.query(sql,(err,result)=>{
     if(err) console.log(err)
     output.fl1=result;
@@ -14,11 +14,11 @@ router.get("/",(req,res)=>{
     }
   })
   var reg=/^[0-9]{0,3}$/
-  var pno=req.query.pno;
+  var pno=parseInt(req.query.pno);
   if(!pno){
     pno=1;
   }
-  var pS=req.query.pageSize;
+  var pS=parseInt(req.query.pageSize);
   if(!pS){
     pS=5;
   }
