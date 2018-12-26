@@ -26,7 +26,20 @@ CREATE TABLE sanse_pins(
   hit INT COMMENT "点击数量",
   fans INT COMMENT "粉丝量"
 );
-
+INSERT INTO sanse_pins (title,img_url,hit,fans) VALUES 
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
+("","",,),
 
 #图片展示页。对应关键字
 CREATE TABLE sanse_pins_keyw(
