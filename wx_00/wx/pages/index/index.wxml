@@ -46,7 +46,10 @@
       <view>花瓣</view>
     </view>
     <view>花瓣，陪你做生活的设计师</view>
-    <input type="search" placeholder='搜索你喜欢的'></input>
+    <view>
+      <input type="search" placeholder='搜索你喜欢的'></input>
+      <button></button>    
+    </view>
     <view class="slide-up">向上滑动页面</view>
   </view>
 </view>

@@ -54,15 +54,30 @@ page{
 .logo-item:nth-child(2){
   transform: rotate(45deg);
 }
-input{
-  background: #fff;
+.first-page>view:nth-child(3){
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+.first-page input{
+  display: inline-block;
   line-height:80rpx;
   height:80rpx;
   width:80%;
+  background-color: #fff;
+}
+.first-page button{
+  border:none;
+  border-radius:0;
+  padding:0;
+  margin:0;
+  display: inline-block;
+  width:80rpx;
+  height:80rpx;
   background-image: url("http://127.0.0.1:3000/img/index/icon-search.jpg");
   background-repeat:no-repeat;
-  background-size:80rpx 80rpx;
-  background-position:95% 0; 
+  background-size:100% 100%;
+  position:static;
 }
 .slide-up{
   text-align:center;
