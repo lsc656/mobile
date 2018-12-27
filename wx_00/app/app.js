@@ -7,10 +7,14 @@ const index = require("./routes/index.js")
 var app = express();
 //2.1:加载跨域访问组件
 const cors = require("cors");
-//2.2:配置允许脚手架访问程序
+//2.2:配置允许脚手架跨域访问程序 8080:vue   4200:ng
 app.use(cors({
-    origin:["http://127.0.0.1:8080",
-    "http://localhost:8080"],
+    origin:[
+      "http://127.0.0.1:8080",
+      "http://localhost:8080",
+      "http://127.0.0.1:4200",
+      "http://localhost:4200"
+    ],
     credentials:true
 }));
 //7.1:node.js app.js
