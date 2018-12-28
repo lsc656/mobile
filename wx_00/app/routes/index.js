@@ -18,24 +18,26 @@ router.get("/",(req,res)=>{
   if(!pno){
     pno=1;
   }
-  var pS=parseInt(req.query.pageSize);
-  if(!pS){
-    pS=5;
-  }
-  if(!reg.test(pno) || !reg.test(pS)){
+  if(!reg.test(pno)){
     res.send({code:-1,msg:"页码格式不正确"})
     return
   }
-  var startI=(pno-1)*pS;
-  var sql="SELECT title,img_url,hit,fans FROM sanse_pins LIMIT ?,?"
-  pool.query(sql,[startI,pS],(err,result)=>{
+  var startI=(pno-1)*6;
+  var sql="SELECT COUNT(pid) c FROM sanse_pins";
+  pool.query(sql,(err,result)=>{
     if(err) console.log(err)
-    output.fl2=result;
-    progress+=50;
-    if(progress==100){
-      res.send({code:1,data:output});
-    }
+    output.c=Math.floor(result[0].c/6);
+    var sql="SELECT pid,title,img_url,hit,fans,author FROM sanse_pins LIMIT ?,6"
+      pool.query(sql,[startI],(err,result)=>{
+        if(err) console.log(err)
+        output.fl2=result;
+        progress+=50;
+        if(progress==100){
+          res.send({code:1,data:output});
+        }
+      })
   })
+  
 })
 
 

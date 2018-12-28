@@ -1,0 +1,2 @@
+<!--pages/pins/pins.wxml-->
+<text>pages/pins/pins/{{pid}}.wxml</text>

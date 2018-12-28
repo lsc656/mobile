@@ -97,8 +97,6 @@ page{
   bottom:100%;
 }
 .second-page{
-  width:100%;
-  height:100%;
   display:none;
   overflow: hidden;
   position:absolute;
@@ -143,7 +141,11 @@ page{
 .sp-fl2{
   display:flex;
   justify-content: space-between;
+  flex-wrap:wrap;
   width:100%;
+}
+.sp-fl2>view{
+  margin-bottom:10rpx;
 }
 .sp-fl2>view>image{
   width:100%;

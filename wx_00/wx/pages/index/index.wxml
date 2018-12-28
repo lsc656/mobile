@@ -12,29 +12,19 @@
     <view class="sp-c">
       <text>为您推荐</text>
       <view class="sp-fl2">
-        <view class="sp-fl2-big">
-          <image lazy-load='true' mode='aspecFill' src="http://127.0.0.1:3000/img/index/f1-1.jpg"></image>
+        <view class="{{index%4==1||index%4==2 ?'sp-fl2-small':'sp-fl2-big'}}" wx:key="{{item.pid}}" wx:for="{{fl2}}" bindtap='jumpTo' data-pid="{{item.pid}}">
+          <image lazy-load='true' mode='aspecFill' src="{{item.img_url}}"></image>
           <view>
-            <image lazy-load="true" mode="aspeciFill" src="http://127.0.0.1:3000/img/index/box_title-l.png"></image>
+            <image lazy-load="true" mode="aspeciFill" src="http://127.0.0.1:3000/img/index/box_title-{{index%4==1||index%4==2?'r':'l'}}.png"></image>
             <view>
-              <view>标题</view>
-              <text>XX采集</text><text>XX粉丝</text>
+              <view>{{item.title}}</view>
+              <text>{{item.hit}}采集</text><text>{{item.fans}}粉丝</text>
             </view>
           </view>
-        </view>
-        <view class="sp-fl2-small">
-          <image lazy-load='true' mode='aspecFill' src="http://127.0.0.1:3000/img/index/f1-1.jpg"></image>
-          <view>
-            <image lazy-load="true" mode="aspeciFill" src="http://127.0.0.1:3000/img/index/box_title-r.png"></image>
-            <view>
-              <view>标题</view>
-              <text>XX采集</text><text>XX粉丝</text>
-            </view>
-          </view>
-        </view>
+        </view>        
       </view>
     </view>
-    <button>加载更多</button>
+    <button bindtap="getIndexInfo">加载更多</button>
   </view>
   <view class="first-page" style="height:{{heightfirst}}%;display:{{heightfirst<10? 'none' : '' }}">
     <view class="logo">
