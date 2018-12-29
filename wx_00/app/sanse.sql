@@ -89,15 +89,6 @@ INSERT INTO sanse_pins (title,img_url,hit,fans,author) VALUES
 ("IconSimple","http://127.0.0.1:3000/img/pics/pics019.jpg",433,1139,10),
 ("字体欣赏","http://127.0.0.1:3000/img/pics/pics020.jpg",1062,5440,10);
 
-
-#图片展示页。对应关键字
-CREATE TABLE sanse_pins_keyw(
-  kid INT PRIMARY KEY AUTO_INCREMENT,
-  keyword VARCHAR(10) COMMENT "关键字",
-  pid INT COMMENT "与sanse_pins的pid对应",
-  FOREIGN KEY (pid) REFERENCES sanse_pins (pid)
-);
-
 #图片展示页。对应所有图片
 CREATE TABLE sanse_pins_pics(
   cid INT PRIMARY KEY AUTO_INCREMENT,
