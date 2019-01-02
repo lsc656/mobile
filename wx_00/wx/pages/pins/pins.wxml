@@ -1,2 +1,22 @@
 <!--pages/pins/pins.wxml-->
-<text>pages/pins/pins/{{pid}}.wxml</text>
+<view>
+  <view class='header'>
+    <image src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg" lazy-load mode='aspecFill'></image>
+    <view>
+      <view>❀故宫❀</view>
+      <view>来自 阡陌凝烟</view>
+    </view>
+    <button>关注</button>
+    <button>...</button>    
+  </view>
+  <view class='likes'>
+    <button>XXX喜欢</button>
+    <button>分享</button>
+  </view>
+  <view class='banner'>
+
+  </view>
+  <view class='content'>
+
+  </view>
+</view>
