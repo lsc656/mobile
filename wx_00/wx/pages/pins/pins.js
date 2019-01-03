@@ -1,11 +1,18 @@
 // pages/pins/pins.js
 Page({
 
+  changeSelected(e){
+    this.setData({
+      selected: e.target.dataset.sel
+    })
+  },
+
   /**
    * 页面的初始数据
    */
   data: {
-    pid:0
+    pid:0,
+    selected:0
   },
 
   /**

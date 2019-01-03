@@ -17,11 +17,11 @@
     <button>XXX喜欢</button>
     <button>分享</button>
   </view>
-  <view class='banner'>
-    <view class='active'>XXX采集</view>
-    <view>被XXX人关注</view>
+  <view class='banner' bindtap="changeSelected">
+    <view class="{{selected==0?'active':''}}" data-sel='0'>XXX采集</view>
+    <view class="{{selected==1?'active':''}}" data-sel='1'>被XXX人关注</view>
   </view>
   <view class='content'>
-    
+
   </view>
 </view>
