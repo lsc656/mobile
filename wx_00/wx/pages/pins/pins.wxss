@@ -35,13 +35,15 @@
 
   margin-right:10rpx;
 }
+.likes.uactive{
+  display: none;
+}
 .likes{
   display: flex;
   justify-content: flex-end;
   background: #ededed;
   padding:20rpx 10rpx;
   position:relative;
-  /* display: none; */
 }
 .likes::before{
   content:'';
@@ -68,6 +70,7 @@
   width:50%;
   text-align: center;
   color:#777;
+  font-size:34rpx;
 }
 .banner>view:first-child{
   border-right:1px solid #DDD;
@@ -75,8 +78,18 @@
 .banner>view.active{
   background: #EDEDED;
   font-weight: bold;
-  color:#000;
+  color:#444;
 }
 .content{
   padding:20rpx 10rpx;
+}
+.content>view{
+  display:none;
+}
+.content>view.active{
+  display: block;
+}
+.content>view.active>view.list{
+  column-count:2;
+  column-gap:20rpx;
 }

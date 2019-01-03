@@ -1,18 +1,30 @@
 // pages/pins/pins.js
 Page({
 
+  /**
+   * 更改采集/关注对应的页面
+   */
   changeSelected(e){
     this.setData({
       selected: e.target.dataset.sel
     })
   },
-
+  /**
+   * 更改喜欢/分享的显示
+   */
+  showLikes(){
+    this.setData({
+      showLikes: !this.data.showLikes
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
     pid:0,
-    selected:0
+    selected:0,
+    showLikes:false,
+    testList:[1,2,3,4,5,6,7,8,9,10]
   },
 
   /**

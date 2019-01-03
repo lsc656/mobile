@@ -10,10 +10,10 @@
     </view>
     <view>
       <button>关注</button>
-      <button>...</button>    
+      <button bindtap='showLikes'>...</button>    
     </view>
   </view>
-  <view class='likes'>
+  <view class='likes {{showLikes ? "":"uactive"}}'>
     <button>XXX喜欢</button>
     <button>分享</button>
   </view>
@@ -22,6 +22,20 @@
     <view class="{{selected==1?'active':''}}" data-sel='1'>被XXX人关注</view>
   </view>
   <view class='content'>
-
+    <view class="{{selected==0?'active':''}}">
+      <view class='list'>
+        <view class="card" wx:for="{{testList}}" wx:key="index">
+          <image></image>
+          <view>image-title</view>
+          <view>点赞</view>
+          <view>
+            <image lazy-load mode="aspectFill"></image>
+            <view>author</view>
+            <view>class-title</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="{{selected==1?'active':''}}">关注页</view>
   </view>
 </view>
