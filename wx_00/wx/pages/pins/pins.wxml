@@ -1,22 +1,27 @@
 <!--pages/pins/pins.wxml-->
-<view>
+<view class='main'>
   <view class='header'>
-    <image src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg" lazy-load mode='aspecFill'></image>
     <view>
-      <view>❀故宫❀</view>
-      <view>来自 阡陌凝烟</view>
+      <image src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg" lazy-load mode='aspecFill'></image>
+      <view>
+        <view>❀故宫❀</view>
+        <view>来自 阡陌凝烟</view>      
+      </view>
     </view>
-    <button>关注</button>
-    <button>...</button>    
+    <view>
+      <button>关注</button>
+      <button>...</button>    
+    </view>
   </view>
   <view class='likes'>
     <button>XXX喜欢</button>
     <button>分享</button>
   </view>
   <view class='banner'>
-
+    <view class='active'>XXX采集</view>
+    <view>被XXX人关注</view>
   </view>
   <view class='content'>
-
+    
   </view>
 </view>
