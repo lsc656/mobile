@@ -8,3 +8,9 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+/*多余显示...*/
+.ell{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

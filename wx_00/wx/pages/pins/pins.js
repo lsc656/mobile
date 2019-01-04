@@ -1,6 +1,27 @@
 // pages/pins/pins.js
 Page({
-
+  /**
+   * 加载更多数据
+   */
+  loadMore(){
+    var pno=this.data.pno;
+    if(pno==this.data.pageCount){
+      return;
+    }else{
+      pno++;    
+      wx.request({
+        url: 'http://127.0.0.1:3000/pics/?pno='+pno,
+        success:(res)=>{
+          if(res.code==200){
+            this.setData({
+              myList:res.data.data,
+              pageCount:res.data.c
+            })
+          }
+        }
+      })
+    }
+  },
   /**
    * 更改采集/关注对应的页面
    */
@@ -24,7 +45,10 @@ Page({
     pid:0,
     selected:0,
     showLikes:false,
-    testList:[1,2,3,4,5,6,7,8,9,10]
+    testList:[1,2,3,4,5,6,7,8,9,10],
+    myList:[],
+    pno:0,
+    pageCount:1
   },
 
   /**

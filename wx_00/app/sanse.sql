@@ -89,10 +89,31 @@ INSERT INTO sanse_pins (title,img_url,hit,fans,author) VALUES
 ("IconSimple","http://127.0.0.1:3000/img/pics/pics019.jpg",433,1139,10),
 ("字体欣赏","http://127.0.0.1:3000/img/pics/pics020.jpg",1062,5440,10);
 
-#图片展示页。对应所有图片
+
+#用户信息
+CREATE TABLE sanse_user(
+  uid INT PRIMARY KEY AUTO_INCREMENT,
+  user_img VARCHAR(128) COMMENT "用户头像",
+  uname VARCHAR(32) COMMENT "用户名",
+  upwd VARCHAR(32) COMMENT "用户密码",
+  tel VARCHAR(32) COMMENT "用户联系方式",
+  fans INT COMMENT "粉丝数量",
+  gz INT COMMENT "关注数量"
+);
+INSERT INTO sanse_user () VALUES 
+(),
+;
+#图片展示页。对应所有该作者该类图片预览中图及相应信息
 CREATE TABLE sanse_pins_pics(
   cid INT PRIMARY KEY AUTO_INCREMENT,
-  img_url VARCHAR(128) COMMENT "对应图片的路径",
+  img_md VARCHAR(128) COMMENT "对应中图的路径",
+  img_lg VARCHAR(128) COMMENT "对应大图的路径",
+  authorId INT COMMENT "对应作者ID",
+  title VARCHAR(32) COMMENT "图片标题",
+  zan INT COMMENT "点赞次数",
+  likes INT COMMENT "点击喜欢次数",
+  shares INT COMMENT "点击分享次数",
   pid INT COMMENT "与sanse_pins的pid对应",
   FOREIGN KEY (pid) REFERENCES sanse_pins (pid)
 );
+

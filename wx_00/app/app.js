@@ -1,6 +1,7 @@
 //1:加载模块 express pool
 const express = require("express");
-const index = require("./routes/index.js")
+const index = require("./routes/index.js");
+const pics=require('./routes/pics');
 //1.2加载路由
 
 //2:创建express对象
@@ -42,4 +43,5 @@ app.use(bodyParser.urlencoded({
 }));
 
 //挂载路由
-app.use("/index",index)
+app.use("/index",index);
+app.use('/pics',pics);
