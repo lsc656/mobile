@@ -95,7 +95,7 @@
 .content>view.active{
   display: block;
 }
-.content>view.active>view.list{
+.content>view.active>view.list.moreData{
   column-count:2;
   column-gap:20rpx;
 }

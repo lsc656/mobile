@@ -97,12 +97,13 @@ CREATE TABLE sanse_user(
   uname VARCHAR(32) COMMENT "用户名",
   upwd VARCHAR(32) COMMENT "用户密码",
   tel VARCHAR(32) COMMENT "用户联系方式",
-  fans INT COMMENT "粉丝数量",
-  gz INT COMMENT "关注数量"
+  fans INT COMMENT "关注数量",
+  likes INT COMMENT "点击喜欢次数",
+  cj INT COMMENT "采集数量"
 );
 
-INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,gz) VALUES 
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,2903);
+INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,likes,cj) VALUES 
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903);
 
 
 #图片展示页。对应所有该作者该类图片预览中图及相应信息

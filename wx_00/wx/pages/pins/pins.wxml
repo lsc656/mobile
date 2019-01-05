@@ -4,8 +4,8 @@
     <view>
       <image src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg" lazy-load mode='aspecFill'></image>
       <view>
-        <view>❀故宫❀</view>
-        <view>来自 阡陌凝烟</view>      
+        <view>{{header.title}}</view>
+        <view>来自 {{authorInfo.uname}}</view>      
       </view>
     </view>
     <view>
@@ -14,27 +14,30 @@
     </view>
   </view>
   <view class='likes {{showLikes ? "":"uactive"}}'>
-    <button><image src='http://127.0.0.1:3000/img/icons/like.png'></image> XXX喜欢</button>
-    <button><image src='http://127.0.0.1:3000/img/icons/share.png'></image> 分享</button>
+    <button bindtap='myLike' disabled='{{likeClick? true:false}}'><image src='http://127.0.0.1:3000/img/icons/like.png'></image> {{likes}} 喜欢</button>
+    <button open-type='share'>
+      <image src='http://127.0.0.1:3000/img/icons/share.png'></image>
+      分享
+    </button>
   </view>
   <view class='banner' bindtap="changeSelected">
-    <view class="{{selected==0?'active':''}}" data-sel='0'>XXX采集</view>
-    <view class="{{selected==1?'active':''}}" data-sel='1'>被XXX人关注</view>
+    <view class="{{selected==0?'active':''}}" data-sel='0'>{{authorInfo.cj}}采集</view>
+    <view class="{{selected==1?'active':''}}" data-sel='1'>被{{authorInfo.fans}}人关注</view>
   </view>
   <view class='content'>
     <view class="{{selected==0?'active':''}}">
-      <view class='list'>
-        <view class="card" wx:for="{{testList}}" wx:key="index">
-          <image lazy-load mode='aspecFill' src='http://127.0.0.1:3000/img/imgs/img_001_md.jpg' class='md-image'></image>
-          <view class='ell'>左侧侧边栏导航菜单设计 - 手机界面 - 黄蜂网woofeng.cn</view>
-          <view><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>点赞2</view>
+      <view class='list {{myList.length>1 ? ".moreData" : ""}}'>
+        <view class="card" wx:for="{{myList}}" wx:key="index">
+          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' bindtap='jumpBigImg'></image>
+          <view class='ell'>{{item.account}}</view>
+          <view wx:if='{{item.zan>0}}'><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>{{item.zan}}</view>
           <view class='author-info'>
             <view>
-              <image lazy-load mode="aspectFill" src='http://127.0.0.1:3000/img/headPortraits/headP-1.jpg'></image>            
+              <image lazy-load mode="aspectFill" src='{{authorInfo.user_img}}'></image>            
             </view>
             <view>
-              <view>木木小鱼</view>
-              <view class='ell'>导航方式/首页/主界面</view>            
+              <view>{{authorInfo.uname}}</view>
+              <view class='ell'>{{header.title}}</view>            
             </view>
           </view>
         </view>
