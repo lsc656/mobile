@@ -1,1 +1,7 @@
 /* pages/boards/boards.wxss */
+.pic-info{
+
+}
+.pic-info>image{
+  width:100%;
+}

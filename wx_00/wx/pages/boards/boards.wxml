@@ -1,2 +1,25 @@
 <!--pages/boards/boards.wxml-->
-<text>pages/boards/boards.wxml</text>
+<view>
+  <text>{{pid}},{{authorId}}</text>
+  <view class='pic-info'>
+    <image lazy-load mode='aspectFit' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg' style='height:{{imgHeight*2}}rpx'></image>
+    <view>
+      <button>收藏</button>  
+      <button>喜欢</button>  
+      <button>更多</button>  
+    </view>
+    <view class='banner'>
+      <button>分享</button>
+      <button>下载</button>
+    </view>
+    <view class='author'>
+      <image lazy-load mode='widthFix' src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg"></image>
+      <view>
+        <view>作者姓名</view>
+        <view>采集时间</view>
+      </view>
+    </view>
+  </view>
+  <view class='pic-list'></view>
+  <view class='recommend'></view>
+</view>

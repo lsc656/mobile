@@ -2,26 +2,50 @@
 Page({
 
   /**
+   * 获取当前显示图片高度
+   */
+  getHeight(){
+    var winWinth=0;
+    wx.getSystemInfo({
+      success: (res)=>{
+        winWinth=parseInt(res.windowWidth);
+      }
+    })
+    wx.getImageInfo({
+      src: 'http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',
+      success:(res)=>{
+        console.log(res)
+        var lgHeight=winWinth/parseInt(res.width)*parseInt(res.height);
+        this.setData({
+          imgHeight: lgHeight
+        })
+      }
+    })
+  },
+  /**
    * 页面的初始数据
    */
   data: {
-    pid:0
+    pid:0,
+    authorId:0,
+    imgHeight:0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      pid:options.pid
-    })
+    //完成后解除注释
+    // this.setData({
+    //   pid:options.pid,
+    //   authorId:options.authorId
+    // })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getHeight();
   },
 
   /**

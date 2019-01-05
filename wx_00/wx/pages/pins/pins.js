@@ -8,7 +8,7 @@ Page({
     var like=this.data.likes;
     like++;
     wx.request({
-      url: 'http://127.0.0.1:3000/pics/likesAth?uid=' + this.data.authorId,
+      url: 'http://127.0.0.1:3000/pics/likesAth?uid=' + this.data.authorId + '&pid=' + this.data.pid,
       success:(res)=>{
         res=res.data
         if(res.code==200){
@@ -117,10 +117,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({
-    //   pid:options.pid,
-    //   authorId:options.author
-    // })
+    this.setData({
+      pid:options.pid,
+      authorId:options.author
+    })
     this.loadMore();
   },
 

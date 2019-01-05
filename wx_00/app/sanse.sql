@@ -111,6 +111,7 @@ CREATE TABLE sanse_pins_pics(
   cid INT PRIMARY KEY AUTO_INCREMENT,
   img_md VARCHAR(128) COMMENT "对应中图的路径",
   img_lg VARCHAR(128) COMMENT "对应大图的路径",
+  ctime DATETIME COMMENT "图片采集时间",
   authorId INT COMMENT "对应作者ID",
   account VARCHAR(180) COMMENT "图片描述",
   zan INT COMMENT "点赞次数",
@@ -120,5 +121,5 @@ CREATE TABLE sanse_pins_pics(
   FOREIGN KEY (pid) REFERENCES sanse_pins (pid)
 );
 
-INSERT INTO sanse_pins_pics (img_md,img_lg,authorId,account,zan,likes,shares,pid) VALUES 
-('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1);
+INSERT INTO sanse_pins_pics (img_md,img_lg,ctime,authorId,account,zan,likes,shares,pid) VALUES 
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1);

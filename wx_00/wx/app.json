@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/boards/boards",
     "pages/pins/pins",
     "pages/index/index",
     "pages/logs/logs",
     "pages/myFavorite/myFavorite",
-    "pages/user/user",
-    "pages/boards/boards"
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
