@@ -57,9 +57,10 @@ Page({
    * 点击2F图片跳转相应位置 
    */
   jumpTo(e){
-    var pid=e.currentTarget.dataset.pid
+    var pid=e.currentTarget.dataset.pid;
+    var authorId=e.currentTarget.dataset.author
     wx.navigateTo({
-      url: '/pages/pins/pins?pid='+pid,
+      url: '/pages/pins/pins?pid='+pid+'&authorId='+authorId,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

@@ -5,18 +5,22 @@ Page({
    */
   loadMore(){
     var pno=this.data.pno;
+    var pid=this.data.pid;
+    var authorId=this.data.authorId;
     if(pno==this.data.pageCount){
       return;
     }else{
       pno++;    
       wx.request({
-        url: 'http://127.0.0.1:3000/pics/?pno='+pno,
+        url: 'http://127.0.0.1:3000/pics/?pno='+pno+'&pid='+pid+'&authorId='+authorId,
         success:(res)=>{
+          res=res.data
           if(res.code==200){
             this.setData({
               myList:res.data.data,
               pageCount:res.data.c
             })
+            console.log(this.data.myList)
           }
         }
       })
@@ -42,13 +46,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pid:0,
+    pid:1,
     selected:0,
     showLikes:false,
     testList:[1,2,3,4,5,6,7,8,9,10],
     myList:[],
     pno:0,
-    pageCount:1
+    pageCount:1,
+    authorId:1
   },
 
   /**
@@ -56,8 +61,10 @@ Page({
    */
   onLoad: function (options) {
     // this.setData({
-    //   pid:options.pid
+    //   pid:options.pid,
+    //   authorId:options.author
     // })
+    this.loadMore();
   },
 
   /**

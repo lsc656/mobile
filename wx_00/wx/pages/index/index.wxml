@@ -12,7 +12,7 @@
     <view class="sp-c">
       <text>为您推荐</text>
       <view class="sp-fl2">
-        <view class="{{index%4==1||index%4==2 ?'sp-fl2-small':'sp-fl2-big'}}" wx:key="{{item.pid}}" wx:for="{{fl2}}" bindtap='jumpTo' data-pid="{{item.pid}}">
+        <view class="{{index%4==1||index%4==2 ?'sp-fl2-small':'sp-fl2-big'}}" wx:key="{{item.pid}}" wx:for="{{fl2}}" bindtap='jumpTo' data-pid="{{item.pid}}" data-author="{{item.author}}">
           <image lazy-load='true' mode='aspecFill' src="{{item.img_url}}"></image>
           <view>
             <image lazy-load="true" mode="aspeciFill" src="http://127.0.0.1:3000/img/index/box_title-{{index%4==1||index%4==2?'r':'l'}}.png"></image>
