@@ -1,14 +1,14 @@
 <!--pages/boards/boards.wxml-->
 <view>
-  <text>{{pid}},{{authorId}}</text>
+  <text>pid:{{pid}},authorId:{{authorId}}</text>
   <view class='pic-info'>
     <image lazy-load mode='aspectFit' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg' style='height:{{imgHeight*2}}rpx'></image>
     <view class='btn-group'>
-      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/zan.png'></image> 收藏</button>  
-      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/like.png'></image> 喜欢</button>  
-      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/more.png'></image> 更多</button>  
+      <button style='opacity:{{showBanner?"0.2":"1"}}' disabled='{{showBanner?true:false}}'><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/zan.png'></image> 收藏</button>  
+      <button style='opacity:{{showBanner?"0.2":"1"}}' disabled='{{showBanner?true:false}}'><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/like.png'></image> 喜欢</button>  
+      <button bindtap="changeBanner"><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/more.png'></image> 更多</button>  
     </view>
-    <view class='banner'>
+    <view class='banner' style="display:{{showBanner ? '' : 'none'}}">
       <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/share.png'></image> 分享</button>
       <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/download.png'></image> 下载</button>
     </view>
@@ -20,6 +20,31 @@
       </view>
     </view>
   </view>
-  <view class='pic-list'></view>
-  <view class='recommend'></view>
+  <view class='pic-list'>    
+    <view class='dark-arr'><text>class title</text></view>    
+    <view class='img-list'>      
+      <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg'></image>
+    </view>
+  </view>
+  <view class='recommend'>
+    <view>为你推荐的采集</view>
+    <view class='content'>
+      <view class='list'>
+        <view class="card" wx:for="{{myList}}" wx:key="index">
+          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' bindtap='jumpBigImg'></image>
+          <view class='ell'>{{item.account}}</view>
+          <view wx:if='{{item.zan>0}}'><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>{{item.zan}}</view>
+          <view class='author-info'>
+            <view>
+              <image lazy-load mode="aspectFill" src='{{authorInfo.user_img}}'></image>            
+            </view>
+            <view>
+              <view>{{authorInfo.uname}}</view>
+              <view class='ell'>{{header.title}}</view>            
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

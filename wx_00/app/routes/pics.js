@@ -58,7 +58,7 @@ router.get('/',(req,res)=>{
   var sql="SELECT COUNT(cid) c FROM sanse_pins_pics WHERE pid=? AND authorId=?";
   pool.query(sql,[pid,authorId],(err,result)=>{
     if(err) console.log(err)
-    output.c=Math.floor(result[0].c/10);
+    output.c=Math.ceil(result[0].c/10);
     var sql="SELECT cid,img_md,img_lg,authorId,account,zan,likes,shares,pid FROM sanse_pins_pics WHERE pid=? AND authorId=? LIMIT ?,6"
       pool.query(sql,[pid,authorId,startI],(err,result)=>{
         if(err) console.log(err)

@@ -14,3 +14,18 @@
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+/*右侧深色箭头*/
+.dark-arr{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dark-arr::after{
+  content:'';
+  margin-right:20rpx;
+  width:20rpx;
+  height:20rpx;
+  border-top:1px solid #333;
+  border-right:1px solid #333;
+  transform:rotate(45deg);
+}

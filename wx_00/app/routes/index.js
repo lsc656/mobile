@@ -26,7 +26,7 @@ router.get("/",(req,res)=>{
   var sql="SELECT COUNT(pid) c FROM sanse_pins";
   pool.query(sql,(err,result)=>{
     if(err) console.log(err)
-    output.c=Math.floor(result[0].c/6);
+    output.c=Math.ceil(result[0].c/6);
     var sql="SELECT pid,title,img_url,hit,fans,author FROM sanse_pins LIMIT ?,6"
       pool.query(sql,[startI],(err,result)=>{
         if(err) console.log(err)

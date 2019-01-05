@@ -54,3 +54,103 @@
   transform: rotate(-45deg);
   background: #fafafa;
 }
+/*作者信息*/
+.pic-info>.author{
+  display: flex;
+  padding:10rpx;
+}
+.pic-info>.author>image{
+  width:100rpx;
+}
+.pic-info>.author>view{
+  padding:0 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pic-info>.author>view>view:first-child{
+  font-size:36rpx;
+  color:#444;
+}
+.pic-info>.author>view>view:nth-child(2){
+  font-size:24rpx;
+  color:#999;
+}
+/*图片列表*/
+.pic-list{
+  padding:10rpx 0;
+  border-top:1px solid #EDEDED;
+  border-bottom:1px solid #EDEDED;
+}
+.pic-list>view:first-child{
+  padding:10rpx 10rpx;
+}
+.pic-list>.img-list{
+  white-space: nowrap;
+  padding:10rpx 10rpx;
+}
+.pic-list>.img-list>image{
+  width:90rpx;
+  height:90rpx;
+  margin-right:10rpx;
+}
+
+/*推荐列表*/
+.recommend{
+  background-color: #F5F5F5;
+}
+.recommend>view:first-child{
+  padding:10rpx 10rpx;
+  font-size:32rpx;
+  color:#444;
+  font-weight:bold;
+}
+.content .list{
+  column-count:2;
+  column-gap:20rpx;
+}
+.content .card{
+  background-color:#fff;
+  margin-bottom:20rpx;
+  box-shadow:1px 1px 3px 3px #ededed;
+}
+.content .card .md-image{
+  width:100%;
+}
+.content .card>view:nth-child(2){
+  padding:0 10rpx;
+  font-size:26rpx;
+  color:#777;
+}
+.content .card>view:nth-child(3){
+  padding:0 10rpx;
+  font-size:26rpx;
+}
+.content .card>view:nth-child(3)>image{
+  height:20rpx;
+  width:20rpx;
+}
+.content .card>.author-info{
+  padding:5rpx 10rpx;
+  border-top:1rpx solid #F2F2F2;
+  display: flex;
+  justify-content: space-between;
+}
+.content .card>.author-info>view>image{
+  width:50rpx;
+  height:50rpx;
+  border-radius:50%;
+}
+.content .card>.author-info>view:first-child{
+  width:20%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .card>.author-info>view:last-child{
+  width:80%;
+}
+.content .card>.author-info>view:last-child>view{
+  font-size:24rpx;
+  color:#777;
+}

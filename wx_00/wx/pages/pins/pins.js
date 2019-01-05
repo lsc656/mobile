@@ -41,16 +41,16 @@ Page({
    */
   loadMore(){
     var pno=this.data.pno;
-    var pid=this.data.pid;
-    var authorId=this.data.authorId;
     if(pno==this.data.pageCount){
       wx.showToast({
         title: '没有更多了！',
-        duration:1500
+        icon:'none'
       })
-      wx.hideToast();
+      setTimeout(() => { wx.hideToast()},1500)
       return;
     }else{
+      var pid=this.data.pid;
+      var authorId=this.data.authorId;
       pno++;
       wx.showLoading({
         title: '加载中...',
@@ -66,7 +66,8 @@ Page({
               myList:res.data.data,
               pageCount:res.data.c,
               authorInfo: res.data.authorInfo,
-              header:res.data.header
+              header:res.data.header,
+              pno
             })
             var likes=0;
             this.data.myList.map((item,i)=>{
