@@ -2,6 +2,55 @@
 .pic-info{
 
 }
+
+/* 主显示大图 */
 .pic-info>image{
   width:100%;
+}
+
+/* 收藏/喜欢/更多按钮 */
+.pic-info>.btn-group{
+  padding:10rpx;
+  position:relative;
+}
+.pic-info>.btn-group>button,.pic-info>.banner>button{
+  display: inline-block;
+  height:60rpx;
+  line-height:60rpx;
+  font-size:28rpx;
+  font-weight: bold;
+}
+.pic-info>.btn-group>button>image,.pic-info>.banner>button>image{
+  width:20rpx;
+  height:20rpx;
+}
+.pic-info>.btn-group>button:nth-child(2){
+  margin-left:20rpx;
+}
+.pic-info>.btn-group>button:nth-child(3){
+  position:absolute;
+  right:10rpx;
+}
+/* 分享/下载按钮*/
+.pic-info>.banner{
+  padding:10rpx;
+  background-color: #FAFAFA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.pic-info>.banner>button{
+  margin:0;
+}
+.pic-info>.banner::before{
+  content:'';
+  display: block;
+  height:30rpx;
+  width:30rpx;
+  position:absolute;
+  top:-16rpx;
+  right:70rpx;
+  transform: rotate(-45deg);
+  background: #fafafa;
 }

@@ -3,14 +3,14 @@
   <text>{{pid}},{{authorId}}</text>
   <view class='pic-info'>
     <image lazy-load mode='aspectFit' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg' style='height:{{imgHeight*2}}rpx'></image>
-    <view>
-      <button>收藏</button>  
-      <button>喜欢</button>  
-      <button>更多</button>  
+    <view class='btn-group'>
+      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/zan.png'></image> 收藏</button>  
+      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/like.png'></image> 喜欢</button>  
+      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/more.png'></image> 更多</button>  
     </view>
     <view class='banner'>
-      <button>分享</button>
-      <button>下载</button>
+      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/share.png'></image> 分享</button>
+      <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/download.png'></image> 下载</button>
     </view>
     <view class='author'>
       <image lazy-load mode='widthFix' src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg"></image>

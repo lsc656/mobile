@@ -6,15 +6,17 @@ Page({
    */
   getHeight(){
     var winWinth=0;
+    //获取窗口宽度
     wx.getSystemInfo({
       success: (res)=>{
         winWinth=parseInt(res.windowWidth);
       }
     })
+    //根据横向缩放比例更改图片高度
     wx.getImageInfo({
+      //测试图片
       src: 'http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',
       success:(res)=>{
-        console.log(res)
         var lgHeight=winWinth/parseInt(res.width)*parseInt(res.height);
         this.setData({
           imgHeight: lgHeight
