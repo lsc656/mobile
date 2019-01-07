@@ -8,11 +8,11 @@ Page({
       url: 'http://127.0.0.1:3000/pics/getUserPublicInfo?uid='+this.data.uid,
       success:(res)=>{
         res=res.data
+        console.log(res.data)
         if(res.code==200){
           this.setData({
             myBoard:res.data
           })
-          console.log(this.data.myBoard)
         }
       }
     })

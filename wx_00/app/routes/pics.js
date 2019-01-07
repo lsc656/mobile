@@ -117,10 +117,19 @@ router.get('/getFocusInfo',(req,res)=>{
  */
 router.get("/getUserPublicInfo",(req,res)=>{
   var uid=req.query.uid;
-  var sql='SELECT pid,title,img_url,hit,fans,author FROM sanse_pins WHERE author=?';
+  var sql='SELECT img_md,img_lg,authorId,account,pid FROM sanse_pins_pics WHERE authorId=?';
   pool.query(sql,[uid],(err,result)=>{
     if(err) console.log(err);
-    res.send({code:200,data:result})
+    var sql="SELECT title FROM sanse_pins WHERE pid=?";
+    result.map((item,i,arr)=>{
+      pool.query(sql,[item.pid],(err,result1)=>{
+        if(err) console.log(err) ;
+        result[i].title=result1[0].title
+        if(i==arr.length-1){
+          res.send({code:200,data:result})
+        }
+      })
+    })
   })
 })
 module.exports=router;

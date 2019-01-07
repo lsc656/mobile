@@ -20,14 +20,14 @@
       <view class='myBoardList' wx:for='{{myBoard}}' wx:key="{{index}}">
         <view class='card'>
           <view>
-            <image lazy-load mode='aspectFill' src='{{item.img_url}}'></image>
-            <view>{{item.title}}</view>
+            <image lazy-load mode='aspectFill' src='{{item.img_md}}'></image>
+            <view class='ell'>{{item.account}}</view>
           </view>
           <view>
             <image lazy-load mode='aspectFill' src=''></image>
             <view>
               <view>authorName</view>
-              <view>classTitle</view>
+              <view>{{item.title}}</view>
             </view>
           </view>
         </view>
