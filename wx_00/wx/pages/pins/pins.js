@@ -120,9 +120,9 @@ Page({
    * 7.点击关注人跳转对方信息
    */
   jumpFocus(e){
-    console.log('点击跳转到个人信息列表，功能未开放')
-    console.log(e.currentTarget.dataset.uid)
-    //this.navigateTo('')
+    wx.navigateTo({
+      url: '../../pages/hlogic/hlogic?uid=' + e.currentTarget.dataset.uid,
+    })
   },
   /**
    * 页面的初始数据

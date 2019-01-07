@@ -112,4 +112,15 @@ router.get('/getFocusInfo',(req,res)=>{
     }
   })
 })
+/**
+ * 4.获取用户信息(公开)
+ */
+router.get("/getUserPublicInfo",(req,res)=>{
+  var uid=req.query.uid;
+  var sql='SELECT pid,title,img_url,hit,fans,author FROM sanse_pins WHERE author=?';
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) console.log(err);
+    res.send({code:200,data:result})
+  })
+})
 module.exports=router;
