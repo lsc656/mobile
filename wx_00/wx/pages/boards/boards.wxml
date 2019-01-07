@@ -31,7 +31,7 @@
     <view class='content'>
       <view class='list'>
         <view class="card" wx:for="{{myList}}" wx:key="index">
-          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' bindtap='jumpBigImg'></image>
+          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' data-authorId='{{item.authorId}}' data-cid='{{item.cid}}' bindtap='jumpBigImg'></image>
           <view class='ell'>{{item.account}}</view>
           <view wx:if='{{item.zan>0}}'><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>{{item.zan}}</view>
           <view class='author-info'>

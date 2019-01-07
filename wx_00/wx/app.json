@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/boards/boards",
-    "pages/pins/pins",
     "pages/index/index",
+    "pages/pins/pins",
+    "pages/boards/boards",
     "pages/logs/logs",
     "pages/myFavorite/myFavorite",
     "pages/user/user"

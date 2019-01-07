@@ -1,12 +1,15 @@
 // pages/boards/boards.js
 Page({
   /**
- * 点击图片跳转大图页面
+ * 点击小图片跳转大图页面
  */
   jumpBigImg(e) {
+
+    var cid = e.target.dataset.cid
+    var authorId = e.target.dataset.authorid
     var pid = e.target.dataset.pid
     wx.navigateTo({
-      url: '../../pages/boards/boards?pid=' + pid,
+      url: '../../pages/boards/boards?cid=' + cid + '&authorId=' + authorId + '&pid=' + pid,
     })
   },
   /**
@@ -32,6 +35,7 @@ Page({
         url: 'http://127.0.0.1:3000/pics/?pno=' + pno + '&pid=' + pid + '&authorId=' + authorId,
         success: (res) => {
           res = res.data
+          console.log(res.data)
           if (res.code == 200) {
             wx.hideLoading();
             this.setData({
@@ -81,25 +85,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pid:1,
-    authorId:1,
+    pid:0,
+    authorId:0,
+    cid:0,
     imgHeight:0,
     showBanner:false,
     pno:0,
     pageCount:1,
     myList:[],
     authorInfo:{},
-    header:{}
+    header:{},
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //完成后解除注释
-    // this.setData({
-    //   pid:options.pid,
-    //   authorId:options.authorId
-    // })
+    console.log(options)
+    this.setData({
+      pid:options.pid,
+      authorId:options.authorId,
+      cid:options.cid
+    })
     this.getHeight();
     this.loadMore();
   },

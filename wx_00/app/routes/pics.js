@@ -3,7 +3,7 @@ const pool=require("../pool.js");
 var router=express.Router();
 
 /**
- * pins图片列表页信息
+ * 1.pins图片列表页信息
  */
 router.get('/',(req,res)=>{
   var output={};
@@ -29,7 +29,7 @@ router.get('/',(req,res)=>{
     return
   }
   /**
-   * 作者信息
+   * 1.1作者信息
    */
   var sql="SELECT user_img,uname,fans,likes,cj FROM sanse_user WHERE uid=?";
   pool.query(sql,[authorId],(err,result)=>{
@@ -41,7 +41,7 @@ router.get('/',(req,res)=>{
     }
   })
    /**
-   * 头部标题信息
+   * 1.2头部标题信息
    */
   var sql='SELECT title FROM sanse_pins WHERE pid=?';
   pool.query(sql,[pid],(err,result)=>{
@@ -53,7 +53,7 @@ router.get('/',(req,res)=>{
     }
   })
   /**
-   * 图片页详细信息
+   * 1.3图片页详细信息
    */
   var sql="SELECT COUNT(cid) c FROM sanse_pins_pics WHERE pid=? AND authorId=?";
   pool.query(sql,[pid,authorId],(err,result)=>{
@@ -72,7 +72,7 @@ router.get('/',(req,res)=>{
 })
 
 /**
- * 修改喜欢(作者)信息
+ * 2.修改喜欢(作者)信息
  */
 router.get('/likesAth',(req,res)=>{
   var uid=req.query.uid;

@@ -31,9 +31,9 @@ Page({
    * 点击图片跳转大图页面
    */
   jumpBigImg(e){
-    var pid=e.target.dataset.pid
+    var cid=e.target.dataset.cid
     wx.navigateTo({
-      url: '../../pages/boards/boards?pid='+pid,
+      url: '../../pages/boards/boards?cid='+cid+'&pid='+this.data.pid+'&authorId='+this.data.authorId,
     })
   },
   /**
@@ -120,7 +120,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       pid:options.pid,
-      authorId:options.author
+      authorId:options.authorId
     })
     this.loadMore();
   },
