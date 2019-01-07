@@ -72,7 +72,7 @@ router.get('/',(req,res)=>{
 })
 
 /**
- * 2.修改喜欢(作者)信息
+ * 2.修改喜欢(作者)信息/count+1
  */
 router.get('/likesAth',(req,res)=>{
   var uid=req.query.uid;
@@ -87,4 +87,29 @@ router.get('/likesAth',(req,res)=>{
   })
 })
 
+/**
+ * 3.获取关注信息
+ */
+router.get('/getFocusInfo',(req,res)=>{
+  var focId=req.query.uid;
+  var sql='SELECT uid FROM sanse_user_focus WHERE focId=?'
+  pool.query(sql,[focId],(err,result)=>{
+    if(err) console.log(err)
+    if(result.length>0){
+      var data=[];
+      result.map((item,i,arr)=>{
+        var sql='SELECT uid,user_img,uname FROM sanse_user WHERE uid=?'
+        pool.query(sql,[item.uid],(err,result)=>{
+          if(err) console.log(err)
+          data.push(result[0])
+          if(data.length==arr.length){
+            res.send({code:200,data})
+          }
+        })
+      })
+    }else{
+      res.send({code:300,msg:"no-data"})
+    }
+  })
+})
 module.exports=router;

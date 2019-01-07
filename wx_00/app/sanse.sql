@@ -103,8 +103,18 @@ CREATE TABLE sanse_user(
 );
 
 INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,likes,cj) VALUES 
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903);
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903),
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Amber菜花小姐',md5(123456),13000000000,80,0,343);
 
+#用户关注信息
+CREATE TABLE sanse_user_focus(
+  fid INT PRIMARY KEY AUTO_INCREMENT,
+  uid INT COMMENT 'user/authorID',
+  focId INT COMMENT '关注的ID'
+);
+INSERT INTO sanse_user_focus (uid,focId) VALUES
+(1,2),
+(2,1);
 
 #图片展示页。对应所有该作者该类图片预览中图及相应信息
 CREATE TABLE sanse_pins_pics(

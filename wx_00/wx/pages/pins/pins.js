@@ -2,7 +2,7 @@
 Page({
 
   /**
-   * 点击喜欢按钮
+   * 1.点击喜欢按钮
    */
   myLike(){
     var like=this.data.likes;
@@ -28,7 +28,7 @@ Page({
     })
   },
   /**
-   * 点击图片跳转大图页面
+   * 2.点击图片跳转大图页面
    */
   jumpBigImg(e){
     var cid=e.target.dataset.cid
@@ -37,7 +37,7 @@ Page({
     })
   },
   /**
-   * 加载更多数据
+   * 3.加载更多数据
    */
   loadMore(){
     var pno=this.data.pno;
@@ -82,7 +82,7 @@ Page({
     }
   },
   /**
-   * 更改采集/关注对应的页面
+   * 4.更改采集/关注对应的页面
    */
   changeSelected(e){
     this.setData({
@@ -90,7 +90,7 @@ Page({
     })
   },
   /**
-   * 更改喜欢/分享的显示
+   * 5.更改喜欢/分享的显示
    */
   showLikes(){
     this.setData({
@@ -98,20 +98,48 @@ Page({
     })
   },
   /**
+   * 6.获取当前关注信息
+   */
+  getFocusInfo(){
+    var uid=this.data.authorId;
+    wx.request({
+      url: 'http://127.0.0.1:3000/pics/getFocusInfo?uid='+uid,
+      success:(res)=>{
+        res=res.data
+        if(res.code==300){
+          //页面显示：无关注
+        }else if(res.code==200){
+          this.setData({
+            focusList:res.data
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 7.点击关注人跳转对方信息
+   */
+  jumpFocus(e){
+    console.log('点击跳转到个人信息列表，功能未开放')
+    console.log(e.currentTarget.dataset.uid)
+    //this.navigateTo('')
+  },
+  /**
    * 页面的初始数据
    */
   data: {
-    pid:1,              //图片类ID
+    pid:0,              //图片类ID
     selected:0,         //采集/关注页面切换标识
     showLikes:false,    //喜欢/分享显示标识
     myList:[],          //图片列表数据
     pno:0,              //分页显示起始页
     likes:0,            //上方'喜欢'计数。计算方法：作者likes+所有图片likes
     pageCount:1,        //图片总页数
-    authorId:1,         //对应作者ID
+    authorId:0,         //对应作者ID
     authorInfo:{},      //作者信息，头像、uname等
     header:{},          //头部信息
-    likeClick:false     //点击喜欢后禁用该按钮
+    likeClick:false,    //点击喜欢后禁用该按钮
+    focusList:[]
   },
 
   /**

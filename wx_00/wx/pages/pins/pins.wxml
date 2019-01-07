@@ -22,7 +22,7 @@
   </view>
   <view class='banner' bindtap="changeSelected">
     <view class="{{selected==0?'active':''}}" data-sel='0'>{{authorInfo.cj}}采集</view>
-    <view class="{{selected==1?'active':''}}" data-sel='1'>被{{authorInfo.fans}}人关注</view>
+    <view class="{{selected==1?'active':''}}" data-sel='1' bindtap='getFocusInfo'>被{{authorInfo.fans}}人关注</view>
   </view>
   <view class='content'>
     <view class="{{selected==0?'active':''}}">
@@ -43,6 +43,11 @@
         </view>
       </view>
     </view>
-    <view class="{{selected==1?'active':''}}">关注页</view>
+    <view class="{{selected==1?'active':''}} {{focusList.length>1?'col':''}}" >
+      <view class='card' wx:for="{{focusList}}" wx:key='index' data-uid='{{item.uid}}' bindtap='jumpFocus'>
+        <view><image lazy-load mode='aspectFill' src='{{item.user_img}}'></image></view>
+        <view>{{item.uname}}</view>
+      </view>     
+    </view>
   </view>
 </view>
