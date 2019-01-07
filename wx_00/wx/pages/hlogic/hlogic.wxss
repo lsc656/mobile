@@ -40,3 +40,21 @@
   line-height:150%;
   font-size:12px;
 }
+.banner{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top:1rpx solid #ededed;
+  border-bottom:1rpx solid #ededed;
+}
+.banner>view{
+  text-align:center;
+  flex-grow: 1;
+  padding:20rpx;
+}
+.banner>view:not(:last-child){
+  border-right:1rpx solid #ededed;
+}
+.banner>view.active{
+  background-color:#ededed; 
+}

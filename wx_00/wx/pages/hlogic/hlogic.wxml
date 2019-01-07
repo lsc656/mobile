@@ -11,12 +11,28 @@
     </view>
     <button>关注</button>
   </view>
-  <view class='banner'>
-    <view>采集</view>
-    <view>关注</view>
+  <view class='banner' bindtap='changeSel'>
+    <view data-isSel='0' class="{{isSel=='0'?'active':''}}">采集</view>
+    <view data-isSel='1' class="{{isSel=='1'?'active':''}}">关注</view>
   </view>
   <view class='content'>
-    <view>采集页</view>
-    <view>关注页</view>
+    <view wx:if="{{isSel=='0'}}">
+      <view class='myBoardList' wx:for='{{myBoard}}' wx:key="{{index}}">
+        <view class='card'>
+          <view>
+            <image lazy-load mode='aspectFill' src='{{item.img_url}}'></image>
+            <view>{{item.title}}</view>
+          </view>
+          <view>
+            <image lazy-load mode='aspectFill' src=''></image>
+            <view>
+              <view>authorName</view>
+              <view>classTitle</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{isSel=='1'}}">关注页</view>
   </view>
 </view>

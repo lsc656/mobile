@@ -18,11 +18,20 @@ Page({
     })
   },
   /**
+   * 2.根据点击的选项卡更改isSel状态
+   */
+  changeSel(e){
+    this.setData({
+      isSel:e.target.dataset.issel
+    })
+  },
+  /**
    * 页面的初始数据
    */
   data: {
-    uid:0,
-    myBoard:[]
+    uid:0,          //options传入数据：所查询用户的uid
+    myBoard:[],     //获取的数据：用户公开的采集信息
+    isSel:'0'       //选中的选项卡
   },
 
   /**
