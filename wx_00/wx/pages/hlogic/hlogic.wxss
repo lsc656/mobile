@@ -1,1 +1,42 @@
 /* pages/hlogic/hlogic.wxss */
+.authorInfo{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 20rpx;
+}
+.authorInfo>view:first-child{
+  display: flex;
+  align-items: center;
+  padding:10rpx;
+}
+.authorInfo>view:first-child>image{
+  width:94rpx;
+  height:94rpx;
+  border-radius: 50%;
+}
+.authorInfo>view:first-child>view:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:0 20rpx;
+}
+.authorInfo>view:first-child>view:nth-child(2)>view:first-child{
+  font-size:36rpx;
+  color:#444;
+}
+.authorInfo>view:first-child>view:nth-child(2)>view:nth-child(2){
+  font-size:24rpx;
+  color:#999;
+}
+.authorInfo>button{
+  padding:0;
+  margin:0;
+  height:50rpx;
+  width:100rpx;
+  background-color:#DC3A3F;
+  border:1rpx solid #C90000;
+  color:#FFF; 
+  line-height:150%;
+  font-size:12px;
+}

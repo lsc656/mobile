@@ -1,2 +1,22 @@
 <!--pages/hlogic/hlogic.wxml-->
-<text>pages/hlogic/hlogic.wxml</text>
+<view>
+  <view>hlogic</view>
+  <view class='authorInfo'>
+    <view>
+      <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/headPortraits/headP-1.jpg'></image>
+      <view>
+        <view>username</view>
+        <view><text>XX粉丝</text> <text>XX关注</text></view>
+      </view>
+    </view>
+    <button>关注</button>
+  </view>
+  <view class='banner'>
+    <view>采集</view>
+    <view>关注</view>
+  </view>
+  <view class='content'>
+    <view>采集页</view>
+    <view>关注页</view>
+  </view>
+</view>
