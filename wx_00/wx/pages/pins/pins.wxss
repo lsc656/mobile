@@ -151,11 +151,15 @@
   column-gap: 20rpx;
 }
 .content>view:nth-child(2)>.card{
+  -webkit-column-break-inside:avoid;
   display:flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding:20rpx 0;
+  background-color: #fff;
+  border:1rpx solid #efefef;
+  box-shadow:2rpx 2rpx 4rpx 3rpx #efefef;
 }
 .content>view:nth-child(2)>.card>view:first-child{
   display:flex;

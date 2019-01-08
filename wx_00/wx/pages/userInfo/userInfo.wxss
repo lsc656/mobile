@@ -64,10 +64,13 @@
 .content .myBoardList{
   column-count: 2;
   column-gap:20rpx;
+  padding:20rpx;
 }
 .content .myBoardList>.card{
   background-color:#fff;
   -webkit-column-break-inside:avoid;
+  border:1rpx solid #efefef;
+  box-shadow:2rpx 2rpx 3rpx 4rpx #efefef;
 }
 .content .myBoardList>.card>.works{
   padding-bottom:20rpx;
