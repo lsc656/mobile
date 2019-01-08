@@ -26,12 +26,43 @@ Page({
     })
   },
   /**
+   * 3.更改大图高度信息
+   */
+  ///////////////////////////////////////////////////////////////////////////////////////
+  getHeight() {
+    var fWidth = 0;
+    //获取父元素card的宽度
+    var that=this;
+    wx.createSelectorQuery().selectAll('.card>.works').boundingClientRect(function (rects) {
+      console.log(rects)
+      rects.forEach(function (result) {
+        fWidth = result.width;
+        //根据横向缩放比例更改图片高度
+        var imgArr = [];
+        that.data.myBoard.map((item, i, arr) => {
+          wx.getImageInfo({
+            //测试图片
+            src: item.img_md,
+            success: (res) => {
+              var lgHeight = fWidth / parseInt(res.width) * parseInt(res.height);
+              imgArr[i] = lgHeight
+              that.setData({
+                imgHeight: imgArr
+              })
+            }
+          })
+        })      
+      })
+    }).exec()
+  },
+  /**
    * 页面的初始数据
    */
   data: {
     uid:0,          //options传入数据：所查询用户的uid
     myBoard:[],     //获取的数据：用户公开的采集信息
-    isSel:'0'       //选中的选项卡
+    isSel:'0',      //选中的选项卡
+    imgHeight:[]    //大图高度
   },
 
   /**
@@ -48,7 +79,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getHeight();
   },
 
   /**

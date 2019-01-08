@@ -58,3 +58,13 @@
 .banner>view.active{
   background-color:#ededed; 
 }
+.content .myBoardList.moreInfo{
+  column-count: 2;
+  column-gap:20rpx;
+}
+.content .myBoardList>.card{
+  width:100%
+}
+.content .myBoardList>.card>.works>image{
+  width:100%;
+}

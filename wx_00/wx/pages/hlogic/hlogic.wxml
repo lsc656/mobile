@@ -17,13 +17,13 @@
   </view>
   <view class='content'>
     <view wx:if="{{isSel=='0'}}">
-      <view class='myBoardList' wx:for='{{myBoard}}' wx:key="{{index}}">
+      <view class='myBoardList {{myBoard.length>1?"moreInfo":""}}' wx:for='{{myBoard}}' wx:key="{{index}}">
         <view class='card'>
-          <view>
-            <image lazy-load mode='aspectFill' src='{{item.img_md}}'></image>
+          <view class='works'>
+            <image lazy-load mode='aspectFill' src='{{item.img_md}}' style='height:{{imgHeight[index]*2}}rpx' bindtap='getHeight'></image>
             <view class='ell'>{{item.account}}</view>
           </view>
-          <view>
+          <view class='author'>
             <image lazy-load mode='aspectFill' src=''></image>
             <view>
               <view>authorName</view>
