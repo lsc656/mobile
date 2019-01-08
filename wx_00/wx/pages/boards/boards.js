@@ -35,7 +35,6 @@ Page({
         url: 'http://127.0.0.1:3000/pics/?pno=' + pno + '&pid=' + pid + '&authorId=' + authorId,
         success: (res) => {
           res = res.data
-          console.log(res.data)
           if (res.code == 200) {
             wx.hideLoading();
             this.setData({
@@ -100,7 +99,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       pid:options.pid,
       authorId:options.authorId,

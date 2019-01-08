@@ -107,12 +107,13 @@
 }
 .content .list{
   column-count:2;
-  column-gap:20rpx;
+  column-gap:20rpx;  
 }
 .content .card{
   background-color:#fff;
   margin-bottom:20rpx;
-  box-shadow:1px 1px 3px 3px #ededed;
+  box-shadow:1px 1px 3px 3px #ededed;  
+  -webkit-column-break-inside:avoid;
 }
 .content .card .md-image{
   width:100%;

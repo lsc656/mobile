@@ -59,7 +59,6 @@ Page({
         url: 'http://127.0.0.1:3000/pics/?pno='+pno+'&pid='+pid+'&authorId='+authorId,
         success:(res)=>{
           res=res.data
-          console.log(res.data)
           if(res.code==200){
             wx.hideLoading();
             this.setData({
@@ -128,15 +127,15 @@ Page({
       rect.forEach(function(res,index,arr){
         var fWidth=res.width;
         //2.获取图片正常宽度sWidth
-        console.log(that.data.myList[index])
         wx.getImageInfo({
           src: that.data.myList[index].img_md,
           success:(res)=>{
             var sWidth=res.width;
             //3.得到缩放比例fWidth/sWidth
-            //4.图片正常高度*图片缩放比例            
+            //4.图片正常高度*图片缩放比例  
             hList[index] = parseInt(res.height) * parseInt(fWidth) / parseInt(sWidth);
-            if(index==arr.length-1){
+            if(hList.length==arr.length){
+              console.log(hList)
               that.setData({
                 heightList:hList
               })

@@ -8,7 +8,6 @@ Page({
       url: 'http://127.0.0.1:3000/pics/getUserPublicInfo?uid='+this.data.uid,
       success:(res)=>{
         res=res.data
-        console.log(res)
         this.setData({
           myBoard:res.works,
           authorInfo:res.authorInfo,
