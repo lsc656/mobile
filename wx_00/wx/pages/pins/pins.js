@@ -76,6 +76,7 @@ Page({
             this.setData({
               likes:likes+res.data.authorInfo.likes
             })
+            this.changeHeightList();
           }
         }
       })
@@ -117,7 +118,36 @@ Page({
     })
   },
   /**
-   * 7.点击关注人跳转对方信息
+   * 7.更改图片高度
+   */
+  changeHeightList(){
+    var that=this
+    var hList=[];
+    //1.获取当前容器宽度fWidth
+    wx.createSelectorQuery().selectAll('.list>.card').boundingClientRect(function(rect){
+      rect.forEach(function(res,index,arr){
+        var fWidth=res.width;
+        //2.获取图片正常宽度sWidth
+        console.log(that.data.myList[index])
+        wx.getImageInfo({
+          src: that.data.myList[index].img_md,
+          success:(res)=>{
+            var sWidth=res.width;
+            //3.得到缩放比例fWidth/sWidth
+            //4.图片正常高度*图片缩放比例            
+            hList[index] = parseInt(res.height) * parseInt(fWidth) / parseInt(sWidth);
+            if(index==arr.length-1){
+              that.setData({
+                heightList:hList
+              })
+            }            
+          }
+        })
+      })
+    }).exec()
+  },
+  /**
+   * 8.点击关注人跳转对方信息
    */
   jumpFocus(e){
     wx.navigateTo({
@@ -139,7 +169,8 @@ Page({
     authorInfo:{},      //作者信息，头像、uname等
     header:{},          //头部信息
     likeClick:false,    //点击喜欢后禁用该按钮
-    focusList:[]
+    focusList:[],       //关注人列表
+    heightList:[]       //图片高度
   },
 
   /**

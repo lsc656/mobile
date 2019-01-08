@@ -1,7 +1,7 @@
 // pages/hlogic/hlogic.js
 Page({
   /**
-   * 1.根据被点击的uid获取该用户信息
+   * 1.根据被当前options传入的uid获取该用户信息
    */
   getUserPublicInfo(){
     wx.request({
@@ -52,6 +52,16 @@ Page({
         })      
       })
     }).exec()
+  },
+  /**
+   * 4.点击关注项更改uid跳转对方列表
+   */
+  changeUid(e){
+    var uid=e.currentTarget.dataset.uid
+    wx.navigateTo({
+      url: 'userInfo?uid='+uid
+    })
+    
   },
   /**
    * 页面的初始数据

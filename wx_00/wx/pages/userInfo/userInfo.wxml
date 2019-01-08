@@ -20,7 +20,7 @@
       <view class='myBoardList'>
         <view class='card' wx:for='{{myBoard}}' wx:key="{{index}}">
           <view class='works'>
-            <image lazy-load mode='aspectFill' src='{{item.img_md}}' style='height:{{imgHeight[index]*2}}rpx' bindtap='getHeight'></image>
+            <image lazy-load mode='aspectFill' src='{{item.img_md}}' style='height:{{imgHeight[index]*2}}rpx'></image>
             <view class='ell'>{{item.account}}</view>
           </view>
           <view class='author'>
@@ -33,6 +33,15 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{isSel=='1'}}">关注页</view>
+    <view wx:if="{{isSel=='1'}}">
+      <view class='focusList'>
+        <view class='card' wx:for='{{others}}' wx:key='{{index}}' bindtap='changeUid' data-uid='{{item.uid}}'>
+          <view>
+            <image lazy-load mode='aspectFill' src='{{item.user_img}}'></image>
+          </view>
+          <text>{{item.uname}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

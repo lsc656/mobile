@@ -93,3 +93,36 @@
   font-size:24rpx;
   color:#777;
 }
+.content .focusList{
+  column-count:2;
+  column-gap:20rpx;
+  padding:10rpx;
+}
+.content .focusList>.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding:20rpx 0;
+  border:1rpx solid #D9D9D9;
+  box-shadow:2rpx 2rpx 4rpx 3rpx #d9d9d9;
+}
+.content .focusList>.card>view:first-child{
+  width:114rpx;
+  height:114rpx;
+  border:1rpx solid #E2E2E2;
+  border-radius:50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .focusList>.card>view:first-child>image{
+  width:110rpx;
+  height:110rpx;
+  border-radius: 50%;
+}
+.content .focusList>.card>text:nth-child(2){
+  font-size:28rpx;
+  padding:20rpx 0;
+}

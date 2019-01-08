@@ -27,8 +27,8 @@
   <view class='content'>
     <view class="{{selected==0?'active':''}}">
       <view class='list {{myList.length>1 ? ".moreData" : ""}}'>
-        <view class="card" wx:for="{{myList}}" wx:key="index">
-          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-cid='{{item.cid}}' bindtap='jumpBigImg'></image>
+        <view class="card" wx:for="{{myList}}" wx:key="{{index}}">
+          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-cid='{{item.cid}}' bindtap='jumpBigImg' style='height:{{heightList[index]*2}}rpx'></image>
           <view class='ell'>{{item.account}}</view>
           <view wx:if='{{item.zan>0}}'><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>{{item.zan}}</view>
           <view class='author-info'>
