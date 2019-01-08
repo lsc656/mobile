@@ -1,6 +1,6 @@
 <!--pages/hlogic/hlogic.wxml-->
 <view>
-  <view>hlogic</view>
+  <view>userInfo</view>
   <view class='authorInfo'>
     <view>
       <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/headPortraits/headP-1.jpg'></image>
@@ -17,16 +17,16 @@
   </view>
   <view class='content'>
     <view wx:if="{{isSel=='0'}}">
-      <view class='myBoardList {{myBoard.length>1?"moreInfo":""}}' wx:for='{{myBoard}}' wx:key="{{index}}">
-        <view class='card'>
+      <view class='myBoardList'>
+        <view class='card' wx:for='{{myBoard}}' wx:key="{{index}}">
           <view class='works'>
             <image lazy-load mode='aspectFill' src='{{item.img_md}}' style='height:{{imgHeight[index]*2}}rpx' bindtap='getHeight'></image>
             <view class='ell'>{{item.account}}</view>
           </view>
           <view class='author'>
-            <image lazy-load mode='aspectFill' src=''></image>
+            <image lazy-load mode='aspectFill' src='{{authorInfo.user_img}}'></image>
             <view>
-              <view>authorName</view>
+              <view>{{authorInfo.uname}}</view>
               <view>{{item.title}}</view>
             </view>
           </view>

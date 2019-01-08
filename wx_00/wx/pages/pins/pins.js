@@ -121,7 +121,7 @@ Page({
    */
   jumpFocus(e){
     wx.navigateTo({
-      url: '../../pages/hlogic/hlogic?uid=' + e.currentTarget.dataset.uid,
+      url: '../../pages/userInfo/userInfo?uid=' + e.currentTarget.dataset.uid,
     })
   },
   /**

@@ -38,14 +38,14 @@
   border:1rpx solid #C90000;
   color:#FFF; 
   line-height:150%;
-  font-size:12px;
+  font-size:24rpx;
 }
 .banner{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top:1rpx solid #ededed;
-  border-bottom:1rpx solid #ededed;
+  border-top:1rpx solid #F2F2F2;
+  border-bottom:1rpx solid #F2F2F2;
 }
 .banner>view{
   text-align:center;
@@ -53,18 +53,43 @@
   padding:20rpx;
 }
 .banner>view:not(:last-child){
-  border-right:1rpx solid #ededed;
+  border-right:1rpx solid #F2F2F2;
 }
 .banner>view.active{
-  background-color:#ededed; 
+  background-color:#F2F2F2; 
 }
-.content .myBoardList.moreInfo{
+.content{
+  background-color:#F4F4F4;
+}
+.content .myBoardList{
   column-count: 2;
   column-gap:20rpx;
 }
 .content .myBoardList>.card{
-  width:100%
+  background-color:#fff; 
+}
+.content .myBoardList>.card>.works{
+  padding-bottom:20rpx;
+  border-bottom:1rpx solid #F2F2F2;
 }
 .content .myBoardList>.card>.works>image{
   width:100%;
+}
+.content .myBoardList>.card>.works>view{
+  font-size:24rpx;
+  color:#777;
+}
+.content .myBoardList>.card>.author{
+  display: flex;
+  padding:10rpx;
+}
+.content .myBoardList>.card>.author>image{
+  width:54rpx;
+  height:54rpx;
+  border-radius:50%;
+  margin-right:30rpx;
+}
+.content .myBoardList>.card>.author>view{
+  font-size:24rpx;
+  color:#777;
 }

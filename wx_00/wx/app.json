@@ -6,7 +6,7 @@
     "pages/logs/logs",
     "pages/myFavorite/myFavorite",
     "pages/user/user",
-    "pages/hlogic/hlogic"
+    "pages/userInfo/userInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

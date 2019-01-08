@@ -8,7 +8,7 @@ Page({
       url: 'http://127.0.0.1:3000/pics/getUserPublicInfo?uid='+this.data.uid,
       success:(res)=>{
         res=res.data
-        console.log(res)        
+        console.log(res)
         this.setData({
           myBoard:res.works,
           authorInfo:res.authorInfo,
@@ -28,12 +28,11 @@ Page({
   /**
    * 3.更改大图高度信息
    */
-  ///////////////////////////////////////////////////////////////////////////////////////
   getHeight() {
     var fWidth = 0;
     //获取父元素card的宽度
     var that=this;
-    wx.createSelectorQuery().selectAll('.card>.works').boundingClientRect(function (rects) {
+    wx.createSelectorQuery().selectAll('.card').boundingClientRect(function (rects) {
       rects.forEach(function (result) {
         fWidth = result.width;
         //根据横向缩放比例更改图片高度

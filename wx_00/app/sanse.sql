@@ -104,7 +104,8 @@ CREATE TABLE sanse_user(
 
 INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,likes,cj) VALUES 
 ('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903),
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Amber菜花小姐',md5(123456),13000000000,80,0,343);
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Amber菜花小姐',md5(123456),13000000000,80,0,343),
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','HLogic',md5(123456),13000000000,80,0,343);
 
 #用户关注信息
 CREATE TABLE sanse_user_focus(
@@ -114,7 +115,11 @@ CREATE TABLE sanse_user_focus(
 );
 INSERT INTO sanse_user_focus (uid,focId) VALUES
 (1,2),
-(2,1);
+(1,3),
+(2,1),
+(2,3),
+(3,2),
+(3,1);
 
 #图片展示页。对应所有该作者该类图片预览中图及相应信息
 CREATE TABLE sanse_pins_pics(
@@ -133,4 +138,8 @@ CREATE TABLE sanse_pins_pics(
 
 INSERT INTO sanse_pins_pics (img_md,img_lg,ctime,authorId,account,zan,likes,shares,pid) VALUES 
 ('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
-('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),2,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2);
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),2,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),2,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),3,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),3,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2);
