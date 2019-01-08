@@ -5,11 +5,11 @@
     <view>
       <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/headPortraits/headP-1.jpg'></image>
       <view>
-        <view>username</view>
-        <view><text>XX粉丝</text> <text>XX关注</text></view>
+        <view>{{authorInfo.uname}}</view>
+        <view><text>{{authorInfo.fans}}粉丝 </text><text> {{authorInfo.likes}}关注</text></view>
       </view>
     </view>
-    <button>关注</button>
+    <button data-uid="{{authorInfo.uid}}">关注</button>
   </view>
   <view class='banner' bindtap='changeSel'>
     <view data-isSel='0' class="{{isSel=='0'?'active':''}}">采集</view>

@@ -117,6 +117,9 @@ router.get('/getFocusInfo',(req,res)=>{
  */
 router.get("/getUserPublicInfo",(req,res)=>{
   var uid=req.query.uid;
+  var output={authorInfo:{},works:[],others:[]};
+  var progress=0;
+  //4.1作品
   var sql='SELECT img_md,img_lg,authorId,account,pid FROM sanse_pins_pics WHERE authorId=?';
   pool.query(sql,[uid],(err,result)=>{
     if(err) console.log(err);
@@ -125,8 +128,42 @@ router.get("/getUserPublicInfo",(req,res)=>{
       pool.query(sql,[item.pid],(err,result1)=>{
         if(err) console.log(err) ;
         result[i].title=result1[0].title
+        output.works=result;
         if(i==arr.length-1){
-          res.send({code:200,data:result})
+          progress+=50;
+          if(progress==150){
+            res.send(output)
+          }
+        }
+      })
+    })
+  })
+  //4.2个人
+  var sql='SELECT uid,user_img,uname,fans,likes FROM sanse_user WHERE uid=?'
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) console.log(err)
+    output.authorInfo=result[0];
+    progress+=50;
+    if(progress==150){
+      res.send(output)
+    }
+  })
+  //4.3个人关注信息
+  var sql="SELECT uid,focId FROM sanse_user_focus WHERE uid=?"
+  pool.query(sql,[uid],(err,result1)=>{
+    if(err) console.log(err);
+    var data=[]
+    var sql='SELECT uid,uname,user_img FROM sanse_user WHERE uid=?';
+    result1.map((item,i,arr)=>{
+      pool.query(sql,[item.focId],(err,result)=>{
+        if(err) console.log(err)
+        data[i]=result[0];
+        if(i==arr.length-1){
+          progress+=50;
+          output.others=data;
+          if(progress==150){
+            res.send(output)
+          }
         }
       })
     })

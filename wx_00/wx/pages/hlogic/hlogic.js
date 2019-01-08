@@ -8,12 +8,12 @@ Page({
       url: 'http://127.0.0.1:3000/pics/getUserPublicInfo?uid='+this.data.uid,
       success:(res)=>{
         res=res.data
-        console.log(res.data)
-        if(res.code==200){
-          this.setData({
-            myBoard:res.data
-          })
-        }
+        console.log(res)        
+        this.setData({
+          myBoard:res.works,
+          authorInfo:res.authorInfo,
+          others:res.others
+        })        
       }
     })
   },
@@ -34,7 +34,6 @@ Page({
     //获取父元素card的宽度
     var that=this;
     wx.createSelectorQuery().selectAll('.card>.works').boundingClientRect(function (rects) {
-      console.log(rects)
       rects.forEach(function (result) {
         fWidth = result.width;
         //根据横向缩放比例更改图片高度
@@ -62,7 +61,9 @@ Page({
     uid:0,          //options传入数据：所查询用户的uid
     myBoard:[],     //获取的数据：用户公开的采集信息
     isSel:'0',      //选中的选项卡
-    imgHeight:[]    //大图高度
+    imgHeight:[],   //大图高度
+    authorInfo:{},  //作者信息
+    others:[]       //作者关注的人信息
   },
 
   /**
