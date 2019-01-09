@@ -15,7 +15,7 @@ App({
           url: 'http://127.0.0.1:3000/login',
           data:{code},
           success:(res)=>{
-            console.log(res)
+            console.log(res.data)
           }
         })
       }
