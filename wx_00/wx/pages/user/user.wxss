@@ -1,1 +1,54 @@
 /* pages/user/user.wxss */
+.welcome{
+  padding:20rpx;
+  border-top:1rpx solid #314747;
+  background:linear-gradient(to top,#fff,#567475);
+  font-size:40rpx;
+  color:#354546;
+  height:50rpx;
+}
+.header{
+  padding:20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.header>view{
+  display:flex;
+}
+.header>view>image{
+  width:92rpx;
+  height:92rpx;
+  border-radius:50%;
+}
+.header>view>view{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left:30rpx;
+  font-size:30rpx;
+  color:#444;
+}
+.header>button{
+  margin:0;
+  font-size:32rpx;
+  line-height:32rpx;
+}
+.banner{
+  display: flex;
+  justify-content: space-around;
+  border-top:1rpx solid #F2F2F2;
+  border-bottom:1rpx solid #F2F2F2;
+}
+.banner>view{
+  flex-grow: 1;
+  padding:20rpx 0;
+  text-align:center;
+  font-size:34rpx;
+}
+.banner>view.active{
+  background: #f2f2f2;
+}
+.banner>view:nth-child(2){
+  border-left:1rpx solid #F2F2F2;
+  border-right:1rpx solid #F2F2F2;
+}

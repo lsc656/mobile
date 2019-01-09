@@ -35,6 +35,17 @@ router.get('/',(req,res)=>{
 		}
 	})
 })
-
+router.get('/checkUserState',(req,res)=>{
+	var uid=req.query.uid;
+	var sql='SELECT uid,user_img,uname,tel,fans,likes,cj FROM sanse_user WHERE uid=?'
+	pool.query(sql,uid,(err,result)=>{
+		if(err) console.log(err)
+		if(result.length>0){
+			res.send({code:200,data:result[0]})
+		}else{
+			res.send({code:-1,msg:'no-infomation'})
+		}
+	})
+})
 
 module.exports=router;

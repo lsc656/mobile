@@ -1,4 +1,21 @@
 <!--pages/user/user.wxml-->
-<view>
-  <text>pages/user/user.wxml</text>
+<view class='main'>
+  <view class='welcome'>欢迎{{isNewUser || '回来'}},{{userInfo.uname||'设计师'}}</view>
+  <view class='header'>
+    <view>
+      <image src='{{userInfo.user_img}}' lazy-load mode='aspectFill'></image>
+      <view>
+        <text>{{userInfo.fans||0}}粉丝</text><text>{{userInfo.likes||0}}关注</text>
+      </view>    
+    </view>
+    <button>修改个人信息</button>
+  </view>
+  <view class='banner'>
+    <view>采集</view>
+    <view>画板</view>
+    <view>关注</view>
+  </view>
+  <view class='content'>
+
+  </view>
 </view>

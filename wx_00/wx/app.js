@@ -11,18 +11,22 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var code=res.code;
-        console.log(code)
         wx.request({
           url: 'http://127.0.0.1:3000/login',
           data:{code},
           success:(res)=>{
-            console.log(res)
+            res=res.data
             if(res.code==200){
               console.log(res.data.uid+'：老用户')
+              this.globalData.isNewUser=false
+              this.globalData.userId = res.data.uid
             }else if(res.code==201){
               console.log(res.data.uid+'：新用户')
+              this.globalData.isNewUser=true
+              this.globalData.userId = res.data.uid
             }else{
               console.log('fail')
+              this.globalData.userId=null;
             }
           }
         })
@@ -50,6 +54,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userId:null,
+    isNewUser:null
   }
 })
