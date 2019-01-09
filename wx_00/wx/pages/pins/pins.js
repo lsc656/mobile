@@ -135,7 +135,6 @@ Page({
             //4.图片正常高度*图片缩放比例  
             hList[index] = parseInt(res.height) * parseInt(fWidth) / parseInt(sWidth);
             if(hList.length==arr.length){
-              console.log(hList)
               that.setData({
                 heightList:hList
               })
