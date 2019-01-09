@@ -44,8 +44,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top:1rpx solid #F2F2F2;
-  border-bottom:1rpx solid #F2F2F2;
+  border:1rpx solid #e2e2e2;
 }
 .banner>view{
   text-align:center;
@@ -53,7 +52,7 @@
   padding:20rpx;
 }
 .banner>view:not(:last-child){
-  border-right:1rpx solid #F2F2F2;
+  border-right:1rpx solid #e2e2e2;
 }
 .banner>view.active{
   background-color:#F2F2F2; 
@@ -62,12 +61,15 @@
   background-color:#F4F4F4;
 }
 .content .myBoardList{
+  padding:10rpx;
   column-count: 2;
   column-gap:20rpx;
 }
 .content .myBoardList>.card{
   background-color:#fff;
   -webkit-column-break-inside:avoid;
+  border:1rpx solid #e2e2e2;
+  box-shadow:2rpx 2rpx 2rpx 2rpx #e2e2e2;
 }
 .content .myBoardList>.card>.works{
   padding-bottom:20rpx;

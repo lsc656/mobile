@@ -158,7 +158,7 @@ router.get("/getUserPublicInfo",(req,res)=>{
       pool.query(sql,[item.focId],(err,result)=>{
         if(err) console.log(err)
         data[i]=result[0];
-        if(i==arr.length-1){
+        if(data.length==arr.length){
           progress+=50;
           output.others=data;
           if(progress==150){
