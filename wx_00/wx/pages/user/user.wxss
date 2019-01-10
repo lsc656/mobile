@@ -11,6 +11,7 @@
   padding:20rpx;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .header>view{
   display:flex;
@@ -30,8 +31,10 @@
 }
 .header>button{
   margin:0;
-  font-size:32rpx;
-  line-height:32rpx;
+  font-size:30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  color:#444;
 }
 .banner{
   display: flex;
@@ -51,4 +54,22 @@
 .banner>view:nth-child(2){
   border-left:1rpx solid #F2F2F2;
   border-right:1rpx solid #F2F2F2;
+}
+.content>view{
+  display: none;
+}
+.content>view.active{
+  display: block;
+}
+
+
+
+.content>view:nth-child(2){
+  background-color:#efefef;  
+  padding:20rpx;
+}
+.content>view:nth-child(2)>view{
+  background-color: #fff;
+  border:1rpx solid #ddd;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx #ddd;
 }

@@ -10,12 +10,22 @@
     </view>
     <button>修改个人信息</button>
   </view>
-  <view class='banner'>
-    <view>采集</view>
-    <view>画板</view>
-    <view>关注</view>
+  <view class='banner' bindtap='changeBannerSel'>
+    <view class='{{bannerSel=="0" && "active"}}' data-banner-sel='0'>采集</view>
+    <view class='{{bannerSel=="1" && "active"}}' data-banner-sel='1'>画板</view>
+    <view class='{{bannerSel=="2" && "active"}}' data-banner-sel='2'>关注</view>
   </view>
   <view class='content'>
-
+    <view class='{{bannerSel=="0" && "active"}}'>
+      <view>采集</view>
+    </view>
+    <view class='{{bannerSel=="1" && "active"}}'>
+      <view>
+        <canvas canvas-id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'></canvas>
+      </view>
+    </view>
+    <view class='{{bannerSel=="2" && "active"}}'>
+      <view>关注</view>
+    </view>
   </view>
 </view>

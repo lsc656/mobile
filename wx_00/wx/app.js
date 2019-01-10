@@ -6,11 +6,13 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    console.log('已调用app.onLaunch')
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var code=res.code;
+        console.log('this is app.login')
         wx.request({
           url: 'http://127.0.0.1:3000/login',
           data:{code},
