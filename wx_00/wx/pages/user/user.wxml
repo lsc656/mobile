@@ -1,6 +1,6 @@
 <!--pages/user/user.wxml-->
 <view class='main'>
-  <view class='welcome'>欢迎{{isNewUser || '回来'}},{{userInfo.uname||'设计师'}}</view>
+  <view class='welcome'>欢迎{{isNewUser? '回来':''}},{{userInfo.uname||'设计师'}}</view>
   <view class='header'>
     <view>
       <image src='{{userInfo.user_img}}' lazy-load mode='aspectFill'></image>

@@ -68,15 +68,19 @@ Page({
   touchStart(e){
     console.log(1)
     ctx.beginPath()
-    console.log(1 + ":" + e.touches[0].y)
+    ctx.setStrokeStyle('red')
     ctx.moveTo(e.touches[0].x, e.touches[0].y)
+  },
+  moveToSw(x,y){
+    ctx.moveTo(x,y)
   },
   touchMove(e){
     var x = e.touches[0].x;
     var y = e.touches[0].y;
-    console.log(x,y)
     ctx.lineTo(x,y)
     ctx.stroke();
+    ctx.draw(true);
+    this.moveToSw(x,y)
   },
   touchEnd(){
     console.log(3)
