@@ -33,7 +33,7 @@ Page({
       }else{
         app.onLaunch();
         wx.showToast({
-          title: '网络故障请稍候..',
+          title: '登陆中请稍候..',
           icon:'none'
         })
         setTimeout(()=>{
@@ -41,7 +41,7 @@ Page({
           wx.reLaunch({
             url: '/pages/index/index',
           })
-        },1000)
+        },1500)
       }
     }
   },
@@ -56,10 +56,9 @@ Page({
    */
   createCanvas(){
     ctx.save();
-    ctx.setTextBaseline('top');
-    ctx.setFontSize(25);
-    ctx.fillText('请在此处绘制',40,10);
-    ctx.draw();    
+    ctx.setFillStyle('#fff')
+    ctx.fillRect(0, 0, this.data.canvasWidth, this.data.canvasHeight)
+    ctx.draw()
     ctx.restore();
   },
   /**
@@ -93,6 +92,11 @@ Page({
         success(res) {
           that.data.canvasPathList.push(res.tempFilePath)
           console.log(that.data.canvasPathList)
+          if(that.data.canvasPathList.length>1){
+            that.setData({
+              goBackButtonState: false
+            })
+          }
         }
       })
     });
@@ -101,19 +105,27 @@ Page({
    * 5.画布功能：上一步
    */
   canvasGoBack(){
-    this.data.canvasPathList.pop();
-    const pattern = ctx.createPattern(this.data.canvasPathList[this.data.canvasPathList-1], 'no-repeat')
-    ctx.fillStyle = pattern
+    this.data.canvasPathList.pop();    
+    ctx.fillStyle = ctx.createPattern(this.data.canvasPathList[this.data.canvasPathList.length-1], 'no-repeat')
     ctx.fillRect(0, 0, this.data.canvasWidth, this.data.canvasHeight)
     ctx.draw()
+
+    if (this.data.canvasPathList.length <= 1) {
+      this.setData({
+        goBackButtonState: true
+      })
+    }
   },
   /**
    * 6.清空画布
    */
   clearAllRect(){
     ctx.setFillStyle('#fff')
-    ctx.fillRect(0, 0, this.data.canvasHeight, this.data.canvasWidth)
+    ctx.fillRect(0, 0, this.data.canvasWidth, this.data.canvasHeight)
     ctx.draw()
+    this.setData({
+      canvasPathList:[]
+    })
   },
   /**
    * 7.保存画布
@@ -164,6 +176,7 @@ Page({
               canvasHeight: clientHeight - ctlHeight - canvasTop-11,
               canvasWidth:clientWidth-20
             })
+            that.createCanvas()
           }).exec();
         }
       })
@@ -178,6 +191,41 @@ Page({
     })
   },
   /**
+   * 10.画布工具栏具体功能
+   */
+  /**
+   * 10.1画笔颜色
+   */
+  changeStrokeColor(){
+    var that=this;
+    wx.showActionSheet({
+      itemList: ['红色', '蓝色', '默认', '自定义'],
+      success(res) {
+        switch(res.tapIndex){
+          case 0: return that.setData({ strokeColor:'#C41A16'})
+          case 1: return that.setData({ strokeColor:'#28B0EA'})
+          case 2: return that.setData({ strokeColor:'#000'})
+          case 3: return that.setData({ isShowInput:true})
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  /**
+   * 10.2画笔宽度
+   */
+  changeStrokeLineWidth(){
+    
+  },
+  /**
+   * 10.3橡皮擦
+   */
+  eraser(){
+    
+  },
+  /**
    * 页面的初始数据
    */
   data: {
@@ -188,20 +236,29 @@ Page({
     canvasHeight:300,
     canvasWidth:150,
     showTools:false,
-    canvasPathList:[]
+    canvasPathList:[],
+    goBackButtonState:true,
+    /**
+     * 画板调试相关
+     */
+    strokeColor:'#000',
+    strokeLineWidth:2,
+    eraserWidth:2,
+
+
+    isShowInput:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /*if(!app.globalData){app.onLaunch()}
+    if(!app.globalData){app.onLaunch()}
     this.setData({
       userId: app.globalData.userId,
       isNewUser: app.globalData.isNewUser
     })
-    this.checkUserState()*/
-    this.createCanvas()
+    this.checkUserState()
     this.changeCanvasHeight();
 
   },
@@ -210,6 +267,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
 
   },
 

@@ -79,7 +79,20 @@
   display:flex;
   justify-content: space-around;
 }
-.content>view:nth-child(2)>view>view:nth-child(2).canvas-control button{
+.content>view:nth-child(2)>view>view.canvas-control button{
+  font-size:24rpx;
+  padding:10rpx 20rpx;
+  margin:0;
+  line-height: 24rpx;
+}
+.content>view:nth-child(2)>view>view.canvas-tools{
+  border-top:1rpx solid #ccc;
+  padding:5rpx 10rpx;
+  background:#ccc;
+  display: flex;
+  justify-content: space-around;
+}
+.content>view:nth-child(2)>view>view.canvas-tools button{
   font-size:24rpx;
   padding:10rpx 20rpx;
   margin:0;

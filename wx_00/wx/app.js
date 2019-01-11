@@ -58,6 +58,6 @@ App({
   globalData: {
     userInfo: null,
     userId:null,
-    isNewUser:null
+    isNewUser:true
   }
 })
