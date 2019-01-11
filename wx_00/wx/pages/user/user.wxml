@@ -23,9 +23,9 @@
       <view>
         <canvas canvas-id="myCanvas" id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='height:{{canvasHeight*2+"rpx"}};width:{{canvasWidth*2+"rpx"}}'></canvas>
         <view class='canvas-control'>
-          <button>清空</button>
-          <button>分享</button>
-          <button>保存</button>
+          <button bindtap='clearAllRect'>清空</button>
+          <button open-type="share">保存并分享</button>
+          <button bindtap='saveMyCanvas'>保存</button>
         </view>
       </view>
     </view>

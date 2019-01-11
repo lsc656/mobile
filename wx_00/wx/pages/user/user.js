@@ -58,12 +58,12 @@ Page({
     ctx.save();
     ctx.setTextBaseline('top');
     ctx.setFontSize(25);
-    ctx.fillText('Hello',40,10);
+    ctx.fillText('请在此处绘制',40,10);
     ctx.draw();    
     ctx.restore();
   },
   /**
-   * 4.手指触摸动作开始
+   * 4.画布————绘制/直线手指触摸动作开始
    */
   touchStart(e){
     ctx.beginPath()
@@ -85,7 +85,38 @@ Page({
 
   },
   /**
-   * 5.修改画布高度
+   * 5.清空画布
+   */
+  clearAllRect(){
+    ctx.clearRect(0, 0, this.data.canvasHeight, this.data.canvasWidth)
+    ctx.draw();
+  },
+  /**
+   * 6.保存画布
+   */
+  saveMyCanvas(){
+    ctx.draw(true, wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: this.canvasWidth,
+      height: this.canvasHeight,
+      canvasId: 'myCanvas',
+      quality:1,
+      success:(res)=>{
+        this.setData({
+          canvasCompleteFile:res.tempFilePath
+        })
+        wx.showToast({
+          title: '保存成功',
+        })
+        setTimeout(()=>{
+          wx.hideToast();
+        },1500)
+      }
+    }))
+  },
+  /**
+   * 7.修改画布高度
    */
   changeCanvasHeight(){
     var clientHeight=0;
@@ -119,7 +150,8 @@ Page({
     isNewUser:false,
     bannerSel:"1",
     canvasHeight:300,
-    canvasWidth:150
+    canvasWidth:150,
+    canvasCompleteFile:''
   },
 
   /**
@@ -183,6 +215,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    this.saveMyCanvas();
+    return {
+      imageUrl:this.data.canvasCompleteFile
+    }
   }
 })
