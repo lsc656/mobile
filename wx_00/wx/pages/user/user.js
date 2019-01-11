@@ -52,7 +52,7 @@ Page({
     this.setData({bannerSel:e.target.dataset.bannerSel})
   },
   /**
-   * 3.制作画板
+   * 3.制作画板  背景白色！
    */
   createCanvas(){
     ctx.save();
@@ -63,7 +63,7 @@ Page({
     ctx.restore();
   },
   /**
-   * 4.画布————绘制/直线手指触摸动作开始
+   * 4.画布————绘制/直线手指触摸动作开始/移动/结束
    */
   touchStart(e){
     ctx.beginPath()
@@ -82,17 +82,41 @@ Page({
     this.moveToSw(x,y)
   },
   touchEnd(){
-
+    var that=this;
+    ctx.draw(true,()=>{
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: this.data.canvasWidth,
+        height: this.data.canvasHeight,
+        canvasId: 'myCanvas',
+        success(res) {
+          that.data.canvasPathList.push(res.tempFilePath)
+          console.log(that.data.canvasPathList)
+        }
+      })
+    });
   },
   /**
-   * 5.清空画布
+   * 5.画布功能：上一步
+   */
+  canvasGoBack(){
+    this.data.canvasPathList.pop();
+    const pattern = ctx.createPattern(this.data.canvasPathList[this.data.canvasPathList-1], 'no-repeat')
+    ctx.fillStyle = pattern
+    ctx.fillRect(0, 0, this.data.canvasWidth, this.data.canvasHeight)
+    ctx.draw()
+  },
+  /**
+   * 6.清空画布
    */
   clearAllRect(){
-    ctx.clearRect(0, 0, this.data.canvasHeight, this.data.canvasWidth)
-    ctx.draw();
+    ctx.setFillStyle('#fff')
+    ctx.fillRect(0, 0, this.data.canvasHeight, this.data.canvasWidth)
+    ctx.draw()
   },
   /**
-   * 6.保存画布
+   * 7.保存画布
    */
   saveMyCanvas(){
     ctx.draw(true, wx.canvasToTempFilePath({
@@ -102,21 +126,25 @@ Page({
       height: this.canvasHeight,
       canvasId: 'myCanvas',
       quality:1,
-      success:(res)=>{
-        this.setData({
-          canvasCompleteFile:res.tempFilePath
+      success:(result)=>{
+        wx.saveImageToPhotosAlbum({
+          filePath: result.tempFilePath,
+          success(res) {
+            const savedFilePath = res.savedFilePath
+            console.log(res)
+            wx.showToast({
+              title: '保存成功',
+            })
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }
         })
-        wx.showToast({
-          title: '保存成功',
-        })
-        setTimeout(()=>{
-          wx.hideToast();
-        },1500)
       }
     }))
   },
   /**
-   * 7.修改画布高度
+   * 8.修改画布高度
    */
   changeCanvasHeight(){
     var clientHeight=0;
@@ -142,6 +170,14 @@ Page({
     }).exec()
   },
   /**
+   * 9.画布工具栏显示状态
+   */
+  toggleTools(){
+    this.setData({
+      showTools:!this.data.showTools
+    })
+  },
+  /**
    * 页面的初始数据
    */
   data: {
@@ -151,19 +187,20 @@ Page({
     bannerSel:"1",
     canvasHeight:300,
     canvasWidth:150,
-    canvasCompleteFile:''
+    showTools:false,
+    canvasPathList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!app.globalData){app.onLaunch()}
+    /*if(!app.globalData){app.onLaunch()}
     this.setData({
       userId: app.globalData.userId,
       isNewUser: app.globalData.isNewUser
     })
-    this.checkUserState()
+    this.checkUserState()*/
     this.createCanvas()
     this.changeCanvasHeight();
 
@@ -215,7 +252,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    this.saveMyCanvas();
     return {
       imageUrl:this.data.canvasCompleteFile
     }

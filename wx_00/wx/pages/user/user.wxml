@@ -21,11 +21,15 @@
     </view>
     <view class='{{bannerSel=="1" && "active"}}'>
       <view>
-        <canvas canvas-id="myCanvas" id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='height:{{canvasHeight*2+"rpx"}};width:{{canvasWidth*2+"rpx"}}'></canvas>
+        <canvas canvas-id="myCanvas" id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='height:{{canvasHeight*2+"rpx"}};width:{{canvasWidth*2+"rpx"}}' disable-scroll='true'></canvas>
         <view class='canvas-control'>
           <button bindtap='clearAllRect'>清空</button>
-          <button open-type="share">保存并分享</button>
+          <button bindtap='toggleTools'>工具</button>
+          <button bindtap='canvasGoBack'>上一步</button>
           <button bindtap='saveMyCanvas'>保存</button>
+        </view>
+        <view wx:if="{{showTools}}">        
+          工具栏
         </view>
       </view>
     </view>

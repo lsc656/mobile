@@ -72,9 +72,16 @@
   display: flex;
   flex-direction: column;
 }
-.content>view:nth-child(2)>view>canvas{
-  flex-grow:1
+.content>view:nth-child(2)>view>view:nth-child(2).canvas-control{
+  background:#fefefe;
+  padding:10rpx 0;
+  border-top:1rpx solid #CCC;
+  display:flex;
+  justify-content: space-around;
 }
-.content>view:nth-child(2)>view>view:nth-child(2){
-  
+.content>view:nth-child(2)>view>view:nth-child(2).canvas-control button{
+  font-size:24rpx;
+  padding:10rpx 20rpx;
+  margin:0;
+  line-height: 24rpx;
 }
