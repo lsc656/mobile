@@ -66,7 +66,6 @@ Page({
    * 4.手指触摸动作开始
    */
   touchStart(e){
-    console.log(1)
     ctx.beginPath()
     ctx.setStrokeStyle('red')
     ctx.moveTo(e.touches[0].x, e.touches[0].y)
@@ -83,7 +82,33 @@ Page({
     this.moveToSw(x,y)
   },
   touchEnd(){
-    console.log(3)
+
+  },
+  /**
+   * 5.修改画布高度
+   */
+  changeCanvasHeight(){
+    var clientHeight=0;
+    var clientWidth=0;
+    var ctlHeight=0;
+    var canvasTop=0;
+    var that=this;
+    wx.createSelectorQuery().select('.canvas-control').boundingClientRect((res)=>{
+      ctlHeight=res.height;
+      wx.getSystemInfo({
+        success: function(res) {
+          clientHeight=res.windowHeight;
+          clientWidth=res.windowWidth;
+          wx.createSelectorQuery().select('#myCanvas').boundingClientRect((res)=>{
+            canvasTop=res.top;
+            that.setData({
+              canvasHeight: clientHeight - ctlHeight - canvasTop-11,
+              canvasWidth:clientWidth-20
+            })
+          }).exec();
+        }
+      })
+    }).exec()
   },
   /**
    * 页面的初始数据
@@ -92,7 +117,9 @@ Page({
     userId:0,
     userInfo:[],
     isNewUser:false,
-    bannerSel:"1"
+    bannerSel:"1",
+    canvasHeight:300,
+    canvasWidth:150
   },
 
   /**
@@ -106,6 +133,8 @@ Page({
     })
     this.checkUserState()
     this.createCanvas()
+    this.changeCanvasHeight();
+
   },
 
   /**

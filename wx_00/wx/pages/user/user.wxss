@@ -61,9 +61,6 @@
 .content>view.active{
   display: block;
 }
-
-
-
 .content>view:nth-child(2){
   background-color:#efefef;  
   padding:20rpx;
@@ -72,4 +69,12 @@
   background-color: #fff;
   border:1rpx solid #ddd;
   box-shadow: 2rpx 2rpx 2rpx 2rpx #ddd;
+  display: flex;
+  flex-direction: column;
+}
+.content>view:nth-child(2)>view>canvas{
+  flex-grow:1
+}
+.content>view:nth-child(2)>view>view:nth-child(2){
+  
 }

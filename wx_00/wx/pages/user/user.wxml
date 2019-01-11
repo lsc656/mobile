@@ -21,7 +21,12 @@
     </view>
     <view class='{{bannerSel=="1" && "active"}}'>
       <view>
-        <canvas canvas-id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'></canvas>
+        <canvas canvas-id="myCanvas" id="myCanvas" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='height:{{canvasHeight*2+"rpx"}};width:{{canvasWidth*2+"rpx"}}'></canvas>
+        <view class='canvas-control'>
+          <button>清空</button>
+          <button>分享</button>
+          <button>保存</button>
+        </view>
       </view>
     </view>
     <view class='{{bannerSel=="2" && "active"}}'>
