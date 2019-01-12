@@ -75,10 +75,19 @@ Page({
   touchMove(e){
     var x = e.touches[0].x;
     var y = e.touches[0].y;
-    ctx.lineTo(x,y)
+    if (this.data.strokeLineWidth){
+      ctx.lineWidth = this.data.strokeLineWidth
+    }
+    if (this.data.useEraser){
+      ctx.save();
+      ctx.lineWidth=15;
+    }
+    ctx.lineTo(x,y);
+    ctx.strokeStyle=this.data.strokeColor;
     ctx.stroke();
     ctx.draw(true);
-    this.moveToSw(x,y)
+    this.moveToSw(x,y);
+    ctx.restore();
   },
   touchEnd(){
     var that=this;
@@ -189,11 +198,15 @@ Page({
     this.setData({
       showTools:!this.data.showTools
     })
+    if (this.data.showTools){
+      this.setData({
+        isShowInput:false
+      })
+    }
   },
   /**
    * 10.画布工具栏具体功能
-   */
-  /**
+   * 
    * 10.1画笔颜色
    */
   changeStrokeColor(){
@@ -201,11 +214,15 @@ Page({
     wx.showActionSheet({
       itemList: ['红色', '蓝色', '默认', '自定义'],
       success(res) {
+        that.setData({
+          useEraser:false
+        })
         switch(res.tapIndex){
           case 0: return that.setData({ strokeColor:'#C41A16'})
           case 1: return that.setData({ strokeColor:'#28B0EA'})
           case 2: return that.setData({ strokeColor:'#000'})
-          case 3: return that.setData({ isShowInput:true})
+          case 3: return that.setData({ isShowInput: true, showTools:false})
+          default: return that.setData({ strokeColor: '#000'})
         }
       },
       fail(res) {
@@ -217,13 +234,102 @@ Page({
    * 10.2画笔宽度
    */
   changeStrokeLineWidth(){
+    var that=this;
+    wx.showActionSheet({
+      itemList: ['细','普通','粗'],
+      success:(res)=>{
+        switch (res.tapIndex){
+          case 0: return that.setData({ strokeLineWidth: 1})
+          case 1: return that.setData({ strokeLineWidth: 3})
+          case 2: return that.setData({ strokeLineWidth: 5})
+          default: return that.setData({ strokeLineWidth: 3 })
+        }
+        wx.showToast({
+          title: '设置成功'
+        })
+        setTimeout(() => {
+          wx.hideToast()
+        }, 1000)      
+      },
+      fail(res){
+        wx.showToast({
+          title:'',
+          icon:''
+        })
+        setTimeout(()=>{
+          wx.hideToast()
+        },1000)
+      }
+    })
     
+    
+    //this.setData({strokeLineWidth:value})
   },
   /**
    * 10.3橡皮擦
    */
   eraser(){
-    
+    this.setData({
+      strokeColor: "#fff",
+      useEraser:true
+    })
+    wx.showToast({
+      title: '切换为橡皮擦'
+    })
+    setTimeout(() => {
+      wx.hideToast()
+    }, 1000)    
+  },
+  /**
+   * 10.4画笔颜色——自定义——获取input框输入的值
+   */
+  handleInputStrokStyle(data){
+    var input = data.detail.value
+    this.setData({
+      inputStrokeStyle:input
+    })
+    wx.showToast({
+      title: '设置成功'
+    })
+    setTimeout(() => {
+      wx.hideToast()
+    }, 1000)  
+  },
+  /**
+   * 10.2画笔颜色——自定义——根据输入框的值修改画笔颜色
+   */
+  changeInputStrokStyle(){
+    var inputValue=this.data.inputStrokeStyle
+    //测试输入是否合法。合法的：  数字(1-3)，数字(1-3)，数字(1-3)
+    var reg=/\d{1,3},\d{1,3},\d{1,3}/;
+    if(reg.test(inputValue)){
+      //初次测试成功，测试区间值
+      var inputArr=inputValue.split(',')
+      var isCorrect=true
+      inputArr.map((item)=>{
+        isCorrect = isCorrect && parseInt(item)<=255
+      })
+      if(isCorrect){
+        this.setData({
+          strokeColor:'rgb('+inputValue+')',
+          isShowInput:false
+        })
+      }else{
+        wx.showToast({
+          title:'颜色超过可设置范围',
+          icon:'none'
+        })
+        setTimeout(()=>{
+          wx.hideToast()
+        },1000)
+      }
+    }else{
+      wx.showToast({
+        title: '输入格式不正确',
+        icon:'none'
+      })
+      setTimeout(()=>{wx.hideToast()},1000)
+    }    
   },
   /**
    * 页面的初始数据
@@ -232,7 +338,7 @@ Page({
     userId:0,
     userInfo:[],
     isNewUser:false,
-    bannerSel:"1",
+    bannerSel:"0",
     canvasHeight:300,
     canvasWidth:150,
     showTools:false,
@@ -242,8 +348,10 @@ Page({
      * 画板调试相关
      */
     strokeColor:'#000',
-    strokeLineWidth:2,
-    eraserWidth:2,
+    strokeLineWidth:3,
+    eraserWidth:10,
+    inputStrokeStyle:'',
+    useEraser:false,
 
 
     isShowInput:false
@@ -253,6 +361,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    ///////////////////////////////////////////////////////测试隐藏
     if(!app.globalData){app.onLaunch()}
     this.setData({
       userId: app.globalData.userId,

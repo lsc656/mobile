@@ -28,10 +28,12 @@
           <button bindtap='canvasGoBack' disabled="{{goBackButtonState}}">上一步</button>
           <button bindtap='saveMyCanvas'>保存</button>
         </view>
-        <view wx:if="{{isShowInput}}">
+        <view wx:if="{{isShowInput}}" class='canvas-input'>
           <text>颜色输入格式：rgb(r,g,b)</text>
-          <input placeholder='请输入颜色，例：(255,255,255)'></input>
-          <button>提交</button>
+          <view>
+            <input placeholder='请输入颜色，例：255,255,255' focus type='text' confirm-type='done' bindinput='handleInputStrokStyle' bindconfirm='changeInputStrokStyle'  style='background-color:rgb({{inputStrokeStyle}})'></input>
+            <button bindtap='changeInputStrokStyle'>提交</button>          
+          </view>
         </view>
         <view wx:if="{{showTools}}" class='canvas-tools'>
           <button bindtap="changeStrokeColor">画笔颜色</button>
