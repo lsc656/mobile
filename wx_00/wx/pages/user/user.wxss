@@ -67,10 +67,25 @@
 .content>view:first-child>view.card-list{
   column-count:2;
   column-gap:20rpx;
+  background-color:#efefef;
+  padding:20rpx;
 }
 .content>view:first-child>view.card-list>.card{
   -webkit-column-break-inside:avoid;
+  display:flex;
+  flex-direction: column;
+  background-color:#fff;
+  border:1rpx solid #ccc;
+  box-shadow:2rpx 2rx 2rpx 2rpx #ccc;
 }
+.content>view:first-child>view.card-list>.card>image{
+  width:100%;
+}
+.content>view:first-child>view.card-list>.card>text{
+  color:#333;
+  font-size:24rpx;
+}
+
 
 
 /*************画板页*****************/

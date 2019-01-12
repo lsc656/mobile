@@ -26,12 +26,8 @@
       </view>
       <view class='card-list'>
         <view class='card' wx:for='{{userPicsList}}' wx:key="{{index}}">
-          <view class='img-info'>
-            <image mode='aspectFill' lazy-load src='{{item.img_md}}' data-pid='{{item.pid}}'></image>
-          </view>
-          <view class='author-info'>
-            <text class='ell'>{{item.account}}</text>
-          </view>
+          <image mode='widthFix' lazy-load src='{{item.img_md}}' data-pid='{{item.pid}}'></image>
+          <text class='ell'>{{item.account}}</text>     
         </view>
       </view>
     </view>
