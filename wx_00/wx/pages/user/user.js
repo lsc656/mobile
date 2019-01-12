@@ -316,6 +316,7 @@ Page({
   },
   /**
    * 11.加载采集信息
+   * @params uid userPicsList
    */
   getCjInfo(){
     var uid=this.data.userId;
@@ -323,8 +324,17 @@ Page({
       url: 'http://127.0.0.1:3000/user/getUserCJ',
       data:{uid},
       success:(res)=>{
-        res=res.data
-        console.log(res)
+        res=res.data;
+        if(res.code==200){
+        console.log(res.data)
+          if(res.data.length==0){
+            return
+          }else{
+            this.setData({
+              userPicsList:res.data
+            })
+          }
+        }
       }
     })
   },
@@ -370,7 +380,8 @@ Page({
    */
   onLoad: function (options) {
     if(!app.globalData.userId){
-      return app.onLaunch()
+      this.checkUserState()
+      return
     }
     this.setData({
       userId: app.globalData.userId,

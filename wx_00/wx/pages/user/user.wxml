@@ -17,14 +17,20 @@
   </view>
   <view class='content'>
     <view class='{{bannerSel=="0" && "active"}}'>
+      <view class='upload'>
+        <text align='center'>上传新的图片</text>
+        <view>
+          <image lazy-load mode='aspectFill' src=''></image>
+          <button bindtap=''>上传</button>
+        </view>
+      </view>
       <view class='card-list'>
-        <view class='card'>
+        <view class='card' wx:for='{{userPicsList}}' wx:key="{{index}}">
           <view class='img-info'>
-            <image mode='aspectFill' lazy-load></image>
+            <image mode='aspectFill' lazy-load src='{{item.img_md}}' data-pid='{{item.pid}}'></image>
           </view>
           <view class='author-info'>
-            <image class='author-header' lazy-load mode='aspectFill'></image>
-            <text>图片描述</text>
+            <text class='ell'>{{item.account}}</text>
           </view>
         </view>
       </view>
