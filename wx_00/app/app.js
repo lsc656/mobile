@@ -3,6 +3,7 @@ const express = require("express");
 const index = require("./routes/index.js");
 const pics=require('./routes/pics');
 const login=require('./routes/login');
+const user=require('./routes/user');
 //1.2加载路由
 
 //2:创建express对象
@@ -48,3 +49,4 @@ app.use(bodyParser.urlencoded({
 app.use("/index",index);
 app.use('/pics',pics);
 app.use('/login',login);
+app.use('/user',user)

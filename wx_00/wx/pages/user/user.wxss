@@ -61,6 +61,19 @@
 .content>view.active{
   display: block;
 }
+
+
+/*************采集页*****************/
+.content>view:first-child>view.card-list{
+  column-count:2;
+  column-gap:20rpx;
+}
+.content>view:first-child>view.card-list>.card{
+  -webkit-column-break-inside:avoid;
+}
+
+
+/*************画板页*****************/
 .content>view:nth-child(2){
   background-color:#efefef;  
   padding:20rpx;
@@ -117,3 +130,4 @@
   background-color:#AAB9BA;
   flex-grow:1;
 }
+/*************关注页*****************/

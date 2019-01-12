@@ -66,7 +66,6 @@ Page({
    */
   touchStart(e){
     ctx.beginPath()
-    ctx.setStrokeStyle('red')
     ctx.moveTo(e.touches[0].x, e.touches[0].y)
   },
   moveToSw(x,y){
@@ -224,9 +223,6 @@ Page({
           case 3: return that.setData({ isShowInput: true, showTools:false})
           default: return that.setData({ strokeColor: '#000'})
         }
-      },
-      fail(res) {
-        console.log(res.errMsg)
       }
     })
   },
@@ -250,15 +246,6 @@ Page({
         setTimeout(() => {
           wx.hideToast()
         }, 1000)      
-      },
-      fail(res){
-        wx.showToast({
-          title:'',
-          icon:''
-        })
-        setTimeout(()=>{
-          wx.hideToast()
-        },1000)
       }
     })
     
@@ -288,12 +275,6 @@ Page({
     this.setData({
       inputStrokeStyle:input
     })
-    wx.showToast({
-      title: '设置成功'
-    })
-    setTimeout(() => {
-      wx.hideToast()
-    }, 1000)  
   },
   /**
    * 10.2画笔颜色——自定义——根据输入框的值修改画笔颜色
@@ -301,17 +282,19 @@ Page({
   changeInputStrokStyle(){
     var inputValue=this.data.inputStrokeStyle
     //测试输入是否合法。合法的：  数字(1-3)，数字(1-3)，数字(1-3)
-    var reg=/\d{1,3},\d{1,3},\d{1,3}/;
+    var reg=/^\d{1,3}[,|，]\d{1,3}[,|，]\d{1,3}$/;
     if(reg.test(inputValue)){
       //初次测试成功，测试区间值
-      var inputArr=inputValue.split(',')
+      //inputValue.replace(/，/g,',')
+      var inputArr = inputValue.split(/[,|，]/)
+      console.log(inputArr)
       var isCorrect=true
       inputArr.map((item)=>{
         isCorrect = isCorrect && parseInt(item)<=255
       })
       if(isCorrect){
         this.setData({
-          strokeColor:'rgb('+inputValue+')',
+          strokeColor: 'rgb(' + inputArr.join(',')+')',
           isShowInput:false
         })
       }else{
@@ -332,12 +315,30 @@ Page({
     }    
   },
   /**
+   * 11.加载采集信息
+   */
+  getCjInfo(){
+    var uid=this.data.userId;
+    wx.request({
+      url: 'http://127.0.0.1:3000/user/getUserCJ',
+      data:{uid},
+      success:(res)=>{
+        res=res.data
+        console.log(res)
+      }
+    })
+  },
+  /**
+   * \\12.加载关注信息
+   */
+  /**
    * 页面的初始数据
    */
   data: {
     userId:0,
     userInfo:[],
     isNewUser:false,
+    ////////////////////////////////////////////页面完成后设置为1！默认显示画板！否则高度不对！
     bannerSel:"0",
     canvasHeight:300,
     canvasWidth:150,
@@ -352,24 +353,36 @@ Page({
     eraserWidth:10,
     inputStrokeStyle:'',
     useEraser:false,
-
-
-    isShowInput:false
+    isShowInput:false,
+    /**
+     * 采集页
+     */
+    userPicsList:[],
+    imgHeight:[],
+    /**
+     * 关注页
+     */
+    focusList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    ///////////////////////////////////////////////////////测试隐藏
-    if(!app.globalData){app.onLaunch()}
+    if(!app.globalData.userId){
+      return app.onLaunch()
+    }
     this.setData({
       userId: app.globalData.userId,
       isNewUser: app.globalData.isNewUser
     })
     this.checkUserState()
+    
+    //更改画板高度    
     this.changeCanvasHeight();
 
+    //加载采集信息
+    this.getCjInfo();
   },
 
   /**

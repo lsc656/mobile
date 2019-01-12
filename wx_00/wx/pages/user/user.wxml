@@ -17,7 +17,17 @@
   </view>
   <view class='content'>
     <view class='{{bannerSel=="0" && "active"}}'>
-      <view>采集</view>
+      <view class='card-list'>
+        <view class='card'>
+          <view class='img-info'>
+            <image mode='aspectFill' lazy-load></image>
+          </view>
+          <view class='author-info'>
+            <image class='author-header' lazy-load mode='aspectFill'></image>
+            <text>图片描述</text>
+          </view>
+        </view>
+      </view>
     </view>
     <view class='{{bannerSel=="1" && "active"}}'>
       <view>

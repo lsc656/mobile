@@ -35,7 +35,7 @@
             this.alert(res.msg)
           })
         }
-      },
+      }
     },
     created(){
 
