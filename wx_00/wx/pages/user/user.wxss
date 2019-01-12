@@ -64,6 +64,21 @@
 
 
 /*************采集页*****************/
+.content>view:first-child>view.upload{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:50rpx;
+  padding:20rpx 0;
+}
+.content>view:first-child>view.upload>text{
+  font-size:36rpx;
+  color:#444;
+}
+.content>view:first-child>view.upload>image{
+  height:50rpx;
+  width:50rpx;
+}
 .content>view:first-child>view.card-list{
   column-count:2;
   column-gap:20rpx;
@@ -84,6 +99,7 @@
 .content>view:first-child>view.card-list>.card>text{
   color:#333;
   font-size:24rpx;
+  padding:10rpx 2rpx;
 }
 
 

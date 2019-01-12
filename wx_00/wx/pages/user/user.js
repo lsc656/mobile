@@ -7,10 +7,11 @@ Page({
    * 1.判断用户状态是否正常
    */
   checkUserState(){
+    console.log(app.globalData.baseUrl + 'login/checkUserState')
     var userId=this.data.userId;
     if(userId){
       wx.request({
-        url: 'http://127.0.0.1:3000/login/checkUserState',
+        url: app.globalData.baseUrl+'login/checkUserState',
         data:{uid:userId},
         success:(res)=>{
           res=res.data
@@ -321,7 +322,7 @@ Page({
   getCjInfo(){
     var uid=this.data.userId;
     wx.request({
-      url: 'http://127.0.0.1:3000/user/getUserCJ',
+      url: app.globalData.baseUrl+'user/getUserCJ',
       data:{uid},
       success:(res)=>{
         res=res.data;
@@ -339,9 +340,21 @@ Page({
     })
   },
   /**
-   * \\12.加载关注信息
+   * 12.采集页————上传图片
    */
-  
+  uploadFiles(){
+    wx.chooseImage({
+      success:(res)=>{
+        // tempFilePath可以作为img标签的src属性显示图片
+       // const tempFilePaths = res.tempFilePaths
+       console.log(res)
+      }
+    })
+  },
+  /**
+   * \\13.加载关注信息
+   */
+
   /**
    * 页面的初始数据
    */
