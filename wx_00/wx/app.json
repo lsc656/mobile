@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/myFavorite/myFavorite",
     "pages/user/user",
-    "pages/userInfo/userInfo"
+    "pages/userInfo/userInfo",
+    "pages/updateMyPic/updateMyPic"
   ],
   "window": {
     "backgroundTextStyle": "light",

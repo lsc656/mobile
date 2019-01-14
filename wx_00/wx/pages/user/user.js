@@ -7,7 +7,6 @@ Page({
    * 1.判断用户状态是否正常
    */
   checkUserState(){
-    console.log(app.globalData.baseUrl + 'login/checkUserState')
     var userId=this.data.userId;
     if(userId){
       wx.request({
@@ -343,18 +342,111 @@ Page({
    * 12.采集页————上传图片
    */
   uploadFiles(){
+    var that=this;
     wx.chooseImage({
       success:(res)=>{
+        wx.showLoading({
+          title: '上传中...',
+        })
         // tempFilePath可以作为img标签的src属性显示图片
-       // const tempFilePaths = res.tempFilePaths
-       console.log(res)
+        // const tempFilePaths = res.tempFilePaths
+        var paths = res.tempFilePaths;
+        var i = 0;
+        var loadFiles = function(){
+          wx.uploadFile({
+              url: 'http://127.0.0.1:3000/user/uploadPics',
+              filePath:paths[i],
+              name: 'myPics',
+              formData:{userId:that.data.userId},
+              header: { "Content-Type": "multipart/form-data" },
+              success: (res) => {
+                i++;
+                if(i==paths.length){
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '上传成功',
+                  })
+                  setTimeout(()=>{
+                    wx.hideToast();
+                    that.onLoad();
+                  },1000)
+                }else{
+                  loadFiles()
+                }
+              },
+              fail: function () {
+                wx.showModal({
+                  title: '错误提示',
+                  content: '系统正在升级中，请稍后再试',
+                  showCancel: false,  //没有取消按钮
+                  success: function (res) {
+                  }
+                })
+              }
+            })
+        }
+        loadFiles();
       }
     })
   },
   /**
-   * \\13.加载关注信息
+   * 13.采集页————修改单张图片信息
    */
+  updateMyPic(e){
+    var cid=e.target.dataset.cid;
+    var userId=this.data.userId;
+    wx.navigateTo({
+      url: '/pages/updateMyPic/updateMyPic?cid='+cid+"&userId="+userId
+    })
+  },
+  /**
+   * 14.加载关注信息
+   */
+  getFocusInfo(){
+    wx.request({
+      url: 'http://127.0.0.1:3000/user/getFocus?uid='+this.data.userId,
+      success:(res)=>{
+        res=res.data
+        console.log(res)
+        if(res.code==200){
+          this.setData({
+            focusList:res.data
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 15.删除关注信息
+   */
+  delFocus(e){
+    console.log(e.target.dataset.uid);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  },
   /**
    * 页面的初始数据
    */
@@ -408,6 +500,9 @@ Page({
 
     //加载采集信息
     this.getCjInfo();
+
+    //加载关注信息
+    this.getFocusInfo();
   },
 
   /**

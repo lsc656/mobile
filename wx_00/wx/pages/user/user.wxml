@@ -23,8 +23,9 @@
       </view>
       <view class='card-list'>
         <view class='card' wx:for='{{userPicsList}}' wx:key="{{index}}">
-          <image mode='widthFix' lazy-load src='{{item.img_md}}' data-pid='{{item.pid}}'></image>
-          <text class='ell'>{{item.account}}</text>     
+          <image mode='widthFix' lazy-load src='{{item.img_md}}' data-cid='{{item.cid}}'></image>
+          <text class='ell'>{{item.account||'未设置标题'}}</text>
+          <button bindtap="updateMyPic" data-cid='{{item.cid}}'>编辑</button>
         </view>
       </view>
     </view>
@@ -52,7 +53,13 @@
       </view>
     </view>
     <view class='{{bannerSel=="2" && "active"}}'>
-      <view>关注</view>
+      <view class="focus-list">
+        <view class="card" wx:for="{{focusList}}" wx:key="{{index}}">
+          <image src="{{item.user_img}}" mode='aspectFill' lazy-load></image>
+          <text>{{item.uname}}</text>
+          <button bindtap="delFocus" data-uid='{{item.uid}}'>删除</button>
+        </view>
+      </view>
     </view>
   </view>
 </view>

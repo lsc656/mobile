@@ -92,6 +92,7 @@
   background-color:#fff;
   border:1rpx solid #ccc;
   box-shadow:2rpx 2rx 2rpx 2rpx #ccc;
+  margin-bottom:10rpx;
 }
 .content>view:first-child>view.card-list>.card>image{
   width:100%;
@@ -101,7 +102,12 @@
   font-size:24rpx;
   padding:10rpx 2rpx;
 }
-
+.content>view:first-child>view.card-list>.card>button{
+  font-size:24rpx;
+  margin:0;
+  height:60rpx;
+  line-height:60rpx;
+}
 
 
 /*************画板页*****************/
@@ -162,3 +168,40 @@
   flex-grow:1;
 }
 /*************关注页*****************/
+
+.content>view:nth-child(3)>view.focus-list{
+  column-count:2;
+  column-gap:20rpx;
+  background-color:#F2F2F2;
+  padding:20rpx;
+}
+.content>view:nth-child(3)>view.focus-list>view.card{
+  -webkit-column-break-inside: avoid;
+  background-color:#fff;
+  border:1rpx solid #e4e4e4;
+  box-shadow:2rpx 2rpx 2rpx 2rpx #e4e4e4;
+  margin-bottom:20rpx;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  padding:50rpx 0;
+}
+.content>view:nth-child(3)>view.focus-list>view.card>image{
+  width:100rpx;
+  height:100rpx;
+  border-radius:50%;
+}
+.content>view:nth-child(3)>view.focus-list>view.card>text{
+  font-size:32rpx;
+  padding:25rpx 0;
+}
+.content>view:nth-child(3)>view.focus-list>view.card>button{
+  font-size:32rpx;
+  line-height:60rpx;
+  height:60rpx;
+  background-color:#E04A4A;
+  color:#fff;
+  border-radius:0;
+  margin:0;
+}
