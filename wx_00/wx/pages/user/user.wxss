@@ -205,3 +205,12 @@
   border-radius:0;
   margin:0;
 }
+.content>view:nth-child(3)>view.no-focus{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content>view:nth-child(3)>view.no-focus>text{
+  flex-grow: 1;
+  text-align:center;
+}

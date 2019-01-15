@@ -1,0 +1,131 @@
+/*console.log(a);//function a()
+//var a=1;
+console.log(a);//1
+function a(){console.log(2)};//被提前
+console.log(a);//1
+//var a=3;
+console.log(a);//3
+function a(){console.log(4)};//被提前
+console.log(a);//3
+a(); //X*/
+
+/*var f=true;
+if(f===true){
+	var a=10;
+}
+function fn(){
+	var b=20;
+	c=30;
+}
+fn();
+console.log(a);//undefined----10
+console.log(b);//X
+console.log(c);//30*/
+
+/*var fn=new Date();
+fn.toString=function(){ return 10}
+fn.valueOf=function(){ return 4000}
+//console.log(fn);
+console.log(fn+1);*/
+//console.log(fn());
+/*function Student(name,age){
+	this.name=name;
+	this.age=age;
+	this.intr=function(){
+		console.log(`构造函数的intr`)
+	}
+}
+Student.prototype.intr2=function(){
+	console.log(`原型对象的intr2`)
+}
+Student.intr3=function(){
+	console.log(`静态方法intr3`)
+}
+
+var lilei=new Student("lilei","18")
+var hmm=new Student("hanmeimei","17")
+console.log(lilei)
+console.log(hmm)
+console.log(Student.__proto__.__proto__)*/
+
+/*function fn(){
+	return 10
+}
+fn.valueOf=function(){
+	return 300
+}
+fn.toString=function(){
+	return 20
+}
+console.log(fn+1)*/
+/*var a=new Function();
+a.toString=function(){
+	return 200
+};
+a.valueOf=function(){
+	return 10
+};
+a.localeString=function(){
+	return 500
+}
+console.log(a+1)*/
+/*var a=new Number();//除date之外都优先调用valueOf方法
+a.toString=function(){return 10}//date的toString解析出当前时间
+a.valueOf=function(){return 150}//date的valueof直接解析出数字
+a.toLocaleString=function(){return 110}
+console.log(a+1)*/
+//console.log(a.valueOf())
+/*function Student({name,age}){
+	this.ename=name;
+	this.age=age;
+	this.intr=function(){
+		console.log(`内部`)
+	}
+}
+Student.intr=function(){
+ console.log(`static`);
+}
+Student.prototype.intr=function(){console.log(`prototype`)}
+var lilei=new Student({age:17})
+lilei.intr=function(){console.log(`lilei.static`)}
+console.log(lilei)
+lilei.intr();//顺序：lilei.static   内部   prototype*/
+/*function foo(){
+	var i=0;
+	return function(){console.log(i++)}		
+}
+var f1=foo();//function(){i++}
+var f2=foo();//function(){i++}
+//i=0
+f1();//console.log(i++) 0
+f2();//console.log(i++) 
+f1();
+f2();*/
+/*var out=25;
+inner={
+	out:20,
+	func:function(){
+		var out=30;
+		
+		return this.out;
+	}
+}
+//console.log(inner.func,inner.func());//1.[function 20] 2.20
+//console.log(inner.func());//20
+//console.log((inner.func)());//25   //20
+console.log((inner.func=inner.func)());//25*/
+
+		var datas = [10,20,30,40,50];
+
+
+		console.log(datas.splice(3,2,60,70));	//输出：40,50  10,20,30,60,70
+		var arr1 = datas.splice(3,2,60,70);
+
+
+		console.log(arr1);						//输出：60,70
+
+
+		arr1.concat(80);
+		console.log(arr1);						//输出：60,70
+
+		console.log(arr1.toString());			//输出：60,70

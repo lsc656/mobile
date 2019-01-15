@@ -48,6 +48,7 @@ router.post('/uploadPics',upload.single('myPics'),(req,res)=>{
 
 //获取关注信息
 router.get('/getFocus',(req,res)=>{
+  console.log('接收请求')
   var uid=req.query.uid;
   if(!uid){
     res.send({code:-1,msg:'no-catch-uid'})
@@ -56,16 +57,34 @@ router.get('/getFocus',(req,res)=>{
   var data=[];
   pool.query(sql,uid,(err,result)=>{
     if(err) console.log(err)
-    var sql='SELECT uid,user_img,uname FROM sanse_user WHERE uid=?;';
-    result.map((item,i,arr)=>{
-      pool.query(sql,[item.focId],(err,result)=>{
-        if(err) console.log(err)
-        data.push(result[0]);
-        if(data.length==arr.length){
-          res.send({code:200,data})
-        }
+    if(result.length>0){
+      var sql='SELECT uid,user_img,uname FROM sanse_user WHERE uid=?;';
+      result.map((item,i,arr)=>{
+        pool.query(sql,[item.focId],(err,result)=>{
+          if(err) console.log(err)
+          data.push(result[0]);
+          if(data.length==arr.length){
+            res.send({code:200,data})
+          }
+        })
       })
-    })
+    }else{
+      res.send({code:201,data:[]})
+    }
+  })
+})
+//删除关注信息
+router.get('/delFocus',(req,res)=>{
+  var uid=req.query.uid;
+  var focId=req.query.focId;
+  var sql='DELETE FROM sanse_user_focus WHERE uid=? AND focId=?';
+  pool.query(sql,[uid,focId],(err,result)=>{
+    if(err) console.log(err);
+    if(result.affectedRows>0){
+      res.send({code:200,msg:'success'})
+    }else{
+      res.send({code:-1,msg:'fail'})
+    }
   })
 })
 module.exports=router;

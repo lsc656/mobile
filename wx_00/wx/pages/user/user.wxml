@@ -53,12 +53,15 @@
       </view>
     </view>
     <view class='{{bannerSel=="2" && "active"}}'>
-      <view class="focus-list">
+      <view class="focus-list" wx:if="{{focusList.length>0}}">
         <view class="card" wx:for="{{focusList}}" wx:key="{{index}}">
           <image src="{{item.user_img}}" mode='aspectFill' lazy-load></image>
           <text>{{item.uname}}</text>
-          <button bindtap="delFocus" data-uid='{{item.uid}}'>删除</button>
+          <button bindtap="delFocus" data-uid='{{item.uid}}' data-uname='{{item.uname}}'>删除</button>
         </view>
+      </view>
+      <view wx:if="{{focusList.length==0}}" class='no-focus'>
+        <text>还没有关注的人</text>
       </view>
     </view>
   </view>

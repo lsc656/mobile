@@ -354,36 +354,39 @@ Page({
         var i = 0;
         var loadFiles = function(){
           wx.uploadFile({
-              url: 'http://127.0.0.1:3000/user/uploadPics',
-              filePath:paths[i],
-              name: 'myPics',
-              formData:{userId:that.data.userId},
-              header: { "Content-Type": "multipart/form-data" },
-              success: (res) => {
-                i++;
-                if(i==paths.length){
-                  wx.hideLoading();
-                  wx.showToast({
-                    title: '上传成功',
-                  })
-                  setTimeout(()=>{
-                    wx.hideToast();
-                    that.onLoad();
-                  },1000)
-                }else{
-                  loadFiles()
-                }
-              },
-              fail: function () {
-                wx.showModal({
-                  title: '错误提示',
-                  content: '系统正在升级中，请稍后再试',
-                  showCancel: false,  //没有取消按钮
-                  success: function (res) {
-                  }
+            url: 'http://127.0.0.1:3000/user/uploadPics',
+            filePath:paths[i],
+            name: 'myPics',
+            formData:{userId:that.data.userId},
+            header: { "Content-Type": "multipart/form-data" },
+            success: (res) => {
+              console.log(res)
+              res=JSON.parse(res.data);
+              i++;
+              if(i==paths.length){
+                wx.hideLoading();
+                wx.showToast({
+                  title: res.msg,
+                  icon:'none'
                 })
+                setTimeout(()=>{
+                  wx.hideToast();
+                  that.onLoad();
+                },1000)
+              }else{
+                loadFiles()
               }
-            })
+            },
+            fail: function () {
+              wx.showModal({
+                title: '错误提示',
+                content: '系统正在升级中，请稍后再试',
+                showCancel: false,  //没有取消按钮
+                success: function (res) {
+                }
+              })
+            }
+          })
         }
         loadFiles();
       }
@@ -408,7 +411,7 @@ Page({
       success:(res)=>{
         res=res.data
         console.log(res)
-        if(res.code==200){
+        if(res.code==200 || res.code==201){
           this.setData({
             focusList:res.data
           })
@@ -420,32 +423,37 @@ Page({
    * 15.删除关注信息
    */
   delFocus(e){
-    console.log(e.target.dataset.uid);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    var uname=e.target.dataset.uname;
+    wx.showModal({
+      title: '删除确认',
+      content: '是否删除'+uname+'?',
+      success:(res)=>{
+        if(res.confirm){
+          var focId = e.target.dataset.uid;
+          var uid = this.data.userId;
+          wx.request({
+            url: 'http://127.0.0.1:3000/user/delFocus',
+            data: { focId, uid },
+            success: (res) => {
+              res = res.data
+              console.log(res)
+              if (res.code == 200) {
+                console.log('即将更新')
+                this.getFocusInfo();
+              } else {
+                wx.showToast({
+                  title: '网络错误',
+                  icon: 'none'
+                })
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 1500)
+              }
+            }
+          })
+        }
+      }
+    })    
   },
   /**
    * 页面的初始数据
