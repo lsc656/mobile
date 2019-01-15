@@ -96,7 +96,7 @@ CREATE TABLE sanse_user(
   user_img VARCHAR(128) DEFAULT 'http://127.0.0.1:3000/img/headPortraits/default.jpg' COMMENT "用户头像",
   uname VARCHAR(32) COMMENT "用户名(显示)",
   upwd VARCHAR(32) COMMENT "用户密码",
-  tel VARCHAR(32) COMMENT "用户联系方式",
+  tel VARCHAR(32) DEFAULT '未填写联系方式' COMMENT "用户联系方式",
   fans INT COMMENT "关注数量",
   likes INT COMMENT "点击喜欢次数",
   cj INT COMMENT "采集数量",

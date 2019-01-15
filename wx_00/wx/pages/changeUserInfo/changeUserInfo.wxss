@@ -24,8 +24,10 @@ view.main>view.image{
   align-items: center;
 }
 view.main>view.image>image{
-  height:200rpx;
-  width:200rpx;
+  height:220rpx;
+  width:220rpx;
+  border:1rpx solid #ddd;
+  box-shadow: 4rpx 4rpx 4rpx 3rpx #eee;
   border-radius: 50%;
 }
 view.main>view.info>view{

@@ -95,4 +95,79 @@ router.get('/getUInfo',(req,res)=>{
     res.send({code:200,data:result[0]})
   })
 })
+//修改头像
+router.post('/changeHeaderPic',upload.single('myPic'),(req,res)=>{
+    //检测是否是图片
+    var uid=req.body.uid
+    var type=req.file.mimetype;
+    var i2=type.indexOf('image');
+    if(i2==-1){
+      res.send({code:-1,msg:'上传只能是图片'});
+      return;
+    }
+    var src=req.file.originalname;
+    var fTime=new Date().getTime();
+    var fRand=Math.floor(Math.random()*9999);
+    /*var t=src.split(".");
+    var suff=t[t.length-1];*/
+    var i3=src.lastIndexOf(".");
+    var suff=src.substring(i3,src.length);
+    var des="public/img/headPortraits/"+fTime+fRand+suff;
+    fs.renameSync(req.file.path,des)
+    //插入数据库
+    var sql='UPDATE sanse_user SET user_img=? WHERE uid=?';
+    var path='http://127.0.0.1:3000/'+des.substring(7)
+    pool.query(sql,[path,uid],(err,result)=>{
+      if(err) console.log(err)
+      if(result.affectedRows>0){
+        res.send({code:200,msg:'success'});
+      }else{
+        res.send({code:-2,msg:'fail'})
+      }
+    })
+})
+//修改用户名及联系方式
+router.get('/changeUInfo',(req,res)=>{
+  var uname=req.query.uname;
+  var tel=req.query.tel;
+  var uid=req.query.uid;
+  var sql='UPDATE sanse_user SET uname=?,tel=? WHERE uid=?';
+  pool.query(sql,[uname,tel,uid],(err,result)=>{
+    if(err) console.log(err)
+    if(result.affectedRows>0){
+      res.send({code:200,msg:"success"})
+    }else{
+      res.send({code:-1,msg:'fail'})
+    }
+  })
+})
+//修改图片详情
+router.get('/changePicInfo',(req,res)=>{
+  var cid=req.query.cid;
+  var account=req.query.account;
+  var authorId=req.query.authorId
+  var sql='UPDATE sanse_pins_pics SET account=? WHERE cid=? AND authorId=?';
+  pool.query(sql,[account,cid,authorId],(err,result)=>{
+    if(err) console.log(err)
+    if(result.affectedRows>0){
+      res.send({code:200,msg:'success'})
+    }else{
+      res.send({code:-1,msg:'fail'})
+    }
+  })
+})
+//查询图片修改页需要的数据
+router.get('/getChPic',(req,res)=>{
+  var cid=req.query.cid;
+  var authorId=req.query.authorId;
+  var sql='SELECT img_md,account FROM sanse_pins_pics WHERE cid=? AND authorId=?';
+  pool.query(sql,[cid,authorId],(err,result)=>{
+    if(err) console.log(err)
+    if(result.length>0){
+      res.send({code:200,data:result[0]})
+    }else{
+      res.send({code:-1,msg:'no-data'})
+    }
+  })
+})
 module.exports=router;

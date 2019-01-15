@@ -1,12 +1,56 @@
 // pages/updateMyPic/updateMyPic.js
 Page({
+  /**
+   * 获取输入框的值
+   */
+  getAccount(e){
+    this.setData({
+      account:e.detail.value
+    })
+  },
+  /**
+   * 页面加载获取数据
+   */
+  loadData(){
+    wx.request({
+      url: 'http://127.0.0.1:3000/user/getChPic',
+      data:{cid:this.data.cid,authorId:this.data.userId},
+      success:(res)=>{
+        res=res.data;
+        this.setData({
+          img_md:res.data.img_md,
+          account:res.data.account
+        })
+      }
+    })
+  },
+  /**
+   * 提交修改
+   */
+  changePicInfo(){
+    wx.request({
+      url: 'http://127.0.0.1:3000/user/changePicInfo',
+      data:{
+        cid:this.data.cid,
+        authorId:this.data.userId,
+        account:this.data.account
+      },
+      success:(res)=>{
+        res=res.data;
+        console.log(res)
+      }
+    })
+  },
 
   /**
    * 页面的初始数据
    */
   data: {
     cid:0,
-    userId:0
+    userId:0,
+    account:'',
+    img_md:'',
+    rem:170
   },
 
   /**
@@ -17,6 +61,9 @@ Page({
       cid:options.cid,
       userId:options.userId
     })
+    if(this.data.cid){
+      this.loadData()
+    }
   },
 
   /**
@@ -30,7 +77,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.loadData()
   },
 
   /**

@@ -1,2 +1,7 @@
 <!--pages/updateMyPic/updateMyPic.wxml-->
-<text>pages/updateMyPic/updateMyPic.wxml</text>
+<view class='main'>
+  <image src="{{img_md}}" mode='widthFix' lazy-load></image>  
+  <textarea value="{{account}}" bindinput="getAccount" placeholder='未填写描述' maxlength='170'></textarea>
+  <text>{{rem}}/170</text>
+  <button bindtap='changePicInfo'>提交修改</button>
+</view>

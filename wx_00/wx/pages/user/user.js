@@ -18,9 +18,6 @@ Page({
             this.setData({
               userInfo:res.data
             })
-            console.log(this.data.userInfo)
-          }else{
-            console.log(res.msg)
           }
         }
       })
@@ -326,7 +323,6 @@ Page({
       success:(res)=>{
         res=res.data;
         if(res.code==200){
-        console.log(res.data)
           if(res.data.length==0){
             return
           }else{
@@ -360,7 +356,6 @@ Page({
             formData:{userId:that.data.userId},
             header: { "Content-Type": "multipart/form-data" },
             success: (res) => {
-              console.log(res)
               res=JSON.parse(res.data);
               i++;
               if(i==paths.length){
@@ -410,7 +405,6 @@ Page({
       url: 'http://127.0.0.1:3000/user/getFocus?uid='+this.data.userId,
       success:(res)=>{
         res=res.data
-        console.log(res)
         if(res.code==200 || res.code==201){
           this.setData({
             focusList:res.data
@@ -470,8 +464,7 @@ Page({
     userId:0,
     userInfo:[],
     isNewUser:false,
-    ////////////////////////////////////////////页面完成后设置为1！默认显示画板！否则高度不对！
-    bannerSel:"0",
+    bannerSel:"1",
     canvasHeight:300,
     canvasWidth:150,
     showTools:false,
@@ -533,7 +526,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.checkUserState();
+    this.getCjInfo();
   },
 
   /**

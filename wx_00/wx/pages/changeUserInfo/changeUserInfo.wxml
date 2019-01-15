@@ -1,16 +1,16 @@
 <!--pages/changeUserInfo/changeUserInfo.wxml-->
 <view class='main'>
   <view class='image'>
-    <image lazy-load mode='aspectFill' src="{{myList.user_img}}"></image>
-    <button>更换头像</button>
+    <image lazy-load mode='aspectFill' src="{{user_img}}"></image>
+    <button bindtap="changeHeaderPic">更换头像</button>
   </view>
   <view class='info'>
     <view>
-      <text>用户名：</text><input value="{{myList.uname}}" placeholder='用户名不能为空'></input>    
+      <text>用户名：</text><input value="{{uname}}" placeholder='用户名不能为空' bindinput="changeUname"></input>
     </view>
     <view>
-      <text>联系方式：</text><input value="{{myList.tel}}"></input>    
+      <text>联系方式：</text><input value="{{tel}}" bindinput='changeTel'></input>    
     </view>
-    <button>提交</button>
+    <button bindtap='submitInfo'>提交</button>
   </view>
 </view>
