@@ -1,0 +1,44 @@
+/* pages/changeUserInfo/changeUserInfo.wxss */
+view.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height:100vh;
+  padding:0 40rpx;
+}
+view.main>view{
+  border:1rpx solid #e4e4e4;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx #e4e4e4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width:100%;
+  height:40%;
+}
+view.main>view>button{
+  margin:0;
+  width:70%;
+}
+view.main>view.image{
+  align-items: center;
+}
+view.main>view.image>image{
+  height:200rpx;
+  width:200rpx;
+  border-radius: 50%;
+}
+view.main>view.info>view{
+  display: flex;
+  padding:0 20rpx;
+  align-items: center;
+}
+view.main>view.info>view>input{
+  background-color:#e4e4e4;
+  flex-grow: 1;
+  height:80rpx;
+  line-height: 80rpx;
+}
+view.main>view.info>button{
+  align-self: center;
+}

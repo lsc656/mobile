@@ -8,7 +8,7 @@
         <text>{{userInfo.fans||0}}粉丝</text><text>{{userInfo.likes||0}}关注</text>
       </view>    
     </view>
-    <button>修改个人信息</button>
+    <button bindtap='changeMyInfo'>修改个人信息</button>
   </view>
   <view class='banner' bindtap='changeBannerSel'>
     <view class='{{bannerSel=="0" && "active"}}' data-banner-sel='0'>采集</view>

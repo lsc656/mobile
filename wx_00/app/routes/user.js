@@ -48,7 +48,6 @@ router.post('/uploadPics',upload.single('myPics'),(req,res)=>{
 
 //获取关注信息
 router.get('/getFocus',(req,res)=>{
-  console.log('接收请求')
   var uid=req.query.uid;
   if(!uid){
     res.send({code:-1,msg:'no-catch-uid'})
@@ -85,6 +84,15 @@ router.get('/delFocus',(req,res)=>{
     }else{
       res.send({code:-1,msg:'fail'})
     }
+  })
+})
+//获取所有信息
+router.get('/getUInfo',(req,res)=>{
+  var uid = req.query.uid;
+  var sql='SELECT uid,user_img,uname,tel FROM sanse_user WHERE uid=?';
+  pool.query(sql,uid,(err,result)=>{
+    if(err) console.log(err)
+    res.send({code:200,data:result[0]})
   })
 })
 module.exports=router;

@@ -456,6 +456,14 @@ Page({
     })    
   },
   /**
+   * 16.修改个人信息
+   */
+  changeMyInfo(){
+    wx.navigateTo({
+      url: '/pages/changeUserInfo/changeUserInfo'
+    })
+  },
+  /**
    * 页面的初始数据
    */
   data: {
