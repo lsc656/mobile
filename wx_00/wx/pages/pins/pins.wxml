@@ -9,7 +9,7 @@
       </view>
     </view>
     <view>
-      <button>关注</button>
+      <button bindtap='setFocus'>关注</button>
       <button bindtap='showLikes'>...</button>    
     </view>
   </view>

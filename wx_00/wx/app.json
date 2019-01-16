@@ -4,7 +4,6 @@
     "pages/pins/pins",
     "pages/boards/boards",
     "pages/logs/logs",
-    "pages/myFavorite/myFavorite",
     "pages/user/user",
     "pages/userInfo/userInfo",
     "pages/updateMyPic/updateMyPic",
@@ -23,12 +22,6 @@
         "text": "首页",
         "iconPath": "pages/tabPics/icon-2.png",
         "selectedIconPath": "pages/tabPics/icon-2-active.png"
-      },
-      {
-        "pagePath": "pages/myFavorite/myFavorite",
-        "text": "收藏",
-        "iconPath": "pages/tabPics/icon-3.png",
-        "selectedIconPath": "pages/tabPics/icon-3-active.png"
       },
       {
         "pagePath": "pages/user/user",

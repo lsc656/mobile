@@ -170,4 +170,18 @@ router.get('/getChPic',(req,res)=>{
     }
   })
 })
+//修改关注信息
+router.get('/changeFocus',(req,res)=>{
+  var uid=parseInt(req.query.uid);
+  var focId=parseInt(req.query.focId);
+  var sql='INSERT INTO sanse_user_focus (uid,focId) VALUES (?,?)';
+  pool.query(sql,[uid,focId],(err,result)=>{
+    if(err) console.log(err)
+    if(result.affectedRows>0){
+      res.send({code:200,msg:'success'})
+    }else{
+      res.send({code:-1,msg:'fail'})
+    }
+  })
+})
 module.exports=router;

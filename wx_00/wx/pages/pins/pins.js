@@ -154,6 +154,56 @@ Page({
     })
   },
   /**
+   * 9.关注对方
+   */
+  setFocus(){
+    var focId = this.data.authorId;
+    var uid=app.globalData.userId;
+    if(!focId || !uid){
+      wx.showToast({
+        title:'网络错误',
+        icon:'none'
+      })
+      setTimeout(()=>{
+        wx.hideToast();
+      },1000)
+      return
+    }
+    if(focId==uid){
+      wx.showToast({
+        title: '不能关注自己',
+        icon:'none'
+      })
+      setTimeout(()=>{
+        wx.hideToast();
+      },1000)
+      return
+    }
+    wx.request({
+      url: 'http://127.0.0.1:3000/user/changeFocus',
+      data:{focId,uid},
+      success:(res)=>{
+        res=res.data;
+        if(res.code==200){
+          wx.showToast({
+            title: '关注成功',
+          })
+          setTimeout(()=>{
+            wx.hideToast();
+          },1000)          
+        }else{
+          wx.showToast({
+            title: '网络错误',
+            icon:'none'
+          })
+          setTimeout(()=>{
+            wx.hideToast();
+          },1000)
+        }
+      }
+    })
+  },
+  /**
    * 页面的初始数据
    */
   data: {
