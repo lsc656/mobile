@@ -39,6 +39,21 @@ router.get("/",(req,res)=>{
   })
   
 })
-
+router.get('/search',(req,res)=>{
+  var searchArr=JSON.parse(req.query.searchArr);
+  var sql_search=[];
+  searchArr.map((item,i,arr)=>{
+     arr[i] ="%"+item+"%";
+    sql_search[i] = 'account LIKE ?'
+    if(i == arr.length-1){
+      var sql="SELECT cid,img_md,img_lg,authorId,account FROM sanse_pins_pics WHERE "
+      var mySql=sql+sql_search.join(" AND ");
+      pool.query(mySql,arr,(err,result)=>{  
+        if(err) console.log(err)
+        res.send({code:200,data:result})
+      })
+    }
+  })
+})
 
 module.exports=router;

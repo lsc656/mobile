@@ -66,7 +66,51 @@ Page({
       complete: function(res) {},
     })
   },
-  
+  /**
+   * 搜索
+   */
+  search(){
+    var str = this.data.inputVal;
+    str=str.replace(/(^\s*)|(\s*$)/g, "");
+    str=str.replace(/\s+/g,' ');
+    var searchArr=str.split(' ');
+    console.log(str)
+    console.log(searchArr)
+    wx.request({
+      url: 'http://127.0.0.1:3000/index/search',
+      data:{searchArr},
+      success:(res)=>{
+        res=res.data;
+        if (res.code == 200 && res.data.length>0){
+          wx.setStorage({
+            key: 'searchVal',
+            data: res.data,
+            success:()=>{
+              wx.navigateTo({
+                url: '/pages/search/search',
+              })
+            }
+          })          
+        }else{
+          wx.showToast({
+            title: '找不到相关信息',
+            icon:'none'
+          })
+          setTimeout(()=>{
+            wx.hideToast()
+          },1000)
+        }
+      }
+    })
+  },
+  /**
+   * 获取搜索框中的值
+   */
+  getInputValue(e){
+    this.setData({
+      inputVal: e.detail.value
+    })
+  },
   /**
    * 页面的初始数据
    */
@@ -75,8 +119,8 @@ Page({
     fl1:[],
     fl2:[],
     pageCount:1,
-    pno:0
-    // class：index和4取余，1，2 small，0,3 big
+    pno:0,
+    inputVal:''
   },
 
   /**

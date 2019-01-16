@@ -7,7 +7,8 @@
     "pages/user/user",
     "pages/userInfo/userInfo",
     "pages/updateMyPic/updateMyPic",
-    "pages/changeUserInfo/changeUserInfo"
+    "pages/changeUserInfo/changeUserInfo",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

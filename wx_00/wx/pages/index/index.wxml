@@ -37,8 +37,8 @@
     </view>
     <view>花瓣，陪你做生活的设计师</view>
     <view>
-      <input type="search" placeholder='搜索你喜欢的'></input>
-      <button></button>    
+      <input type="search" placeholder='搜索你喜欢的' bindinput='getInputValue'></input>
+      <button bindtap='search'></button>    
     </view>
     <view class="slide-up">向上滑动页面</view>
   </view>
