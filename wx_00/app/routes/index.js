@@ -42,6 +42,7 @@ router.get("/",(req,res)=>{
 router.get('/search',(req,res)=>{
   var searchArr=JSON.parse(req.query.searchArr);
   var sql_search=[];
+  var data={authorInfo:[],picInfo:[]};
   searchArr.map((item,i,arr)=>{
      arr[i] ="%"+item+"%";
     sql_search[i] = 'account LIKE ?'
@@ -50,7 +51,19 @@ router.get('/search',(req,res)=>{
       var mySql=sql+sql_search.join(" AND ");
       pool.query(mySql,arr,(err,result)=>{  
         if(err) console.log(err)
-        res.send({code:200,data:result})
+        data.picInfo=result;
+        var sql='SELECT user_img,uname FROM sanse_user WHERE uid=?'
+        result.map((item,i,arr)=>{
+          pool.query(sql,[item.authorId],(err,result)=>{
+            if(err) console.log(err)
+            console.log(i)
+            data.authorInfo[i]=result[0]
+            if(i == arr.length-1){
+              console.log(data)
+              res.send({code:200,data})
+            }
+          })
+        })
       })
     }
   })

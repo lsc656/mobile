@@ -1,2 +1,9 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class='list'>
+  <view class='item'>
+    <image lazy-load mode='aspectFill'></image>
+    <view class='info'>
+      
+    </view>
+  </view>
+</view>

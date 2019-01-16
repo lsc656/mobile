@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myList:[]
+    authorInfo:[],
+    picInfo:[]
   },
 
   /**
@@ -17,9 +18,10 @@ Page({
       key: 'searchVal',
       success: (res)=>{
         this.setData({
-          myList:res.data
-        })
-        console.log(this.data.myList)
+          authorInfo:res.data.authorInfo,
+          picInfo:res.data.picInfo
+        });
+        wx.removeStorage({key: 'searchVal'});
       },
     })
   },

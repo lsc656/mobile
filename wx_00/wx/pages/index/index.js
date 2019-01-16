@@ -81,7 +81,7 @@ Page({
       data:{searchArr},
       success:(res)=>{
         res=res.data;
-        if (res.code == 200 && res.data.length>0){
+        if (res.code == 200 && res.data.picInfo.length>0){
           wx.setStorage({
             key: 'searchVal',
             data: res.data,
@@ -91,7 +91,7 @@ Page({
               })
             }
           })          
-        }else{
+        } else if (res.code == 200 && res.data.picInfo.length == 0){
           wx.showToast({
             title: '找不到相关信息',
             icon:'none'
