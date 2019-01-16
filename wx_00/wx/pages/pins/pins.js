@@ -1,3 +1,4 @@
+const app=getApp();
 // pages/pins/pins.js
 Page({
 

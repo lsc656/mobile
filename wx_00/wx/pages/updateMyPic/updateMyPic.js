@@ -5,7 +5,8 @@ Page({
    */
   getAccount(e){
     this.setData({
-      account:e.detail.value
+      account:e.detail.value,
+      rem:e.detail.value.length
     })
   },
   /**
@@ -19,7 +20,8 @@ Page({
         res=res.data;
         this.setData({
           img_md:res.data.img_md,
-          account:res.data.account
+          account:res.data.account,
+          rem:res.data.account.length
         })
       }
     })
@@ -37,7 +39,22 @@ Page({
       },
       success:(res)=>{
         res=res.data;
-        console.log(res)
+        if(res.code==200){
+          wx.showToast({
+            title: '修改成功',
+          })
+          setTimeout(()=>{
+            wx.hideToast();
+          },1000)
+        }else{
+          wx.showToast({
+            title: '网络故障',
+            icon:'none'
+          })
+          setTimeout(()=>{
+            wx.hideToast();
+          },1000)
+        }
       }
     })
   },
