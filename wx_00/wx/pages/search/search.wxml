@@ -2,7 +2,7 @@
 <view>
   <view class='list'>
     <view class='item' wx:for='{{picInfo}}' wx:key="{{index}}">
-      <image lazy-load mode='widthFix' src='{{item.img_md}}' data-lg='{{item.img_lg}}' data-cid='{{item.cid}}'></image>
+      <image lazy-load mode='widthFix' src='{{item.img_md}}' data-lg='{{item.img_lg}}' data-cid='{{item.cid}}' bindtap="jumpLgPic"></image>
       <text>{{item.account}}</text>
       <view class='authorInfo'>
         <image src='{{authorInfo[index].user_img}}' lazy-load mode='aspectFill'></image>

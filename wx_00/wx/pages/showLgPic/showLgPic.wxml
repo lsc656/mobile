@@ -1,0 +1,5 @@
+<!--pages/showLgPic/showLgPic.wxml-->
+<view>
+  <image src="{{imgUrl}}" lazy-load mode='widthFix'></image>
+  <button bindtap="goBack">返回</button>
+</view>

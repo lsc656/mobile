@@ -1,25 +1,16 @@
-const app=getApp();
-// pages/search/search.js
+// pages/showLgPic/showLgPic.js
 Page({
-  jumpLgPic(e){
-    var url=e.target.dataset.lg;
-    wx.setStorage({
-      key: 'imgUrl',
-      data: url,
-      success:()=>{
-        wx.navigateTo({
-          url: '/pages/showLgPic/showLgPic'
-        })
-      }
+
+  goBack(){
+    wx.navigateBack({
+      delta:1
     })
   },
-
   /**
    * 页面的初始数据
    */
   data: {
-    authorInfo:[],
-    picInfo:[]
+    imgUrl:""
   },
 
   /**
@@ -27,14 +18,15 @@ Page({
    */
   onLoad: function (options) {
     wx.getStorage({
-      key: 'searchVal',
-      success: (res)=>{
+      key: 'imgUrl',
+      success: (res)=> {
+        res=res.data
         this.setData({
-          authorInfo:res.data.authorInfo,
-          picInfo:res.data.picInfo
-        });
-        console.log(res.data.authorInfo)
-        wx.removeStorage({key: 'searchVal'});
+          imgUrl:res
+        })
+        wx.removeStorage({
+          key: 'imgUrl'
+        })
       },
     })
   },

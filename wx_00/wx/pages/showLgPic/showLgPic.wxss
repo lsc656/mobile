@@ -1,0 +1,7 @@
+/* pages/showLgPic/showLgPic.wxss */
+view{
+  width:100vw;
+}
+image{
+  width:100%;
+}

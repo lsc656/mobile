@@ -1,6 +1,5 @@
 <!--pages/hlogic/hlogic.wxml-->
 <view>
-  <view>userInfo</view>
   <view class='authorInfo'>
     <view>
       <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/headPortraits/headP-1.jpg'></image>

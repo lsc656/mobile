@@ -59,7 +59,7 @@ router.get('/',(req,res)=>{
   pool.query(sql,[pid,authorId],(err,result)=>{
     if(err) console.log(err)
     output.c=Math.ceil(result[0].c/10);
-    var sql="SELECT cid,img_md,img_lg,authorId,account,zan,likes,shares,pid FROM sanse_pins_pics WHERE pid=? AND authorId=? LIMIT ?,6"
+    var sql="SELECT cid,img_md,img_lg,authorId,account,zan,likes,shares,pid,DATE_FORMAT(ctime,'%Y-%m-%d %H:%i:%s') as ctime FROM sanse_pins_pics WHERE pid=? AND authorId=? LIMIT ?,6"
       pool.query(sql,[pid,authorId,startI],(err,result)=>{
         if(err) console.log(err)
         output.data=result;

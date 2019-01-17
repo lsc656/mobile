@@ -12,15 +12,15 @@
       <button><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/download.png'></image> 下载</button>
     </view>
     <view class='author'>
-      <image lazy-load mode='widthFix' src="http://127.0.0.1:3000/img/headPortraits/headP-1.jpg"></image>
+      <image lazy-load mode='widthFix' src="{{authorInfo.user_img}}"></image>
       <view>
-        <view>作者姓名</view>
-        <view>采集时间</view>
+        <view>{{authorInfo.uname}}</view>
+        <view>{{myList[0].ctime}}</view>
       </view>
     </view>
   </view>
   <view class='pic-list'>    
-    <view class='dark-arr'><text>class title</text></view>    
+    <view class='dark-arr'><text>{{header.title}}</text></view>    
     <view class='img-list'>      
       <image lazy-load mode='aspectFill' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg'></image>
     </view>
