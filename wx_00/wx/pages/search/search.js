@@ -21,6 +21,7 @@ Page({
           authorInfo:res.data.authorInfo,
           picInfo:res.data.picInfo
         });
+        console.log(res.data.authorInfo)
         wx.removeStorage({key: 'searchVal'});
       },
     })

@@ -1,9 +1,14 @@
 <!--pages/search/search.wxml-->
-<view class='list'>
-  <view class='item'>
-    <image lazy-load mode='aspectFill'></image>
-    <view class='info'>
-      
+<view>
+  <view class='list'>
+    <view class='item' wx:for='{{picInfo}}' wx:key="{{index}}">
+      <image lazy-load mode='widthFix' src='{{item.img_md}}' data-lg='{{item.img_lg}}' data-cid='{{item.cid}}'></image>
+      <text>{{item.account}}</text>
+      <view class='authorInfo'>
+        <image src='{{authorInfo[index].user_img}}' lazy-load mode='aspectFill'></image>
+        <text>{{authorInfo[index].uname}}</text>
+      </view>
     </view>
   </view>
+  <view class='footer'>没有更多了</view>
 </view>

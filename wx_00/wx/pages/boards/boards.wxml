@@ -1,8 +1,7 @@
 <!--pages/boards/boards.wxml-->
 <view>
-  <text>pid:{{pid}},authorId:{{authorId}}</text>
   <view class='pic-info'>
-    <image lazy-load mode='aspectFit' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg' style='height:{{imgHeight*2}}rpx'></image>
+    <image lazy-load mode='widthFix' src='http://127.0.0.1:3000/img/imgs/img_001_lg.jpg' ></image>
     <view class='btn-group'>
       <button style='opacity:{{showBanner?"0.2":"1"}}' disabled='{{showBanner?true:false}}'><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/zan.png'></image> 收藏</button>  
       <button style='opacity:{{showBanner?"0.2":"1"}}' disabled='{{showBanner?true:false}}'><image lazy-load mode='aspeciFit' src='http://127.0.0.1:3000/img/icons/like.png'></image> 喜欢</button>  
@@ -31,12 +30,12 @@
     <view class='content'>
       <view class='list'>
         <view class="card" wx:for="{{myList}}" wx:key="index">
-          <image lazy-load mode='aspectFit' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' data-authorId='{{item.authorId}}' data-cid='{{item.cid}}' bindtap='jumpBigImg'></image>
+          <image lazy-load mode='widthFix' src='{{item.img_md}}' class='md-image' data-pid='{{item.pid}}' data-authorId='{{item.authorId}}' data-cid='{{item.cid}}' bindtap='jumpBigImg'></image>
           <view class='ell'>{{item.account}}</view>
           <view wx:if='{{item.zan>0}}'><image src='http://127.0.0.1:3000/img/icons/zan.png'></image>{{item.zan}}</view>
           <view class='author-info'>
             <view>
-              <image lazy-load mode="aspectFill" src='{{authorInfo.user_img}}'></image>            
+              <image lazy-load mode="aspectFill" src='{{authorInfo.user_img}}'></image>
             </view>
             <view>
               <view>{{authorInfo.uname}}</view>

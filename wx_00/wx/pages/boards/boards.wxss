@@ -1,8 +1,4 @@
 /* pages/boards/boards.wxss */
-.pic-info{
-
-}
-
 /* 主显示大图 */
 .pic-info>image{
   width:100%;
@@ -106,13 +102,14 @@
   font-weight:bold;
 }
 .content .list{
+  padding:20rpx;
   column-count:2;
   column-gap:20rpx;  
 }
 .content .card{
   background-color:#fff;
-  margin-bottom:20rpx;
   box-shadow:1px 1px 3px 3px #ededed;  
+  border:1rpx solid #bcbcbc;
   -webkit-column-break-inside:avoid;
 }
 .content .card .md-image{

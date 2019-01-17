@@ -44,7 +44,7 @@ router.get('/search',(req,res)=>{
   var sql_search=[];
   var data={authorInfo:[],picInfo:[]};
   searchArr.map((item,i,arr)=>{
-     arr[i] ="%"+item+"%";
+    arr[i] ="%"+item+"%";
     sql_search[i] = 'account LIKE ?'
     if(i == arr.length-1){
       var sql="SELECT cid,img_md,img_lg,authorId,account FROM sanse_pins_pics WHERE "
@@ -52,17 +52,20 @@ router.get('/search',(req,res)=>{
       pool.query(mySql,arr,(err,result)=>{  
         if(err) console.log(err)
         data.picInfo=result;
-        var sql='SELECT user_img,uname FROM sanse_user WHERE uid=?'
+        var sql='SELECT uid,user_img,uname FROM sanse_user WHERE uid=?';
         result.map((item,i,arr)=>{
           pool.query(sql,[item.authorId],(err,result)=>{
-            if(err) console.log(err)
-            console.log(i)
-            data.authorInfo[i]=result[0]
-            if(i == arr.length-1){
-              console.log(data)
+            if(err) console.log(err);
+            data.authorInfo[i]=result[0];
+            var a= data.authorInfo.length ==arr.length;
+            var stateCode = true;
+            for(let i=0;i<data.authorInfo.length;i++){
+              stateCode = stateCode && data.authorInfo[i]!=undefined
+            }
+            cond = a && stateCode;
+            if(cond){
               res.send({code:200,data})
             }
-
           })
         })
       })

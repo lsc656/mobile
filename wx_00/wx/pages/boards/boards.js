@@ -58,36 +58,12 @@ Page({
     })
   },
   /**
-   * 获取当前显示图片高度
-   */
-  getHeight(){
-    var winWinth=0;
-    //获取窗口宽度
-    wx.getSystemInfo({
-      success: (res)=>{
-        winWinth=parseInt(res.windowWidth);
-      }
-    })
-    //根据横向缩放比例更改图片高度
-    wx.getImageInfo({
-      //测试图片
-      src: 'http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',
-      success:(res)=>{
-        var lgHeight=winWinth/parseInt(res.width)*parseInt(res.height);
-        this.setData({
-          imgHeight: lgHeight
-        })
-      }
-    })
-  },
-  /**
    * 页面的初始数据
    */
   data: {
     pid:0,
     authorId:0,
     cid:0,
-    imgHeight:0,
     showBanner:false,
     pno:0,
     pageCount:1,
@@ -104,7 +80,6 @@ Page({
       authorId:options.authorId,
       cid:options.cid
     })
-    this.getHeight();
     this.loadMore();
   },
 
