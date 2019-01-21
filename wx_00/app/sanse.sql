@@ -103,10 +103,10 @@ CREATE TABLE sanse_user(
   wx_openID VARCHAR(28) COMMENT 'openID'
 );
 
-INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,likes,cj) VALUES 
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903),
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Amber菜花小姐',md5(123456),13000000000,80,0,343),
-('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','HLogic',md5(123456),13000000000,80,0,343);
+INSERT INTO sanse_user (user_img,uname,upwd,tel,fans,likes,cj,wx_openID) VALUES 
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Cats~',md5(123456),13000000000,491,0,2903,"oae5N5bhebIYgvA3oysMXGfrAOak"),
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','Amber菜花小姐',md5(123456),13000000000,80,0,343,null),
+('http://127.0.0.1:3000/img/headPortraits/headP-1.jpg','HLogic',md5(123456),13000000000,80,0,343,null);
 
 #用户关注信息
 CREATE TABLE sanse_user_focus(
@@ -138,9 +138,23 @@ CREATE TABLE sanse_pins_pics(
 );
 
 INSERT INTO sanse_pins_pics (img_md,img_lg,ctime,authorId,account,zan,likes,shares,pid) VALUES 
-('http://127.0.0.1:3000/img/imgs/img_007_md.jpg','http://127.0.0.1:3000/img/imgs/img_007_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
-('http://127.0.0.1:3000/img/imgs/img_025_md.jpg','http://127.0.0.1:3000/img/imgs/img_025_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
-('http://127.0.0.1:3000/img/imgs/img_003_md.jpg','http://127.0.0.1:3000/img/imgs/img_003_lg.jpg',now(),2,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
-('http://127.0.0.1:3000/img/imgs/img_004_md.jpg','http://127.0.0.1:3000/img/imgs/img_004_lg.jpg',now(),2,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2),
-('http://127.0.0.1:3000/img/imgs/img_005_md.jpg','http://127.0.0.1:3000/img/imgs/img_005_lg.jpg',now(),3,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2),
-('http://127.0.0.1:3000/img/imgs/img_006_md.jpg','http://127.0.0.1:3000/img/imgs/img_006_lg.jpg',now(),3,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,2);
+('http://127.0.0.1:3000/img/imgs/img_001_md.jpg','http://127.0.0.1:3000/img/imgs/img_001_lg.jpg',now(),1,'【每日灵感！2018潘通色竟然是它？】潘通发布了2018年的流行色——紫外光色，今年紫色真是要发红咯，怎么玩转紫色呢？看看别的设计师是怎么做的。#设计秀# #优设每日灵感#',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_002_md.jpg','http://127.0.0.1:3000/img/imgs/img_002_lg.jpg',now(),1,'2019猪年喜庆红色海报背景免费下载2019年  猪年海报  元旦  春节  锣鼓',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_003_md.jpg','http://127.0.0.1:3000/img/imgs/img_003_lg.jpg',now(),1,'金属质感纹理金色背景免费下载金属质感  鎏金背景  金闪光  创意  金色',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_004_md.jpg','http://127.0.0.1:3000/img/imgs/img_004_lg.jpg',now(),1,'新春年货节红色喜庆海报背景免费下载年货节  新年  新春  灯笼  烫金',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_005_md.jpg','http://127.0.0.1:3000/img/imgs/img_005_lg.jpg',now(),1,'春天中国风浪漫电商海报背景免费下载中国风  春天  春季  花瓣  花',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_006_md.jpg','http://127.0.0.1:3000/img/imgs/img_006_lg.jpg',now(),1,'小清新中国风新年签合成背景海报免费下载新年签  图腾  圆形  新年  锦鲤',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_007_md.jpg','http://127.0.0.1:3000/img/imgs/img_007_lg.jpg',now(),1,'中国风水墨山水荷花枫叶海报免费下载中国风  古风  山水  水墨  荷花',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_008_md.jpg','http://127.0.0.1:3000/img/imgs/img_008_lg.jpg',now(),1,'新年签小清新中国风古典底纹背景海报免费下载古典底纹  中国风  小清新  新年签  文艺',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_009_md.jpg','http://127.0.0.1:3000/img/imgs/img_009_lg.jpg',now(),1,'中国风简约渔船水墨山水海报免费下载中国风  古风  山水  水墨  简约  ',40,1,0,1),
+('http://127.0.0.1:3000/img/imgs/img_010_md.jpg','http://127.0.0.1:3000/img/imgs/img_010_lg.jpg',now(),1,'简约中国风猪年贺卡底纹背景免费下载2019  新春  灯笼  猪年  贺卡  ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_011_md.jpg','http://127.0.0.1:3000/img/imgs/img_011_lg.jpg',now(),1,'红色中国风吉祥福字背景免费下载中国风  吉祥  福字  红色  背景 ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_012_md.jpg','http://127.0.0.1:3000/img/imgs/img_012_lg.jpg',now(),1,'新年年货节复古中国风淘宝电商海报背景免费下载年货节海报背景  淘宝海报背景  复古中国风  年货节  新年  ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_013_md.jpg','http://127.0.0.1:3000/img/imgs/img_013_lg.jpg',now(),1,'新年 年货节 复古中国风 淘宝海报背景 年货节海报背景 中国风海报背景 锦鲤 祥云 过年不打烊',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_014_md.jpg','http://127.0.0.1:3000/img/imgs/img_014_lg.jpg',now(),1,'年货节中国风红色电商海报背景免费下载天猫年货节  中国风  年货节  灯笼  红色  ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_015_md.jpg','http://127.0.0.1:3000/img/imgs/img_015_lg.jpg',now(),1,'年货节 中国风 红色 天猫年货节 灯笼 祥云 抢年货 年终促销 新年 春节 2019',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_016_md.jpg','http://127.0.0.1:3000/img/imgs/img_016_lg.jpg',now(),1,'中国风中元节鬼节海报背景图免费下载中元节  中国风  河灯  海报  鬼节  ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_017_md.jpg','http://127.0.0.1:3000/img/imgs/img_017_lg.jpg',now(),1,'中国风 中元节 鬼节 海报 中元节海报背景 河灯 放河灯 水墨山水 电商中元节海拔背景',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_018_md.jpg','http://127.0.0.1:3000/img/imgs/img_018_lg.jpg',now(),1,'中国风古典折扇故宫海报背景免费下载中国风  深蓝色  古典  故宫  高端  ',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_019_md.jpg','http://127.0.0.1:3000/img/imgs/img_019_lg.jpg',now(),1,'中国风 古典 折扇 故宫 深蓝色 高端 传统 如懿传 海报 背景',40,1,0,2),
+('http://127.0.0.1:3000/img/imgs/img_020_md.jpg','http://127.0.0.1:3000/img/imgs/img_020_lg.jpg',now(),1,'淘宝中国风简约纹理海报背景免费下载中国风  文艺  简约  纹理  边框  ',40,1,0,2);
